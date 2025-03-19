@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { LoginPayloadI } from "./auth";
 
 interface InitialStateI {
   noAuth: boolean;
@@ -20,12 +19,13 @@ export const AuthSlice = createSlice({
   initialState,
   reducers: {
     initAuthUser: (state, { payload }: PayloadAction<LoginPayloadI>) => {
+      console.log("payload", payload)
       state.noAuth = false;
       state.authenticated = true;
       state.authUser = payload.user;
-      state.token = payload.token.access;
+      state.token = payload.access;
 
-      localStorage.setItem("msp_auth_token", payload.token.access);
+      localStorage.setItem("msp_auth_token", payload.refresh);
     },
 
     logout: (state) => {

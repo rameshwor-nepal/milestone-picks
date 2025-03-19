@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toast } from "@/utils/toast/Toast";
+import ReduxProvider from "./Provider";
+import TokenProvider from "./TokenProvider";
 
 export const metadata: Metadata = {
   title: "Milestone Picks",
@@ -16,7 +19,14 @@ export default function RootLayout({
       <body
         className=""
       >
-        {children}
+        <ReduxProvider>
+          <TokenProvider>
+            <Toast />
+            {children}
+          </TokenProvider>
+
+        </ReduxProvider>
+
       </body>
     </html>
   );

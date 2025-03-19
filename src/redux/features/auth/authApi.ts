@@ -6,19 +6,21 @@ export const authApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body: { email: string; password: string }) => ({
-        url: "/token/",
+        url: "api/token/",
         method: "POST",
         body,
       }),
       onQueryStarted(_args, { dispatch, queryFulfilled }) {
+
         queryFulfilled.then((data) => {
+          console.log("data after login", data)
           dispatch(initAuthUser(data.data));
         });
       },
     }),
     verifyToken: builder.mutation({
       query: (body: { refresh: string }) => ({
-        url: "/verify-token/",
+        url: "api/token/refresh/",
         method: "POST",
         headers: {},
         body,
@@ -34,7 +36,43 @@ export const authApi = rootApi.injectEndpoints({
           });
       },
     }),
+    signUp: builder.mutation<void, SignUpI>({
+      query: (body) => ({
+        url: "user/register/",
+        method: "POST",
+        body
+      })
+    }),
+    forgetPassword: builder.mutation<void, Omit<LoginI, 'password'>>({
+      query: (body) => ({
+        url: "user/forgot-password/",
+        method: "POST",
+        body
+      })
+    }),
+    verifyOtp: builder.mutation<void, Omit<ResetPasswordI, 'new_password'>>({
+      query: (body) => ({
+        url: "user/verify-otp/",
+        method: "POST",
+        body
+      })
+    }),
+    resetPassword: builder.mutation<void, ResetPasswordI>({
+      query: (body) => ({
+        url: "user/reset-password/",
+        method: "POST",
+        body
+      })
+    }),
+
   }),
 });
 
-export const { useLoginMutation, useVerifyTokenMutation } = authApi;
+export const {
+  useLoginMutation,
+  useVerifyTokenMutation,
+  useSignUpMutation,
+  useForgetPasswordMutation,
+  useVerifyOtpMutation,
+  useResetPasswordMutation,
+} = authApi;

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 
-interface PropsI {
-    title: string | null;
+interface PropsI extends ButtonHTMLAttributes<HTMLButtonElement> {
+    title: string;
 }
 const Button = ({ title }: PropsI) => {
     return (

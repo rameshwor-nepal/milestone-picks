@@ -1,11 +1,13 @@
-import Button from '@/ui/button/Button'
+import Link from 'next/link';
 import React from 'react'
 
 interface PropsI {
     children: React.ReactNode;
+    redirectText?: string | null;
+    redirectLink?: string | null;
 }
 
-const AuthContainer = ({ children }: PropsI) => {
+const AuthContainer = ({ children, redirectText, redirectLink }: PropsI) => {
     return (
         <div className="flex items-center justify-center min-h-screen w-full">
             <div className="flex bg-blue-1 rounded-lg shadow-sm shadow-black-3 overflow-hidden mx-auto max-w-sm w-full lg:max-w-5xl">
@@ -21,7 +23,8 @@ const AuthContainer = ({ children }: PropsI) => {
 
                     <div className="mt-4 flex items-center justify-between">
                         <span className="border-b w-1/5 md:w-1/4"></span>
-                        <a href="#" className="text-xs text-gray-500 uppercase">or sign up</a>
+                        <Link href={redirectLink ? redirectLink : '/signup'}> </Link>
+                        <a href="#" className="text-xs text-gray-500 uppercase">{redirectText ? redirectText : 'or sign up'}</a>
                         <span className="border-b w-1/5 md:w-1/4"></span>
                     </div>
                 </div>
