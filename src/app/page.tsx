@@ -1,5 +1,5 @@
 import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/header/navbar/Navbar";
 import Testimonial from "@/components/testimonials/Testimonial";
 import Image from "next/image";
 import { MdArrowForward, MdGroups2 } from "react-icons/md";

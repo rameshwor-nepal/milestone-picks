@@ -18,7 +18,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Desktop Menu */}
-                <div className="hidden lg:block">
+                <div className="hidden md:block">
                     <ul className="flex gap-5 cursor-pointer no-underline">
 
                         <a href="/" className="hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -27,10 +27,10 @@ const Navbar = () => {
                         <a href="/about" className="hover:scale-105 transition-transform duration-300 ease-in-out">
                             About Us
                         </a>
-                        <a href="/facilities" className="hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <a href="/plan" className="hover:scale-105 transition-transform duration-300 ease-in-out">
                             Our Plans
                         </a>
-                        <a href="/program" className="hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <a href="/bettingInfo" className="hover:scale-105 transition-transform duration-300 ease-in-out">
                             Betting Info
                         </a>
                         <a href="/history" className="hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -43,7 +43,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Icon */}
-                <div className="block lg:hidden  cursor-pointer" onClick={() => setIsMobileNavBar(true)}>
+                <div className="block md:hidden  cursor-pointer" onClick={() => setIsMobileNavBar(true)}>
                     <MdMenu size={40} />
                 </div>
             </nav>
@@ -57,8 +57,8 @@ const Navbar = () => {
                     <ul className="flex flex-col gap-6 text-xl">
                         <a href="/" onClick={() => setIsMobileNavBar(false)}>Home</a>
                         <a href="/about" onClick={() => setIsMobileNavBar(false)}>About Us</a>
-                        <a href="/facilities" onClick={() => setIsMobileNavBar(false)}>Our Plans</a>
-                        <a href="/program" onClick={() => setIsMobileNavBar(false)}>Betting Info</a>
+                        <a href="/plan" onClick={() => setIsMobileNavBar(false)}>Our Plans</a>
+                        <a href="/bettingInfo" onClick={() => setIsMobileNavBar(false)}>Betting Info</a>
                         <a href="/history" onClick={() => setIsMobileNavBar(false)}>Previous History</a>
                         <a href="/contact" onClick={() => setIsMobileNavBar(false)}>Contact Us</a>
                     </ul>
