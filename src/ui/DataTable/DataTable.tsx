@@ -1,13 +1,10 @@
 'use client'
 import React from "react";
 import { ThreeDots } from "react-loader-spinner";
-import { Icon } from "react-icons-kit";
-import { ic_expand_less } from "react-icons-kit/md/ic_expand_less";
-import { ic_expand_more } from "react-icons-kit/md/ic_expand_more";
 
 export const DataTableContainer: React.FC<{ title?: string; children?: React.ReactNode }> = ({ title, children }) => {
     return (
-        <div className="p-8 border border-gray-400 rounded-md bg-white">
+        <div className="p-6 border border-green-3 rounded-md bg-blue-2">
             {title && <p className="mb-8 text-gray-900 text-xl font-medium">{title}</p>}
             {children}
         </div>
@@ -34,30 +31,30 @@ const DataTable: React.FC<{ loading: boolean; children?: React.ReactNode }> & {
     return (
         <div className="relative overflow-auto">
             {loading && <LoadingState />}
-            <table className="w-full border-collapse">{children}</table>
+            <table className="w-full border-collapse text-sm">{children}</table>
         </div>
     );
 };
 
-DataTable.TH = ({ children }) => <thead className="bg-gray-200 border-b border-gray-300 h-12">{children}</thead>;
+DataTable.TH = ({ children }) => <thead className=" border-b border-green-3 h-5">{children}</thead>;
 DataTable.TB = ({ children }) => <tbody>{children}</tbody>;
-DataTable.TR = ({ children }) => <tr className="h-14 hover:bg-gray-100">{children}</tr>;
+DataTable.TR = ({ children }) => <tr className="h-5 hover:bg-blue-3">{children}</tr>;
 DataTable.THD = ({ onClick, maxWidth, isActionCol, children, ...props }) => (
     <th
         onClick={onClick}
-        className={`p-4 border border-gray-300 text-left ${onClick ? "cursor-pointer" : ""}`}
+        className={`p-2 border border-green-3 text-left ${onClick ? "cursor-pointer" : ""}`}
         style={{ width: maxWidth ? `${maxWidth}px` : "auto", textAlign: props.align || "left" }}
         colSpan={props.colSpan || 1}
         rowSpan={props.rowSpan || 1}
     >
-        {!isActionCol && <TableHDSorting />} {children}
+        {children}
     </th>
 );
 
 DataTable.ActionCol = ({ onClick, children, ...props }) => (
     <th
         onClick={onClick}
-        className="p-4 border border-gray-300 text-left"
+        className="p-2 border border-green-3 text-left"
         colSpan={props.colSpan || 1}
         rowSpan={props.rowSpan || 1}
         style={{ textAlign: props.align || "left" }}
@@ -67,7 +64,7 @@ DataTable.ActionCol = ({ onClick, children, ...props }) => (
 );
 
 DataTable.TCD = ({ children, ...props }) => (
-    <td className="p-4 border border-gray-300" style={{ textAlign: props.align || "left" }}>
+    <td className="p-2 max-w-[20rem] border border-green-3" style={{ textAlign: props.align || "left" }}>
         {children}
     </td>
 );
@@ -75,20 +72,12 @@ DataTable.TCD = ({ children, ...props }) => (
 DataTable.EmptyBody = ({ span }) => (
     <tbody>
         <tr>
-            <td className="text-center p-40 text-gray-600 bg-gray-100" colSpan={span}>
+            <td className="text-center p-24 text-gray-600 bg-green-3" colSpan={span}>
                 No Records Found
             </td>
         </tr>
     </tbody>
 );
 
-const TableHDSorting = () => {
-    return (
-        <div className="absolute top-0 right-0 w-5 h-full flex flex-col items-center justify-center">
-            <Icon icon={ic_expand_less} className="text-gray-500" />
-            <Icon icon={ic_expand_more} className="text-gray-500" />
-        </div>
-    );
-};
 
 export default DataTable;

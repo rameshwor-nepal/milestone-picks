@@ -60,7 +60,7 @@ const DataTableSearchContainer = ({
                             type="text"
                             value={searchVal}
                             placeholder="Search..."
-                            className="w-full pl-10 pr-10 py-2 border rounded focus:border-blue-500 focus:outline-none"
+                            className="w-full text-blue-1 pl-10 pr-10 py-2 border rounded focus:border-blue-500 focus:outline-none"
                             onChange={(e) => setSearchVal(e.target.value)}
                             onKeyDown={(e) => e.key === "Enter" && onTableSearch(searchVal)}
                         />

@@ -1,6 +1,5 @@
 'use client'
 import { ic_dashboard } from "react-icons-kit/md/ic_dashboard";
-import { ic_drafts } from "react-icons-kit/md/ic_drafts";
 import { ic_assignment } from "react-icons-kit/md/ic_assignment";
 
 type LinksProps<TExtended = boolean> = TExtended extends true
@@ -64,11 +63,26 @@ export const navLinks = (
                         to: "/admin/info/pageInfo",
                         active: currentPath === "/admin/info/pageInfo",
                     },
-                    // {
-                    //     text: "Suchi Darta Form",
-                    //     to: "/suchi-darta/add",
-                    //     active: currentPath === "/suchi-darta/add",
-                    // },
+                    {
+                        text: "Testimonial",
+                        to: "/admin/info/testimonial",
+                        active: currentPath === "/admin/info/testimonial",
+                    },
+                    {
+                        text: "FAQ",
+                        to: "/admin/info/faq",
+                        active: currentPath === "/admin/info/faq",
+                    },
+                    {
+                        text: "Sports Category",
+                        to: "/admin/info/sportCategory",
+                        active: currentPath === "/admin/info/sportCategory",
+                    },
+                    {
+                        text: "Message",
+                        to: "/admin/info/message",
+                        active: currentPath === "/admin/info/message",
+                    },
                 ],
             },
         ];

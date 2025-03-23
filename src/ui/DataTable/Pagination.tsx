@@ -49,7 +49,7 @@ const Pagination = (props: PaginationProps) => {
     };
 
     return (
-        <div className="mt-12 flex flex-wrap gap-12">
+        <div className="mt-4 flex flex-wrap gap-12">
             <div className="flex items-center gap-4">
                 <span className="text-xl font-light text-gray-800">Show per page:</span>
                 <select

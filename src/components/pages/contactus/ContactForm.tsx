@@ -1,3 +1,4 @@
+'use client'
 import Button from '@/ui/button/Button'
 import React from 'react'
 import { FaGlobe } from 'react-icons/fa'

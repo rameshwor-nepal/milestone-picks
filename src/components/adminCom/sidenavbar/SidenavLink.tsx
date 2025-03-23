@@ -43,13 +43,13 @@ export const SidenavLink = ({ text, icon, sublinks, active, expandedSidebar }: S
                     <li key={index}>
                         <Link href={el.to} >
                             <p
-                                className={`flex items-center gap-3 px-6 py-2 text-blue-1 my-2 hover:bg-blue-2 transition-colors rounded-md ${el.active ? " bg-blue-2" : "text-gray-400 hover:text-white"
+                                className={`flex items-center gap-3 px-6 py-2 text-white my-2 hover:bg-blue-2 transition-colors rounded-md ${el.active ? " bg-blue-2" : null
                                     }`}
                             >
                                 <span className="flex items-center justify-center w-3 h-3 rounded-full border border-gray-400">
                                     <span className={`w-2 h-2 rounded-full ${el.active ? "bg-blue-1" : "bg-gray-900"}`}></span>
                                 </span>
-                                <span className={`text-base font-medium ${el.active ? "text-white" : "text-blue-1"}`}>{el.text}</span>
+                                <span className={`text-base font-medium `}>{el.text}</span>
                             </p>
                         </Link>
                     </li>
