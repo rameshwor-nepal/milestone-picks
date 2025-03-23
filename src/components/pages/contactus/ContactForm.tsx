@@ -78,7 +78,7 @@ const ContactForm = () => {
                         loading="lazy"
                         allowFullScreen
                         referrerPolicy="no-referrer-when-downgrade"
-                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCLm2KcP8LEPeVG0LmpwkHXVmGe6o8v96c&q=Space+Needle,Seattle+WA">
+                        src="https://www.google.com/maps/embed/v1/place?key=">
                     </iframe> */}
                 </div>
             </div>
