@@ -1,17 +1,17 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
-import { Icon } from "react-icons-kit";
-import { chevronRight } from "react-icons-kit/fa/chevronRight";
+import { IconType } from "react-icons";
+import { FaChevronRight } from "react-icons/fa";
 
 interface SidenavLinkProps {
     text: string;
-    icon: React.ReactNode;
+    icon: IconType;
     sublinks: { to: string; text: string; active: boolean }[];
     active: boolean;
     expandedSidebar: boolean;
 }
 
-export const SidenavLink = ({ text, icon, sublinks, active, expandedSidebar }: SidenavLinkProps) => {
+export const SidenavLink = ({ text, icon: Icon, sublinks, active, expandedSidebar }: SidenavLinkProps) => {
     const drawerRef = useRef<HTMLUListElement | null>(null);
     const [drawerOpen, setDrawerOpen] = useState<boolean>(active);
 
@@ -22,13 +22,12 @@ export const SidenavLink = ({ text, icon, sublinks, active, expandedSidebar }: S
                 className={`flex items-center gap-4 w-full rounded-md px-6 py-2 mb-1 transition-colors text-gray-200 hover:text-white hover:bg-blue-1 ${active ? "bg-blue-1" : "bg-transparent"
                     }`}
             >
-                <Icon size={18} icon={icon} />
+                <Icon size={18} />
                 {expandedSidebar && (
                     <span className="flex flex-1 justify-between items-center">
                         <span className="text-lg font-medium">{text}</span>
-                        <Icon
+                        <FaChevronRight
                             size={14}
-                            icon={chevronRight}
                             className={`transition-transform ${drawerOpen ? "rotate-90" : "rotate-0"}`}
                         />
                     </span>

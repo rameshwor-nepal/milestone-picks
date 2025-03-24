@@ -6,7 +6,7 @@ export const authApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body: { email: string; password: string }) => ({
-        url: "api/token/",
+        url: "/api/token/",
         method: "POST",
         body,
       }),
@@ -20,7 +20,7 @@ export const authApi = rootApi.injectEndpoints({
     }),
     verifyToken: builder.mutation({
       query: (body: { refresh: string }) => ({
-        url: "api/token/refresh/",
+        url: "/api/token/refresh/",
         method: "POST",
         headers: {},
         body,
@@ -38,28 +38,28 @@ export const authApi = rootApi.injectEndpoints({
     }),
     signUp: builder.mutation<void, SignUpI>({
       query: (body) => ({
-        url: "user/register/",
+        url: "/user/register/",
         method: "POST",
         body
       })
     }),
     forgetPassword: builder.mutation<void, Omit<LoginI, 'password'>>({
       query: (body) => ({
-        url: "user/forgot-password/",
+        url: "/user/forgot-password/",
         method: "POST",
         body
       })
     }),
     verifyOtp: builder.mutation<void, Omit<ResetPasswordI, 'new_password'>>({
       query: (body) => ({
-        url: "user/verify-otp/",
+        url: "/user/verify-otp/",
         method: "POST",
         body
       })
     }),
     resetPassword: builder.mutation<void, ResetPasswordI>({
       query: (body) => ({
-        url: "user/reset-password/",
+        url: "/user/reset-password/",
         method: "POST",
         body
       })

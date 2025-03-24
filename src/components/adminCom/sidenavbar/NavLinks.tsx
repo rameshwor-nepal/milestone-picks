@@ -1,12 +1,15 @@
 'use client'
-import { ic_dashboard } from "react-icons-kit/md/ic_dashboard";
-import { ic_assignment } from "react-icons-kit/md/ic_assignment";
+import { FaHistory } from "react-icons/fa";
+import { IconType } from "react-icons";
+import { MdDashboard, MdInfo } from "react-icons/md";
+import { MdBatchPrediction } from "react-icons/md";
+import { BsGraphUpArrow } from "react-icons/bs";
 
 type LinksProps<TExtended = boolean> = TExtended extends true
     ? {
         extended: TExtended;
         text: string;
-        icon: React.ReactNode;
+        icon: IconType;
         active: boolean;
         sublinks: { text: string; to: string; active: boolean }[];
         to?: string;
@@ -15,7 +18,7 @@ type LinksProps<TExtended = boolean> = TExtended extends true
         extended: TExtended;
         text: string;
         to: string;
-        icon: React.ReactNode;
+        icon: IconType;
         active: boolean;
     };
 
@@ -27,35 +30,35 @@ export const navLinks = (
             {
                 extended: false,
                 text: "Dashboard",
-                icon: ic_dashboard as React.ReactNode,
+                icon: MdDashboard as IconType,
                 to: "/admin/dashboard",
                 active: currentPath === "/admin/dashboard",
             },
-            // {
-            //     extended: false,
-            //     text: "Graph",
-            //     icon: ic_drafts as React.ReactNode,
-            //     to: "/admin/graph",
-            //     active: currentPath.startsWith("/admin/graph"),
-            // },
-            // {
-            //     extended: false,
-            //     text: "Betting info",
-            //     icon: ic_drafts as React.ReactNode,
-            //     to: "/bettingInfo",
-            //     active: currentPath.startsWith("/admin/bettingInfo"),
-            // },
-            // {
-            //     extended: false,
-            //     text: "Prediction",
-            //     icon: ic_assignment as React.ReactNode,
-            //     to: "Prediction",
-            //     active: currentPath.startsWith("/admin/prediction"),
-            // },
+            {
+                extended: false,
+                text: "Graph",
+                icon: BsGraphUpArrow as IconType,
+                to: "/admin/graph",
+                active: currentPath.startsWith("/admin/graph"),
+            },
+            {
+                extended: false,
+                text: "Prediction",
+                icon: MdBatchPrediction as IconType,
+                to: "/admin/prediction",
+                active: currentPath.startsWith("/admin/prediction"),
+            },
+            {
+                extended: false,
+                text: "History",
+                icon: FaHistory as IconType,
+                to: "/admin/history",
+                active: currentPath.startsWith("/admin/history"),
+            },
             {
                 extended: true,
                 text: "Site Info",
-                icon: ic_assignment as React.ReactNode,
+                icon: MdInfo as IconType,
                 active: currentPath.startsWith("/admin/info"),
                 sublinks: [
                     {

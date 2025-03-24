@@ -4,14 +4,20 @@ import Button from '@/ui/button/Button'
 import DataTable, { DataTableContainer } from '@/ui/DataTable/DataTable'
 import DataTableSearchContainer from '@/ui/DataTable/DataTableSearch'
 import { PageLayoutHeader } from '@/ui/layout/PageLayout'
-import Pagination from '@/ui/pagination/Pagination'
-import React from 'react'
+import ModalForm from '@/ui/modal/ModalForm'
+import React, { useState } from 'react'
+import HeroSectionAdditionModalForm from './HeroSectionAdditionModalForm'
 
 const HerosectionAdditon = () => {
+  const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+
+  const handleModalClose = () => {
+    setAddModalOpen(false);
+  };
   return (
     <>
       <PageLayoutHeader>
-        <Button title='Add hero section' secondary={true} />
+        <Button title='Add hero section' secondary={true} onClick={() => setAddModalOpen(true)} />
       </PageLayoutHeader>
       <DataTableContainer>
         <DataTableSearchContainer onTableSearch={() => { }} />
@@ -86,6 +92,14 @@ const HerosectionAdditon = () => {
           totalRecords={0}
         /> */}
       </DataTableContainer>
+
+      <ModalForm
+        isModalOpen={addModalOpen}
+        closeModal={handleModalClose}
+        title='Add Hero Section'
+      >
+        <HeroSectionAdditionModalForm closeModal={handleModalClose} />
+      </ModalForm>
     </>
 
   )

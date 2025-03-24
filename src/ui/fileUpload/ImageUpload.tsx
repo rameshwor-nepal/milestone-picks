@@ -57,17 +57,17 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
         <div className="flex flex-col gap-2">
             {label && <label className="text-gray-700 mb-2 font-medium">{label}</label>}
             {val || value ? (
-                <label htmlFor={name} className="relative w-32 h-40 overflow-hidden group cursor-pointer">
+                <label htmlFor={name} className="relative w-64 h-32 overflow-hidden group cursor-pointer">
                     <img
                         src={val ? returnImgUrl(val) : value ? returnImgUrl(value) : ''}
                         className="w-full h-full object-cover group-hover:blur-sm group-hover:brightness-75"
                     />
-                    <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition">
+                    <span className="absolute bottom-[37%] left-[40%] transform -translate-x-1/2 bg-green-2 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition">
                         <Icon size={18} icon={ic_edit} />
                     </span>
                     <button
                         onClick={handleClose}
-                        className="absolute bottom-0 left-1/2 transform translate-x-6 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+                        className="absolute bottom-[37%] left-[40%] transform translate-x-6 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
                     >
                         <Icon size={18} icon={ic_delete} />
                     </button>
@@ -75,13 +75,13 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
             ) : (
                 <label
                     htmlFor={name}
-                    className="flex items-center justify-center w-32 h-40 border-2 border-dashed border-blue-500 text-blue-500 rounded-lg cursor-pointer"
+                    className="flex items-center justify-center w-64 h-32 border-2 border-dashed border-blue-500 text-blue-500 rounded-lg cursor-pointer"
                 >
                     <Icon size={44} icon={ic_add_outline} />
                 </label>
             )}
             <input id={name} type="file" onChange={handleFileChange} hidden />
-            <span className="text-sm text-gray-600">{val ? getShortenedVal(val.name) : ''}</span>
+            <span className="text-sm text-gray-100">{val ? getShortenedVal(val.name) : ''}</span>
         </div>
     );
 };

@@ -5,11 +5,11 @@ interface PropsI {
 }
 
 const Grid = ({ children }: PropsI) => {
-    return <div className="space-y-8">{children}</div>;
+    return <div className="space-y-2">{children}</div>;
 };
 
 Grid.Row = ({ children }: PropsI) => {
-    return <div className="grid grid-cols-12 gap-8 space-y-8">{children}</div>;
+    return <div className="grid grid-cols-12 gap-4 space-y-2">{children}</div>;
 };
 
 const getColSpan = (size?: string, isMobile?: boolean) => {

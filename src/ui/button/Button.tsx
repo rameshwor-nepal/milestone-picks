@@ -1,16 +1,17 @@
+'use client'
 import React, { ButtonHTMLAttributes } from 'react'
 
 interface PropsI extends ButtonHTMLAttributes<HTMLButtonElement> {
     title: string;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     width?: 'full' | 'fit';
     secondary?: boolean;
+    buttonType?: "button" | "submit" | "reset";
 }
-const Button = ({ title, onClick, width, secondary }: PropsI) => {
+const Button = ({ title, width, secondary, buttonType, ...rest }: PropsI) => {
     return (
         <div>
-            <button className={` ${secondary ? "bg-white text-blue-1" : "bg-green-2 text-white"} font-bold py-2 px-4 ${width === 'fit' ? 'w-fit' : 'w-full'} rounded transition-all  ${secondary ? "hover:bg-gray-300" : "hover:bg-green-2/80"}`}
-                onClick={(e) => onClick && onClick(e)}
+            <button className={` ${secondary ? "bg-black-1 text-white" : "bg-green-2 text-white"} font-bold py-2 px-4 ${width === 'fit' ? 'w-fit' : 'w-full'} rounded transition-all  ${secondary ? "hover:bg-gray-900" : "hover:bg-green-4"}`}
+                type={buttonType ? buttonType : "button"}  {...rest}
             >
                 {title}
             </button>

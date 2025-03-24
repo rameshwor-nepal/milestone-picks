@@ -1,5 +1,4 @@
 'use client';
-
 import { createContext, useEffect, useState } from 'react';
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import { navLinks } from './NavLinks';
@@ -18,7 +17,6 @@ type Props = {
 
 const Sidenav = (props: Props) => {
     const currentPath = usePathname();
-    console.log("current pathname", currentPath)
     const [expandedSidebar, toggleSidebar] = useState(true);
 
     const handleSideBarExpand = () => {

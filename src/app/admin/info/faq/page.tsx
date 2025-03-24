@@ -1,3 +1,4 @@
+import FaqList from '@/components/adminCom/pageInfo/faqList/FaqList'
 import { PageLayout } from '@/ui/layout/PageLayout'
 import React from 'react'
 
@@ -7,7 +8,7 @@ const FAQ = () => {
             title='FAQ Section'
             subtitle='Add/Edit faq section'
         >
-            <h1>This is admin faq section</h1>
+            <FaqList />
         </PageLayout>
     )
 }
