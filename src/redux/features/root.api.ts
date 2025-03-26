@@ -13,9 +13,13 @@ export const rootApi = createApi({
       }
       return headers;
     },
+    // mode: 'no-cors'
   }),
   endpoints: () => ({}),
   tagTypes: [
-
+    "GeneralInfo",
+    "FaqContent",
+    "SportCategory",
+    "Testimonials"
   ],
 });

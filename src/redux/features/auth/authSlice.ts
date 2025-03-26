@@ -23,7 +23,7 @@ export const AuthSlice = createSlice({
       state.noAuth = false;
       state.authenticated = true;
       state.authUser = payload.user;
-      state.token = payload.access;
+      state.token = payload.refresh;
 
       localStorage.setItem("msp_auth_token", payload.refresh);
     },
