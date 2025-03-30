@@ -2,8 +2,9 @@ interface CreateFaqI {
     main_heading: string;
     title: string;
     title_description: string;
-    order: string;
-    is_active: string;
+    order: string | null;
+    is_active: boolean;
+    category: string | null;
 }
 
 interface GetFaqI {

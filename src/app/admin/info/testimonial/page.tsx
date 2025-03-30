@@ -1,3 +1,4 @@
+import TestimonialList from '@/components/adminCom/pageInfo/testimonialList/TestimonialList'
 import { PageLayout } from '@/ui/layout/PageLayout'
 import React from 'react'
 
@@ -7,7 +8,7 @@ const Testimonial = () => {
             title='Testimonial Section'
             subtitle='Add/Edit testimonial section'
         >
-            <h1>This is admin Testimonial section</h1>
+            <TestimonialList />
         </PageLayout>
     )
 }

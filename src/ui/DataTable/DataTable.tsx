@@ -13,8 +13,8 @@ export const DataTableContainer: React.FC<{ title?: string; children?: React.Rea
 
 const LoadingState = () => {
     return (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black bg-opacity-10">
-            <ThreeDots height="80" width="80" radius="9" color="#444D79" ariaLabel="three-dots-loading" />
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-green bg-opacity-10">
+            <ThreeDots height="80" width="80" radius="9" color="#7ADEA2" ariaLabel="three-dots-loading" />
         </div>
     );
 };
@@ -31,7 +31,7 @@ const DataTable: React.FC<{ loading: boolean; children?: React.ReactNode }> & {
     return (
         <div className="relative overflow-auto">
             {loading && <LoadingState />}
-            <table className="w-full border-collapse text-sm">{children}</table>
+            <table className="w-full border-collapse text-md">{children}</table>
         </div>
     );
 };
