@@ -3,14 +3,22 @@ import ActionButton from '@/ui/button/ActionButton'
 import Button from '@/ui/button/Button'
 import DataTable, { DataTableContainer } from '@/ui/DataTable/DataTable'
 import DataTableSearchContainer from '@/ui/DataTable/DataTableSearch'
+import ImageViewer from '@/ui/ImageViewer/ImageViewer'
 import { PageLayoutHeader } from '@/ui/layout/PageLayout'
-import React from 'react'
+import ModalForm from '@/ui/modal/ModalForm'
+import React, { useState } from 'react'
+import FaqModalForm from './FaqModalForm'
 
 const FaqList = () => {
+    const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+
+    const handleModalClose = () => {
+        setAddModalOpen(false);
+    };
     return (
         <>
             <PageLayoutHeader>
-                <Button title='Add hero section' secondary={true} />
+                <Button title='Add Faq' secondary={true} onClick={() => setAddModalOpen(true)} />
             </PageLayoutHeader>
             <DataTableContainer>
                 <DataTableSearchContainer onTableSearch={() => { }} />
@@ -22,15 +30,23 @@ const FaqList = () => {
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
-                                {("Content Title")}
+                                {"Main Heading"}
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
-                                {("Content Detail ")}
+                                {"Title"}
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
-                                {("Image ")}
+                                {"Description"}
+                            </DataTable.THD>
+
+                            <DataTable.THD align="center">
+                                {"Category"}
+                            </DataTable.THD>
+
+                            <DataTable.THD align="center">
+                                {"Is Active"}
                             </DataTable.THD>
 
                             <DataTable.ActionCol align="center">
@@ -43,22 +59,20 @@ const FaqList = () => {
                         {/* {records.results.map((el, index) => ( */}
                         <DataTable.TR >
                             <DataTable.TCD align="center">{1}</DataTable.TCD>
+                            <DataTable.TCD align="center">{"Heading"}</DataTable.TCD>
                             <DataTable.TCD align="center">{"Title"}</DataTable.TCD>
                             <DataTable.TCD align="center">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde in inventore quaerat at esse illo impedit explicabo
                                 reiciendis totam fugit maiores earum, quo voluptatem, nulla exercitationem beatae ex quae excepturi?
                             </DataTable.TCD>
-
+                            <DataTable.TCD align="center">{"Category"}</DataTable.TCD>
+                            <DataTable.TCD align="center">{"Is active"}</DataTable.TCD>
                             <DataTable.TCD>
-                                {/* <img src="/using-laptop.jpeg" alt="" /> */}
+                                <ImageViewer src="/using-laptop.jpeg" alt="" />
                             </DataTable.TCD>
                             <DataTable.TCD>
                                 <>
                                     <ActionButton>
-                                        <ActionButton.ViewIcon
-                                        // onClick={() => navigate(`details/${el.id}`)}
-                                        />
-
                                         <ActionButton.EditIcon
                                         // onClick={() => navigate(`update/${el.id}`)}
                                         // disabled={
@@ -68,6 +82,10 @@ const FaqList = () => {
                                         //   })
                                         // }
                                         />
+                                        <ActionButton.DeleteIcon
+                                        // onClick={() => navigate(`details/${el.id}`)}
+                                        />
+
                                     </ActionButton>
                                 </>
                             </DataTable.TCD>
@@ -85,6 +103,13 @@ const FaqList = () => {
                   totalRecords={0}
                 /> */}
             </DataTableContainer>
+            <ModalForm
+                isModalOpen={addModalOpen}
+                closeModal={handleModalClose}
+                title='Add Faq'
+            >
+                <FaqModalForm closeModal={handleModalClose} />
+            </ModalForm>
         </>
     )
 }

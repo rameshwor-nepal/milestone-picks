@@ -7,9 +7,13 @@ import { PageLayoutHeader } from '@/ui/layout/PageLayout'
 import ModalForm from '@/ui/modal/ModalForm'
 import React, { useState } from 'react'
 import HeroSectionAdditionModalForm from './HeroSectionAdditionModalForm'
+import { useFetchHeroSectionQuery } from '@/redux/features/other/generalInfo/generalInfoApi'
+import ImageViewer from '@/ui/ImageViewer/ImageViewer'
 
 const HerosectionAdditon = () => {
   const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+  const { data, isLoading, isFetching } = useFetchHeroSectionQuery({ search: '', page: 1, page_size: 10 });
+  console.log("data in hero section", data)
 
   const handleModalClose = () => {
     setAddModalOpen(false);
@@ -21,7 +25,7 @@ const HerosectionAdditon = () => {
       </PageLayoutHeader>
       <DataTableContainer>
         <DataTableSearchContainer onTableSearch={() => { }} />
-        <DataTable loading={false}>
+        <DataTable loading={isLoading || isFetching}>
           <DataTable.TH>
             <DataTable.TR>
               <DataTable.THD align="center">
@@ -29,11 +33,11 @@ const HerosectionAdditon = () => {
               </DataTable.THD>
 
               <DataTable.THD align="center">
-                {("Content Title")}
+                {("Title")}
               </DataTable.THD>
 
               <DataTable.THD align="center">
-                {("Content Detail ")}
+                {("Sub Title")}
               </DataTable.THD>
 
               <DataTable.THD align="center">
@@ -45,45 +49,44 @@ const HerosectionAdditon = () => {
               </DataTable.ActionCol>
             </DataTable.TR>
           </DataTable.TH>
-          {/* {records.results.length ? ( */}
-          <DataTable.TB>
-            {/* {records.results.map((el, index) => ( */}
-            <DataTable.TR >
-              <DataTable.TCD align="center">{1}</DataTable.TCD>
-              <DataTable.TCD align="center">{"Title"}</DataTable.TCD>
-              <DataTable.TCD align="center">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde in inventore quaerat at esse illo impedit explicabo
-                reiciendis totam fugit maiores earum, quo voluptatem, nulla exercitationem beatae ex quae excepturi?
-              </DataTable.TCD>
+          {data && data.results && data.results.length > 0 ? (
+            <DataTable.TB>
+              {data.results.map((el, index) => (
+                <DataTable.TR key={index}>
+                  <DataTable.TCD align="center">{index + 1}</DataTable.TCD>
+                  <DataTable.TCD align="center">{el.title}</DataTable.TCD>
+                  <DataTable.TCD align="center">
+                    {el.subtitle}
+                  </DataTable.TCD>
 
-              <DataTable.TCD>
-                {/* <img src="/using-laptop.jpeg" alt="" /> */}
-              </DataTable.TCD>
-              <DataTable.TCD>
-                <>
-                  <ActionButton>
-                    <ActionButton.ViewIcon
-                    // onClick={() => navigate(`details/${el.id}`)}
-                    />
-
-                    <ActionButton.EditIcon
-                    // onClick={() => navigate(`update/${el.id}`)}
-                    // disabled={
-                    //   !canUpdateRecord({
-                    //     status: el.status,
-                    //     authRoles: roles,
-                    //   })
-                    // }
-                    />
-                  </ActionButton>
-                </>
-              </DataTable.TCD>
-            </DataTable.TR>
-            {/* // ))} */}
-          </DataTable.TB>
-          {/*  ) : ( 
-                        <DataTable.EmptyBody span={11} />
-                    {/*  )} */}
+                  <DataTable.TCD align='center'>
+                    <ImageViewer src={el.image} alt='hero-section-image' />
+                    {/* <img src={el.image} alt="" height={180} width={300} /> */}
+                  </DataTable.TCD>
+                  <DataTable.TCD>
+                    <>
+                      <ActionButton>
+                        <ActionButton.EditIcon
+                        // onClick={() => navigate(`update/${el.id}`)}
+                        // disabled={
+                        //   !canUpdateRecord({
+                        //     status: el.status,
+                        //     authRoles: roles,
+                        //   })
+                        // }
+                        />
+                        <ActionButton.DeleteIcon
+                        // onClick={() => navigate(`details/${el.id}`)}
+                        />
+                      </ActionButton>
+                    </>
+                  </DataTable.TCD>
+                </DataTable.TR>
+              ))}
+            </DataTable.TB>
+          ) : (
+            <DataTable.EmptyBody span={11} />
+          )}
         </DataTable>
         {/* <Pagination
           loading={false}

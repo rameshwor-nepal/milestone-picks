@@ -1,43 +1,39 @@
-'use client'
-import { useCreateHeroSectionMutation } from '@/redux/features/other/generalInfo/generalInfoApi';
+import { useCreateSportCategoryMutation } from '@/redux/features/other/sportCategory/sportCategoryApi';
 import Button from '@/ui/button/Button';
-import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload'
-import { Form, TextArea, TextInput } from '@/ui/formInput/FormInput'
-import Grid from '@/ui/grid/Grid'
+import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
+import { Form, TextInput } from '@/ui/formInput/FormInput';
+import Grid from '@/ui/grid/Grid';
 import { ToastError } from '@/utils/toast/ToastError';
 import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
+interface FormFields {
+    title: string;
+    name: string;
 
+}
 interface PropsI {
     closeModal: () => void;
 }
-
-interface FormFields {
-    title: string;
-    subTitle: string;
-
-}
-
-const HeroSectionAdditionModalForm = ({ closeModal }: PropsI) => {
-    const [heroImage, setHeroImage] = useState<File | null>(null)
+const SportCategoryModalForm = ({ closeModal }: PropsI) => {
+    const [iconImage, setIconImage] = useState<File | null>(null)
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<FormFields>();
 
-    const [createHeroSection] = useCreateHeroSectionMutation();
+    const [createSportCategory] = useCreateSportCategoryMutation();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const formData = new FormData();
-        formData.append("title", data.title);
-        formData.append("subtitle", data.subTitle);
+        formData.append("title", data?.name);
+        formData.append("subtitle", data?.title);
 
-        if (heroImage) {
-            formData.append("image", heroImage);
+        if (iconImage) {
+            formData.append("icon", iconImage);
         }
-        await createHeroSection(formData).unwrap()
+        await createSportCategory(formData).unwrap()
             .then(() => {
                 toast.success("Content for Hero section created successfully");
                 closeModal()
@@ -45,11 +41,9 @@ const HeroSectionAdditionModalForm = ({ closeModal }: PropsI) => {
             .catch((error) => {
                 ToastError.serialize(error);
             })
-        console.log("data from form", formData)
     };
-
     return (
-        <div>
+        <>
             <Form>
                 <Grid>
                     <Grid.Row>
@@ -67,23 +61,22 @@ const HeroSectionAdditionModalForm = ({ closeModal }: PropsI) => {
                             />
                         </Grid.Col>
                         <Grid.Col size='lg'>
-                            <TextArea
-                                label='Sub Title'
-                                placeholder='Enter a sub title'
-                                {...register("subTitle", {
+                            <TextInput
+                                label='Name'
+                                placeholder='Enter a name'
+                                {...register("name", {
                                     required: {
                                         value: true,
-                                        message: "Sub title is required.",
+                                        message: "Name is required.",
                                     },
                                 })}
-                                errorMsg={errors?.subTitle?.message}
+                                errorMsg={errors?.name?.message}
                             />
-
                         </Grid.Col>
                         <Grid.Col size='sm'>
                             <ImageUploadCard
-                                name='heroSectionImage'
-                                onChange={(val) => setHeroImage(val)}
+                                name='sportIcon'
+                                onChange={(val) => setIconImage(val)}
                             />
                         </Grid.Col>
                     </Grid.Row>
@@ -92,7 +85,6 @@ const HeroSectionAdditionModalForm = ({ closeModal }: PropsI) => {
                     <Button
                         title='Save'
                         onClick={handleSubmit(onSubmit)}
-
                     />
                     <Button
                         onClick={closeModal}
@@ -101,8 +93,8 @@ const HeroSectionAdditionModalForm = ({ closeModal }: PropsI) => {
                     />
                 </div>
             </Form>
-        </div>
+        </>
     )
 }
 
-export default HeroSectionAdditionModalForm
+export default SportCategoryModalForm
