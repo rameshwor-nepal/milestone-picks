@@ -1,8 +1,9 @@
 import React, { ButtonHTMLAttributes, ReactNode, MouseEvent } from "react";
+import { IconType } from "react-icons";
 import { Icon } from "react-icons-kit";
-import { ic_delete } from "react-icons-kit/md/ic_delete";
-import { ic_edit } from "react-icons-kit/md/ic_edit";
-import { ic_remove_red_eye } from "react-icons-kit/md/ic_remove_red_eye";
+
+import { IoMdAdd } from "react-icons/io";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 interface ActionButtonProps {
     children?: ReactNode;
@@ -24,23 +25,23 @@ const Tooltip: React.FC<TooltipProps> = ({ text }) => (
 );
 
 interface IconButtonProps {
-    icon: any;
+    icon: IconType;
     onClick: (e: MouseEvent<HTMLButtonElement>) => void;
     color: string;
     tooltip: string;
     disabled?: boolean;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ icon, onClick, color, tooltip, disabled }) => {
+const IconButton: React.FC<IconButtonProps> = ({ icon: Icon, onClick, color, tooltip, disabled }) => {
     return (
         <li className="relative group">
             <button
                 onClick={onClick}
-                className={`p-2 rounded-md transition-all ${disabled ? "opacity-30 cursor-not-allowed" : "hover:brightness-90"}`}
+                className={`p-1 rounded-md transition-all ${disabled ? "opacity-30 cursor-not-allowed" : "hover:brightness-90"}`}
                 style={{ backgroundColor: color }}
                 disabled={disabled}
             >
-                <Icon icon={icon} size={18} className="text-white" />
+                <Icon size={22} className="text-white" />
             </button>
             {!disabled && <Tooltip text={tooltip} />}
         </li>
@@ -48,15 +49,19 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, onClick, color, tooltip, 
 };
 
 ActionButton.DeleteIcon = ({ onClick }: { onClick: (e: MouseEvent<HTMLButtonElement>) => void }) => (
-    <IconButton onClick={onClick} color="#EA5455" icon={ic_delete} tooltip="Delete Record" />
+    <IconButton onClick={onClick} color="#EA5455" icon={MdDelete} tooltip="Delete Record" />
+);
+
+ActionButton.AddIcon = ({ onClick, ...props }: { onClick: (e: MouseEvent<HTMLButtonElement>) => void } & ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <IconButton onClick={onClick} color="#28C76F" icon={IoMdAdd} tooltip="Add Record" {...props} />
 );
 
 ActionButton.EditIcon = ({ onClick, ...props }: { onClick: (e: MouseEvent<HTMLButtonElement>) => void } & ButtonHTMLAttributes<HTMLButtonElement>) => (
-    <IconButton onClick={onClick} color="#28C76F" icon={ic_edit} tooltip="Edit Record" {...props} />
+    <IconButton onClick={onClick} color="#28C76F" icon={MdEdit} tooltip="Edit Record" {...props} />
 );
 
-ActionButton.ViewIcon = ({ onClick }: { onClick: () => void }) => (
-    <IconButton onClick={() => onClick()} color="#637381" icon={ic_remove_red_eye} tooltip="View Record" />
-);
+// ActionButton.ViewIcon = ({ onClick }: { onClick: () => void }) => (
+//     <IconButton onClick={() => onClick()} color="#637381" icon={ic_remove_red_eye} tooltip="View Record" />
+// );
 
 export default ActionButton;

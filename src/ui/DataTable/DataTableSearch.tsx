@@ -23,6 +23,7 @@ const DataTableSearchContainer = ({
     onPdf,
     onExcel,
     onPrint,
+    children
 }: PropsI) => {
     // const filterDiv = useRef(null);
     // const filterWrapperDiv = useRef(null);
@@ -70,6 +71,9 @@ const DataTableSearchContainer = ({
                         >
                             <Icon size={18} icon={ic_close} />
                         </button>
+                    </div>
+                    <div>
+                        {children}
                     </div>
                 </div>
                 <div className="flex gap-2">

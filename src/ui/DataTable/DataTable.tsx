@@ -4,7 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export const DataTableContainer: React.FC<{ title?: string; children?: React.ReactNode }> = ({ title, children }) => {
     return (
-        <div className="p-6 border border-green-3 rounded-md bg-blue-2">
+        <div className="p-6 rounded-md bg-blue-2">
             {title && <p className="mb-8 text-gray-900 text-xl font-medium">{title}</p>}
             {children}
         </div>
@@ -36,13 +36,13 @@ const DataTable: React.FC<{ loading: boolean; children?: React.ReactNode }> & {
     );
 };
 
-DataTable.TH = ({ children }) => <thead className=" border-b border-green-3 h-5">{children}</thead>;
+DataTable.TH = ({ children }) => <thead className=" border-b border-gray-500 h-5 bg-blue-1/70">{children}</thead>;
 DataTable.TB = ({ children }) => <tbody>{children}</tbody>;
-DataTable.TR = ({ children }) => <tr className="h-5 hover:bg-blue-3">{children}</tr>;
+DataTable.TR = ({ children }) => <tr className="h-5 hover:bg-blue-1/30">{children}</tr>;
 DataTable.THD = ({ onClick, maxWidth, isActionCol, children, ...props }) => (
     <th
         onClick={onClick}
-        className={`p-2 border border-green-3 text-left ${onClick ? "cursor-pointer" : ""}`}
+        className={`p-2 border border-gray-400 text-left ${onClick ? "cursor-pointer" : ""}`}
         style={{ width: maxWidth ? `${maxWidth}px` : "auto", textAlign: props.align || "left" }}
         colSpan={props.colSpan || 1}
         rowSpan={props.rowSpan || 1}
@@ -54,7 +54,7 @@ DataTable.THD = ({ onClick, maxWidth, isActionCol, children, ...props }) => (
 DataTable.ActionCol = ({ onClick, children, ...props }) => (
     <th
         onClick={onClick}
-        className="p-2 border border-green-3 text-left"
+        className="p-2 border border-gray-400 text-left"
         colSpan={props.colSpan || 1}
         rowSpan={props.rowSpan || 1}
         style={{ textAlign: props.align || "left" }}
@@ -64,7 +64,7 @@ DataTable.ActionCol = ({ onClick, children, ...props }) => (
 );
 
 DataTable.TCD = ({ children, ...props }) => (
-    <td className="p-2 max-w-[20rem] border border-green-3" style={{ textAlign: props.align || "left" }}>
+    <td className="p-2 max-w-[20rem] border border-gray-400" style={{ textAlign: props.align || "left" }}>
         {children}
     </td>
 );

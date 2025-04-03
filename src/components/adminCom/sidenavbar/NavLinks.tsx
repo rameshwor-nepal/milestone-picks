@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 import { MdDashboard, MdInfo } from "react-icons/md";
 import { MdBatchPrediction } from "react-icons/md";
 import { BsGraphUpArrow } from "react-icons/bs";
+import { TbBallFootball } from "react-icons/tb";
 
 type LinksProps<TExtended = boolean> = TExtended extends true
     ? {
@@ -40,6 +41,13 @@ export const navLinks = (
                 icon: BsGraphUpArrow as IconType,
                 to: "/admin/graph",
                 active: currentPath.startsWith("/admin/graph"),
+            },
+            {
+                extended: false,
+                text: "Match",
+                icon: TbBallFootball as IconType,
+                to: "/admin/match",
+                active: currentPath.startsWith("/admin/match"),
             },
             {
                 extended: false,

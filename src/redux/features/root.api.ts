@@ -20,6 +20,7 @@ export const rootApi = createApi({
     "GeneralInfo",
     "FaqContent",
     "SportCategory",
-    "Testimonials"
+    "Testimonials",
+    "Matches",
   ],
 });
