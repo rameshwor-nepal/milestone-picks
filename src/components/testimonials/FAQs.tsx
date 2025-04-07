@@ -13,7 +13,7 @@ const FAQs = () => {
                 />
             </div>
             <div className="w-full space-y-4 mt-10">
-                <h1 className='text-3xl text-green-3 font-extrabold leading-extra-tight border-b-4 w-fit px-1 py-2 mb-12 border-green-4'>
+                <h1 className='text-3xl text-green-3 font-extrabold leading-extra-tight border-b-4 w-fit px-1 py-2 mb-12 border-green-3'>
                     Frequently Asked Questions ?
                 </h1>
 

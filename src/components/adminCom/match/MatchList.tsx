@@ -68,7 +68,7 @@ const MatchList = () => {
                                 <>
                                     <ActionButton>
                                         <ActionButton.EditIcon
-                                        // onClick={() => navigate(`update/${el.id}`)}
+                                            onClick={() => { }}
                                         // disabled={
                                         //   !canUpdateRecord({
                                         //     status: el.status,
@@ -77,6 +77,7 @@ const MatchList = () => {
                                         // }
                                         />
                                         <ActionButton.DeleteIcon
+                                            onClick={() => { }}
                                         // onClick={() => navigate(`details/${el.id}`)}
                                         />
 

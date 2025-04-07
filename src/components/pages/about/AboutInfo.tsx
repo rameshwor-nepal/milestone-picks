@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import FAQs from '@/components/testimonials/FAQs'
-import { MdPerson, MdTrendingUp, MdTune } from 'react-icons/md'
+import { MdTune } from 'react-icons/md'
 import { GiArchiveResearch } from 'react-icons/gi'
 import { FaBookOpen, FaCalendarAlt, FaCheckCircle, FaChessKnight } from 'react-icons/fa'
 import { FiTarget } from 'react-icons/fi'
@@ -12,11 +12,11 @@ import Button from '@/ui/button/Button'
 
 const AboutInfo = () => {
     return (
-        <main className=' '>
+        <main className=' text-gray-200'>
             {/* history section */}
             <section className='grid md:grid-cols-3 grid-cols-1 gap-8 xl:px-32 md:px-24 px-12 py-12 h-[20rem]'>
                 <div>
-                    <h1 className='text-3xl text-green-3 font-extrabold leading-extra-tight border-b-4 w-fit px-1 py-2 border-green-4'>
+                    <h1 className='text-3xl text-green-3 font-extrabold leading-extra-tight border-b-4 w-fit px-1 py-2 border-green-3'>
                         Milestone&apos;s History
                     </h1>
                 </div>
@@ -45,8 +45,8 @@ const AboutInfo = () => {
                     </p>
 
                     {/* mission points */}
-                    <div className='flex gap-4 mt-6 md:mt-9'>
-                        <div className='flex flex-col items-start text-gray-200'>
+                    <div className='flex gap-4 mt-6 md:mt-9 text-gray-200'>
+                        <div className='flex flex-col items-start '>
                             <span className='inline-block w-fit p-3 rounded-md bg-green-2 text-white max-h-12'>
                                 <i>
                                     <GiArchiveResearch size={28} />
@@ -60,7 +60,7 @@ const AboutInfo = () => {
                                 details of their picks. If it looks too good to be true, it probably is.
                             </p>
                         </div>
-                        <div className='flex flex-col items-start text-gray-200'>
+                        <div className='flex flex-col items-start'>
                             <span className='inline-block w-fit p-3 rounded-md bg-green-2 text-white max-h-12'>
                                 <i>
                                     <FaCheckCircle size={28} />
@@ -80,56 +80,6 @@ const AboutInfo = () => {
                     <img src="/manage-payroll.jpg" alt="betting-info" />
                 </div>
             </section>
-            {/* <section className="xl:px-32 md:px-24 px-12">
-                <div className='z-20 h-full'>
-                    <div className=' grid grid-cols-1 md:grid-cols-3 items-start'>
-                        <div
-                            className='flex flex-col gap-6 p-4  text-green-3 '
-                        >
-                            <i>
-                                <FaNewspaper size={28} />
-                            </i>
-                            <h2 className='text-3xl text-green-3 font-bold'>
-                                Our Mission
-                            </h2>
-                            <p className='text-base max-h-56 overflow-hidden line-clamp-[8] text-white'>
-                                our mission is to empower sports enthusiasts with accurate, data-driven insights and
-                                predictions. We are committed to providing bettors with the tools they need to make informed decisions,
-                                increasing their chances of success while promoting responsible betting practices.
-                            </p>
-                        </div>
-                        <div className='flex flex-col gap-6 p-4  text-green-3'
-                        >
-                            <i>
-                                <GiBoltEye size={28} />
-                            </i>
-                            <h2 className='text-3xl text-green-3 font-bold'>
-                                Our Vision
-                            </h2>
-                            <p className='text-base max-h-56 overflow-hidden line-clamp-[8] text-white'>
-                                Our vision is to become the leading platform for sports betting predictions worldwide. We aim to
-                                revolutionize the way people approach sports betting by offering cutting-edge analytics, expert advice, and real-time updates that
-                                drive smarter betting strategies.
-                            </p>
-                        </div>
-                        <div className='flex flex-col gap-6 p-4  text-green-3'
-                        >
-                            <i>
-                                <PiTargetBold size={28} />
-                            </i>
-                            <h2 className='text-3xl text-green-3 font-bold'>
-                                Our Objective
-                            </h2>
-                            <p className='text-base max-h-56 overflow-hidden line-clamp-[8] text-white'>
-                                Our objective is to continuously refine and improve our predictive algorithms,
-                                staying ahead of industry trends and providing users with the most accurate, reliable
-                                betting information. We seek to build a community of informed bettors who make calculated,
-                                confident decisions backed by thorough data analysis.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
 
             {/* our growing legacy */}
             <section className='relative min-h-[35rem] max-h-fit w-full flex items-center mt-12 justify-center text-center overflow-hidden'>
@@ -140,7 +90,7 @@ const AboutInfo = () => {
                     fill
                     className='object-fill bg-center'
                 />
-                <section className='absolute z-20 w-full flex justify-center'>
+                <section className='absolute z-20 w-full flex justify-center text-gray-200'>
                     <div className='text-center flex flex-col gap-6 md:gap-10 lg:gap-14 items-center'>
                         <div className=' max-w-[50rem]'>
                             <h1 className='text-3xl lg:text-4xl text-green-3 font-extrabold text-center'>
@@ -153,7 +103,7 @@ const AboutInfo = () => {
                         </div>
 
                         <div className='flex gap-4'>
-                            <div className='flex flex-col items-center text-gray-200'>
+                            <div className='flex flex-col items-center '>
                                 <span className='inline-block p-3 rounded-md bg-green-2 text-white'>
                                     <i>
                                         <FaCalendarAlt size={28} />
@@ -167,7 +117,7 @@ const AboutInfo = () => {
                                     knowledge and proven strategies.
                                 </p>
                             </div>
-                            <div className='flex flex-col items-center text-gray-200'>
+                            <div className='flex flex-col items-center'>
                                 <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
                                     <i>
                                         <FaBookOpen size={28} />
@@ -181,7 +131,7 @@ const AboutInfo = () => {
                                     ensure our predictions are well-refined and reliable.
                                 </p>
                             </div>
-                            <div className='flex flex-col items-center text-gray-200'>
+                            <div className='flex flex-col items-center'>
                                 <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
                                     <i>
                                         <FiTarget size={28} />
@@ -219,8 +169,8 @@ const AboutInfo = () => {
                         </p>
                     </div>
                 </div>
-                <div className='grid md:grid-cols-2 grid-cols-1 gap-8 mt-5 md:mt-10 lg:mt-14'>
-                    <div className='flex items-center gap-5 text-gray-200'>
+                <div className='grid md:grid-cols-2 grid-cols-1 gap-8 mt-5 md:mt-10 lg:mt-14 text-gray-200'>
+                    <div className='flex items-center gap-5'>
                         <span className='inline-block px-3 py-5 rounded-md bg-green-2 text-white'>
                             <i>
                                 <AiOutlineRise size={28} />
@@ -237,7 +187,7 @@ const AboutInfo = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center gap-5 text-gray-200'>
+                    <div className='flex items-center gap-5'>
                         <span className='inline-block w-fit px-3 py-5 rounded-md bg-green-2 text-white'>
                             <i>
                                 <FaChessKnight size={28} />
@@ -254,7 +204,7 @@ const AboutInfo = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center gap-5 text-gray-200'>
+                    <div className='flex items-center gap-5'>
                         <span className='inline-block w-fit px-3 py-5 rounded-md bg-green-2 text-white'>
                             <i>
                                 <MdTune size={28} />
@@ -272,7 +222,7 @@ const AboutInfo = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center gap-5 text-gray-200'>
+                    <div className='flex items-center gap-5'>
                         <span className='inline-block w-fit px-3 py-5 rounded-md bg-green-2 text-white'>
                             <i>
                                 <BiLineChart size={28} />
@@ -373,8 +323,8 @@ const AboutInfo = () => {
                             </p>
                         </div>
 
-                        <div className='flex gap-4'>
-                            <div className='flex flex-col items-center text-gray-200'>
+                        <div className='flex gap-4 text-gray-200'>
+                            <div className='flex flex-col items-center'>
                                 <span className='inline-block p-3 rounded-md bg-green-2 text-white'>
                                     <i>
                                         <FaCalendarAlt size={28} />
@@ -387,7 +337,7 @@ const AboutInfo = () => {
                                     We&apos;re open about both our wins and losses—no hiding behind perfect records.
                                 </p>
                             </div>
-                            <div className='flex flex-col items-center text-gray-200'>
+                            <div className='flex flex-col items-center'>
                                 <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
                                     <i>
                                         <FaBookOpen size={28} />
@@ -400,7 +350,7 @@ const AboutInfo = () => {
                                     Our long-term approach helps subscribers stay profitable over time.
                                 </p>
                             </div>
-                            <div className='flex flex-col items-center text-gray-200'>
+                            <div className='flex flex-col items-center'>
                                 <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
                                     <i>
                                         <FiTarget size={28} />
@@ -427,7 +377,7 @@ const AboutInfo = () => {
 
             {/* join us now */}
             <section className='relative min-h-[30rem] max-h-fit w-[80%] mx-auto mb-10 lg:mb-20 flex items-center justify-center overflow-hidden md:py-7 my-5 lg:py-14 sm:py-14 py-6'>
-                <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.9),rgba(16,20,26,0.9))]'></div>
+                <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.5),rgba(16,20,26,0.5))]'></div>
                 <Image
                     src={'/bg2.jpg'}
                     alt='hero image'
@@ -447,6 +397,7 @@ const AboutInfo = () => {
                             <input
                                 className="bg-gray-200 text-blue-1 border border-gray-300 mb-4 md:mb-6 focus:ring-1 focus:ring-green-3 focus:border-green-3 outline-none transition rounded py-2 px-4 w-full"
                                 type="email"
+                                placeholder='Enter email'
 
                             />
                             <Button title='Join Now' />

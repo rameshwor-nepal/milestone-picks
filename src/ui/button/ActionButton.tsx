@@ -1,7 +1,5 @@
 import React, { ButtonHTMLAttributes, ReactNode, MouseEvent } from "react";
 import { IconType } from "react-icons";
-import { Icon } from "react-icons-kit";
-
 import { IoMdAdd } from "react-icons/io";
 import { MdDelete, MdEdit } from "react-icons/md";
 
@@ -9,7 +7,11 @@ interface ActionButtonProps {
     children?: ReactNode;
 }
 
-const ActionButton: React.FC<ActionButtonProps> & any = ({ children }: { children: any }) => {
+const ActionButton: React.FC<ActionButtonProps> & {
+    DeleteIcon: React.FC<{ onClick?: (e: MouseEvent<HTMLButtonElement>) => void }>;
+    AddIcon: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & { onClick?: (e: MouseEvent<HTMLButtonElement>) => void }>;
+    EditIcon: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & { onClick?: (e: MouseEvent<HTMLButtonElement>) => void }>;
+} = ({ children }) => {
     return <ul className="flex items-center justify-center gap-2 list-none">{children}</ul>;
 };
 
@@ -26,42 +28,44 @@ const Tooltip: React.FC<TooltipProps> = ({ text }) => (
 
 interface IconButtonProps {
     icon: IconType;
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     color: string;
     tooltip: string;
     disabled?: boolean;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ icon: Icon, onClick, color, tooltip, disabled }) => {
-    return (
-        <li className="relative group">
-            <button
-                onClick={onClick}
-                className={`p-1 rounded-md transition-all ${disabled ? "opacity-30 cursor-not-allowed" : "hover:brightness-90"}`}
-                style={{ backgroundColor: color }}
-                disabled={disabled}
-            >
-                <Icon size={22} className="text-white" />
-            </button>
-            {!disabled && <Tooltip text={tooltip} />}
-        </li>
-    );
-};
-
-ActionButton.DeleteIcon = ({ onClick }: { onClick: (e: MouseEvent<HTMLButtonElement>) => void }) => (
-    <IconButton onClick={onClick} color="#EA5455" icon={MdDelete} tooltip="Delete Record" />
+const IconButton: React.FC<IconButtonProps> = ({ icon: Icon, onClick, color, tooltip, disabled }) => (
+    <li className="relative group">
+        <button
+            onClick={onClick}
+            className={`p-1 rounded-md transition-all ${disabled ? "opacity-30 cursor-not-allowed" : "hover:brightness-90"}`}
+            style={{ backgroundColor: color }}
+            disabled={disabled}
+        >
+            <Icon size={22} className="text-white" />
+        </button>
+        {!disabled && <Tooltip text={tooltip} />}
+    </li>
 );
 
-ActionButton.AddIcon = ({ onClick, ...props }: { onClick: (e: MouseEvent<HTMLButtonElement>) => void } & ButtonHTMLAttributes<HTMLButtonElement>) => (
+ActionButton.DeleteIcon = ({ onClick }) => (
+    <IconButton onClick={onClick && onClick} color="#EA5455" icon={MdDelete} tooltip="Delete Record" />
+);
+
+ActionButton.AddIcon = ({ onClick, ...props }) => (
     <IconButton onClick={onClick} color="#28C76F" icon={IoMdAdd} tooltip="Add Record" {...props} />
 );
 
-ActionButton.EditIcon = ({ onClick, ...props }: { onClick: (e: MouseEvent<HTMLButtonElement>) => void } & ButtonHTMLAttributes<HTMLButtonElement>) => (
+ActionButton.EditIcon = ({ onClick, ...props }) => (
     <IconButton onClick={onClick} color="#28C76F" icon={MdEdit} tooltip="Edit Record" {...props} />
 );
 
-// ActionButton.ViewIcon = ({ onClick }: { onClick: () => void }) => (
-//     <IconButton onClick={() => onClick()} color="#637381" icon={ic_remove_red_eye} tooltip="View Record" />
-// );
+// Add display names for all components
+ActionButton.displayName = "ActionButton";
+ActionButton.DeleteIcon.displayName = "ActionButton.DeleteIcon";
+ActionButton.AddIcon.displayName = "ActionButton.AddIcon";
+ActionButton.EditIcon.displayName = "ActionButton.EditIcon";
+Tooltip.displayName = "Tooltip";
+IconButton.displayName = "IconButton";
 
 export default ActionButton;

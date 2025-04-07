@@ -1,11 +1,7 @@
 'use client'
 import React, { useState } from "react";
-import { Icon } from "react-icons-kit";
-import { ic_close } from "react-icons-kit/md/ic_close";
-import { ic_search } from "react-icons-kit/md/ic_search";
-import { ic_picture_as_pdf } from "react-icons-kit/md/ic_picture_as_pdf";
-import { ic_print_outline } from "react-icons-kit/md/ic_print_outline";
-import { ic_list_alt_outline } from "react-icons-kit/md/ic_list_alt_outline";
+import { MdClose, MdOutlineSearch, MdPrint } from "react-icons/md";
+import { BsFileExcelFill, BsFilePdfFill } from "react-icons/bs";
 
 type PropsI = {
     onTableSearch: (val: string) => void;
@@ -55,7 +51,7 @@ const DataTableSearchContainer = ({
                     )} */}
                     <div className="relative w-full max-w-md">
                         <button className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-700">
-                            <Icon size={18} icon={ic_search} />
+                            <MdOutlineSearch size={18} />
                         </button>
                         <input
                             type="text"
@@ -69,7 +65,7 @@ const DataTableSearchContainer = ({
                             className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
                             onClick={() => setSearchVal("")}
                         >
-                            <Icon size={18} icon={ic_close} />
+                            <MdClose size={18} />
                         </button>
                     </div>
                     <div>
@@ -79,17 +75,17 @@ const DataTableSearchContainer = ({
                 <div className="flex gap-2">
                     {onPdf && (
                         <button className="text-red-500" onClick={onPdf}>
-                            <Icon size={22} icon={ic_picture_as_pdf} />
+                            <BsFilePdfFill size={22} />
                         </button>
                     )}
                     {onExcel && (
                         <button className="text-green-500" onClick={onExcel}>
-                            <Icon size={22} icon={ic_list_alt_outline} />
+                            <BsFileExcelFill size={22} />
                         </button>
                     )}
                     {onPrint && (
                         <button className="text-gray-500" onClick={onPrint}>
-                            <Icon size={22} icon={ic_print_outline} />
+                            <MdPrint size={22} />
                         </button>
                     )}
                 </div>

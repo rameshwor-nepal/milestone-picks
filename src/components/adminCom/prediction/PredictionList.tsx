@@ -1,10 +1,7 @@
 'use client'
 import ActionButton from '@/ui/button/ActionButton';
-import Button from '@/ui/button/Button';
 import DataTable, { DataTableContainer } from '@/ui/DataTable/DataTable';
 import DataTableSearchContainer from '@/ui/DataTable/DataTableSearch';
-import ImageViewer from '@/ui/ImageViewer/ImageViewer';
-import { PageLayoutHeader } from '@/ui/layout/PageLayout';
 import ModalForm from '@/ui/modal/ModalForm';
 import React, { useState } from 'react'
 import PredictionModalForm from './PredictionModalForm';

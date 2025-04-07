@@ -1,8 +1,9 @@
 'use client'
 import React, { FormHTMLAttributes, forwardRef, InputHTMLAttributes, TextareaHTMLAttributes, useState } from "react";
-import { Icon } from "react-icons-kit";
-import { ic_visibility } from "react-icons-kit/md/ic_visibility";
-import { ic_visibility_off } from "react-icons-kit/md/ic_visibility_off";
+import Select from "react-select";
+import { SelectStyles } from "./SelectInputConfig";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+
 
 export interface TextInputPropsI extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
@@ -43,6 +44,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputPropsI>(
         );
     }
 );
+TextInput.displayName = "TextInput";
 
 export const PasswordInput = forwardRef<HTMLInputElement, TextInputPropsI>(
     ({ label, name, placeholder, errorMsg }, ref) => {
@@ -63,7 +65,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, TextInputPropsI>(
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
                         onClick={() => setVisibility(!visibility)}
                     >
-                        <Icon size={20} icon={visibility ? ic_visibility : ic_visibility_off} />
+                        {visibility ? <IoMdEye size={20} /> : <IoMdEyeOff size={20} />}
                     </div>
                 </div>
                 {errorMsg && <span className="text-red-500 text-sm mt-1">{errorMsg}</span>}
@@ -71,6 +73,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, TextInputPropsI>(
         );
     }
 );
+PasswordInput.displayName = "PasswordInput";
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: string;
@@ -96,6 +99,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         );
     }
 );
+TextArea.displayName = "TextArea";
 
 export const DateInput = forwardRef<HTMLInputElement, TextInputPropsI>(
     ({ label, placeholder, errorMsg, ...rest }, ref) => {
@@ -114,4 +118,53 @@ export const DateInput = forwardRef<HTMLInputElement, TextInputPropsI>(
         );
     }
 );
+DateInput.displayName = "DateInput";
+
+type OptionT = { label: string; value: string | number };
+
+interface SelectPropsI {
+    required?: boolean;
+    label?: string;
+    helperText?: string;
+    placeholder?: string;
+    loading?: boolean;
+    disabled?: boolean;
+    isMulti?: boolean;
+    closeMenuOnSelect?: boolean;
+    isClearable?: boolean;
+    options: OptionT[];
+    value: OptionT | OptionT[] | null;
+    onChange: (val: OptionT | OptionT[] | null) => void;
+}
+
+export const SelectInput = (props: SelectPropsI) => {
+    return (
+        <div className="flex flex-col w-full">
+            {props.label && (
+                <label className="text-sm text-gray-800 mb-2 font-medium">
+                    {props.label}{" "}
+                    {props.required && <span className="text-red-500">*</span>}
+                </label>
+            )}
+            <Select
+                menuPlacement="auto"
+                menuPortalTarget={typeof window !== "undefined" ? document.body : null}
+                styles={SelectStyles}
+                isClearable={props.isClearable}
+                isMulti={Boolean(props.isMulti)}
+                closeMenuOnSelect={props.closeMenuOnSelect}
+                value={props.value}
+                options={props.options}
+                onChange={(val) => props.onChange(val as OptionT | OptionT[] | null)}
+                placeholder={props.placeholder || ""}
+                isLoading={props.loading}
+                isDisabled={props.disabled}
+            />
+            {props.helperText && (
+                <p className="text-xs text-red-500 mt-1">{props.helperText}</p>
+            )}
+        </div>
+    );
+};
+SelectInput.displayName = "SelectInput";
 

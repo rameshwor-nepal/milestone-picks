@@ -1,10 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Icon } from 'react-icons-kit';
-import { ic_add_outline } from 'react-icons-kit/md/ic_add_outline';
-import { ic_delete } from 'react-icons-kit/md/ic_delete';
-import { ic_edit } from 'react-icons-kit/md/ic_edit';
+import { MdEdit, MdDelete, MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 type ImageInputProps = {
@@ -40,7 +37,9 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
             const file = e.target.files[0];
             if (file.type.startsWith('image')) {
                 setVal(file);
-                onChange && onChange(file);
+                if (onChange) {
+                    onChange(file);
+                }
             } else {
                 toast.warn('Please select an image.');
             }
@@ -50,7 +49,9 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
     const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setVal(null);
-        onChange && onChange(null);
+        if (onChange) {
+            onChange(null);
+        }
     };
 
     return (
@@ -63,13 +64,13 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
                         className="w-full h-full object-cover group-hover:blur-sm group-hover:brightness-75"
                     />
                     <span className="absolute bottom-[37%] left-[40%] transform -translate-x-1/2 bg-green-2 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition">
-                        <Icon size={18} icon={ic_edit} />
+                        <MdEdit size={18} />
                     </span>
                     <button
                         onClick={handleClose}
                         className="absolute bottom-[37%] left-[40%] transform translate-x-6 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
                     >
-                        <Icon size={18} icon={ic_delete} />
+                        <MdDelete size={18} />
                     </button>
                 </label>
             ) : (
@@ -77,7 +78,7 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
                     htmlFor={name}
                     className="flex items-center justify-center w-64 h-32 border-2 border-dashed border-blue-500 text-blue-500 rounded-lg cursor-pointer"
                 >
-                    <Icon size={44} icon={ic_add_outline} />
+                    <MdAdd size={44} />
                 </label>
             )}
             <input id={name} type="file" onChange={handleFileChange} hidden />

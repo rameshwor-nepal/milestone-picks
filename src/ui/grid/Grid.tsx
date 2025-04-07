@@ -8,9 +8,10 @@ const Grid = ({ children }: PropsI) => {
     return <div className="space-y-2">{children}</div>;
 };
 
-Grid.Row = ({ children }: PropsI) => {
+Grid.Row = (({ children }: PropsI) => {
     return <div className="grid grid-cols-12 gap-4 space-y-2">{children}</div>;
-};
+}) as React.FC<PropsI>;
+Grid.Row.displayName = "Grid.Row";
 
 const getColSpan = (size?: string, isMobile?: boolean) => {
     if (isMobile) {
@@ -32,6 +33,7 @@ const GridCol = ({ size, children }: PropsI) => {
         </div>
     );
 };
+GridCol.displayName = "Grid.Col";
 
 Grid.Col = GridCol;
 

@@ -20,7 +20,7 @@ const BettingInfoCom = () => {
 
             {/* tips section */}
             <section className='grid md:grid-cols-2 grid-cols-1 gap-8 xl:px-48 md:px-24 px-12 py-12'>
-                <div className='w-[30rem] h-auto'>
+                <div className='w-full h-auto'>
                     <img src="/manage-payroll.jpg" alt="betting-info" />
                 </div>
                 <div>
@@ -54,14 +54,14 @@ const BettingInfoCom = () => {
 
                     </p>
                 </div>
-                <div className='w-[30rem] h-auto'>
+                <div className='w-full h-auto'>
                     <img src="/Sports-Betting.jpg" alt="betting-info" />
                 </div>
             </section>
 
             {/* 3rd */}
             <section className='grid md:grid-cols-2 grid-cols-1 gap-8 xl:px-48 md:px-24 px-12 py-12'>
-                <div className='w-[30rem] h-auto'>
+                <div className='w-full h-auto'>
                     <img src="/stick-to-plan.jpg" alt="betting-info" />
                 </div>
                 <div>
@@ -96,14 +96,14 @@ const BettingInfoCom = () => {
 
                     </p>
                 </div>
-                <div className='w-[30rem] h-auto'>
+                <div className='w-full h-auto'>
                     <img src="/look-value-bets.jpg" alt="betting-info" />
                 </div>
             </section>
 
             {/* 5th */}
             <section className='grid md:grid-cols-2 grid-cols-1 gap-8 xl:px-48 md:px-24 px-12 py-12'>
-                <div className='w-[30rem] h-auto'>
+                <div className='w-full h-auto'>
                     <img src="/look-value-bets.jpg" alt="betting-info" />
                 </div>
                 <div>

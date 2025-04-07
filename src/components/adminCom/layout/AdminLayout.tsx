@@ -1,11 +1,23 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidenav from '../sidenavbar/SideNav'
 
 const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     const [sideNavExpanded, setSideNavExpanded] = useState(true);
 
-    console.log("side nav expanded in admin layout", sideNavExpanded)
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 800) {
+                setSideNavExpanded(false);
+            }
+        };
+        // Set initial state based on window width
+        handleResize();
+
+        // Listen for window resize events
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
         <div className="relative flex min-h-screen bg-blue-2">
@@ -17,10 +29,10 @@ const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
             {/* Main Content */}
             <div
-                className={`relative z-10 transition-all duration-300 ease-in-out bg-blue-1 p-4 overflow-x-hidden 
+                className={`relative z-10 transition-all duration-300 ease-in-out bg-blue-1 p-1 md:p-2 lg:p-4 overflow-x-hidden 
                 mt-[5rem] min-h-[calc(100vh-5rem)] w-full ${sideNavExpanded ? 'ml-56' : 'ml-[6rem]'}`}
             >
-                <div className="bg-blue-1 p-4 rounded-lg shadow-md">
+                <div className="bg-blue-1 p-1 md:p-2 lg:p-4 rounded-lg shadow-md">
                     {children}
                 </div>
             </div>
