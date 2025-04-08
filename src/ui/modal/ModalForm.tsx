@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import Button from '../button/Button';
 import { MdClose } from 'react-icons/md';
 
 interface PropsI {

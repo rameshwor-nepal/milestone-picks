@@ -61,8 +61,7 @@ const MatchList = () => {
                             <DataTable.TCD align="center">{"Sport"}</DataTable.TCD>
                             <DataTable.TCD align="center">{"Team 1"}</DataTable.TCD>
                             <DataTable.TCD align="center">{"Team 2"}</DataTable.TCD>
-                            <DataTable.TCD align="center">
-                                {"Location"} </DataTable.TCD>
+                            <DataTable.TCD align="center">{"Location"} </DataTable.TCD>
                             <DataTable.TCD align="center">{"Result"}</DataTable.TCD>
                             <DataTable.TCD>
                                 <>

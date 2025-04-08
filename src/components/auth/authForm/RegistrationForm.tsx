@@ -1,6 +1,6 @@
 'use client'
 import Button from '@/ui/button/Button'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import AuthContainer from '../container/AuthContainer'
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignUpMutation } from '@/redux/features/auth/authApi';
@@ -26,7 +26,7 @@ const RegistrationForm = () => {
     // const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
     // const [passwordMatchError, setPasswordMatchError] = useState<string | null>(null);
 
-    const [signUp, { isLoading, isError, error, isSuccess }] = useSignUpMutation()
+    const [signUp, { isError, error, isSuccess }] = useSignUpMutation()
     const password1 = watch('password');
 
     // if (password1 !== confirmPassword) {

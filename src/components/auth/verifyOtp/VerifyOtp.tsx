@@ -1,5 +1,5 @@
 'use client'
-import { useForgetPasswordMutation, useResetPasswordMutation, useVerifyOtpMutation } from '@/redux/features/auth/authApi';
+import { useResetPasswordMutation, useVerifyOtpMutation } from '@/redux/features/auth/authApi';
 import Button from '@/ui/button/Button'
 import { ToastError } from '@/utils/toast/ToastError';
 import { useRouter } from 'next/navigation';
@@ -39,13 +39,13 @@ const VerifyOtp = ({ email }: PropsI) => {
 
     const password1 = resetPasswordWatch('password')
     const [otp, setOtp] = useState<string>('');
-    const [verifyOtp, { isLoading: isVerifyOtpLoading, isSuccess: isVerifyOtpSuccess }] = useVerifyOtpMutation();
-    const [resetPassword, { isLoading: isResetPasswordLoading, isSuccess: isResetPasswordSuccess }] = useResetPasswordMutation();
+    const [verifyOtp, { isSuccess: isVerifyOtpSuccess }] = useVerifyOtpMutation();
+    const [resetPassword] = useResetPasswordMutation();
 
     const handleOtpChange = (index: number, value: string) => {
         if (!/^\d*$/.test(value)) return; // Allow only numbers
 
-        let newOtpArray = otp.split('');
+        const newOtpArray = otp.split('');
         newOtpArray[index] = value;
         const newOtp = newOtpArray.join('').substring(0, 6);
 
@@ -54,6 +54,7 @@ const VerifyOtp = ({ email }: PropsI) => {
     };
 
     const onOTPSubmit: SubmitHandler<FormFieldsOtp> = async (data) => {
+        console.log("data", data)
         await verifyOtp({
             otp: otp,
             email: email

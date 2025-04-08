@@ -31,7 +31,7 @@ const Testimonial = () => {
                             </div>
 
                             <div className="mt-4">
-                                <p className="text-2xl font-bold text-gray-2 sm:text-3xl">Stayin' Alive</p>
+                                <p className="text-2xl font-bold text-gray-2 sm:text-3xl">Staying Alive</p>
 
                                 <p className="mt-4 leading-relaxed">
                                     No, Rose, they are not breathing. And they have no arms or legs … Where are they? You
@@ -66,7 +66,7 @@ const Testimonial = () => {
                             </div>
 
                             <div className="mt-4">
-                                <p className="text-2xl font-bold text-gray-2 sm:text-3xl">Stayin' Alive</p>
+                                <p className="text-2xl font-bold text-gray-2 sm:text-3xl">Staying Alive</p>
 
                                 <p className="mt-4 leading-relaxed">
                                     No, Rose, they are not breathing. And they have no arms or legs … Where are they? You
@@ -101,7 +101,7 @@ const Testimonial = () => {
                             </div>
 
                             <div className="mt-4">
-                                <p className="text-2xl font-bold text-gray-2 sm:text-3xl">Stayin' Alive</p>
+                                <p className="text-2xl font-bold text-gray-2 sm:text-3xl">Staying Alive</p>
 
                                 <p className="mt-4 leading-relaxed">
                                     No, Rose, they are not breathing. And they have no arms or legs … Where are they? You

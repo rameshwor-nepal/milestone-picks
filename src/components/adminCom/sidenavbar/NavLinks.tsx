@@ -1,7 +1,7 @@
 'use client'
 import { FaHistory } from "react-icons/fa";
 import { IconType } from "react-icons";
-import { MdDashboard, MdInfo } from "react-icons/md";
+import { MdDashboard, MdInfo, MdOutlineSportsVolleyball } from "react-icons/md";
 import { MdBatchPrediction } from "react-icons/md";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { TbBallFootball } from "react-icons/tb";
@@ -62,6 +62,13 @@ export const navLinks = (
                 icon: FaHistory as IconType,
                 to: "/admin/history",
                 active: currentPath.startsWith("/admin/history"),
+            },
+            {
+                extended: false,
+                text: "Sport",
+                icon: MdOutlineSportsVolleyball as IconType,
+                to: "/admin/sport",
+                active: currentPath.startsWith("/admin/sport"),
             },
             {
                 extended: true,

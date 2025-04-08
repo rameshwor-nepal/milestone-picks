@@ -9,7 +9,7 @@ interface PropsI {
     totalRecords: number;
 }
 
-const Pagination = ({ loading, onPageChange, onPageLimitChange, totalRecords }: PropsI) => {
+const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) => {
     const [currentPage, setCurrentPage] = useState<string>("1");
     const [pageLimit, setPageLimit] = useState<string>("10");
     const totalPages: number = Math.ceil(totalRecords / parseInt(pageLimit));

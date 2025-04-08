@@ -19,7 +19,9 @@ const Dashboard = () => {
             <h1 className="text-white">Hello</h1>
 
             <Button title='Open' onClick={openModal} width={"fit"} />
-            <ModalForm closeModal={closeModal} isModalOpen={isModalOpen} />
+            <ModalForm closeModal={closeModal} isModalOpen={isModalOpen} title='Dashboard' >
+                <h1>Modal form</h1>
+            </ModalForm>
 
         </div>
     );

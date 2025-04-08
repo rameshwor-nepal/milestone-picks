@@ -1,19 +1,33 @@
 import { toast } from "react-toastify";
 
+type PossibleError = {
+    data?: unknown;
+    error?: unknown;
+};
+
 export class ToastError {
-    static serialize(error: any) {
+    static serialize(error: unknown) {
         console.log("Full error object:", JSON.stringify(error, null, 2));
 
-        const errorData = error?.data || error?.error || error;
+        const errorObj = error as PossibleError;
+
+        const errorData =
+            errorObj?.data ||
+            errorObj?.error ||
+            error;
 
         if (errorData) {
             try {
-                if (typeof errorData === "object" && !Array.isArray(errorData)) {
+                if (typeof errorData === "object" && !Array.isArray(errorData) && errorData !== null) {
                     Object.keys(errorData).forEach((key) => {
-                        const messages = errorData[key];
+                        const messages = (errorData as Record<string, unknown>)[key];
                         if (Array.isArray(messages)) {
-                            messages.forEach((message: string) => {
-                                toast.error(`${key}: ${message}`);
+                            messages.forEach((message) => {
+                                if (typeof message === "string") {
+                                    toast.error(`${key}: ${message}`);
+                                } else {
+                                    toast.error(`${key}: An error occurred`);
+                                }
                             });
                         } else if (typeof messages === "string") {
                             toast.error(`${key}: ${messages}`);

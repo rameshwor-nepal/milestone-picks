@@ -13,3 +13,16 @@ interface MatchesResponseI {
     previous: number | null;
     results: MatchesI[];
 }
+
+interface SportI {
+    id: string;
+    name: string;
+    icon: string;
+}
+
+interface SportsResponseI {
+    count: number;
+    next: number | null;
+    previous: number | null;
+    results: SportI[];
+}

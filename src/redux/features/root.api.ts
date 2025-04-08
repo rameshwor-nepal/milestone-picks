@@ -7,7 +7,8 @@ export const rootApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_API_URL,
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token;
+      const token = (getState() as RootState).auth.access;
+      console.log("token i got", token)
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -22,5 +23,6 @@ export const rootApi = createApi({
     "SportCategory",
     "Testimonials",
     "Matches",
+    "Sports",
   ],
 });

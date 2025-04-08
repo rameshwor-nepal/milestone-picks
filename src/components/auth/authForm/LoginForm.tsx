@@ -22,7 +22,7 @@ const LoginForm = () => {
     } = useForm<FormFields>();
     const router = useRouter();
 
-    const [login, { isLoading, isError, error, isSuccess }] = useLoginMutation()
+    const [login, { isError, error, isSuccess }] = useLoginMutation()
 
     useEffect(() => {
         if (isSuccess) {

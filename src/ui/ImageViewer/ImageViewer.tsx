@@ -11,7 +11,7 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
 
     return (
         <div
-            className="relative inline-block max-w-[300px] max-h-[180px]"
+            className="relative inline-block max-w-[300px]  max-h-[180px]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >

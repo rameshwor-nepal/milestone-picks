@@ -1,6 +1,6 @@
 import { useCreateMatchMutation } from '@/redux/features/other/predictionAndMatch/matchApi';
 import Button from '@/ui/button/Button';
-import { DateInput, Form, TextArea, TextInput } from '@/ui/formInput/FormInput';
+import { DateInput, Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import { ToastError } from '@/utils/toast/ToastError';
 import React from 'react'

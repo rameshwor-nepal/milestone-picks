@@ -12,7 +12,7 @@ const BettingInfoCom = () => {
                     </h1>
                 </div>
                 <p className='h-full w-full overflow-hidden text-lg line-clamp-[8]'>
-                    Whether you're new to sports betting or a seasoned pro,
+                    Whether you&apos;re new to sports betting or a seasoned pro,
                     these key principles are the foundation of smart betting. Remember, the goal is to bet
                     responsibly and maximize your chances over the long term.
                 </p>
@@ -29,7 +29,7 @@ const BettingInfoCom = () => {
                     </h1>
                     <p className='overflow-hidden text-lg pt-2  line-clamp-[8]'>
                         Managing your bankroll is the most crucial part of betting. Think of your bankroll as the total
-                        amount of money you set aside for betting—it's your budget.
+                        amount of money you set aside for betting—it&apos;s your budget.
                         Here&apos;s the golden rule: only bet 1% to 3% of your bankroll on each stake. This keeps you from
                         losing big on any one bet and helps you ride the ups and downs of the game without going bust.
                         Following this system helps keep you in the game, no matter how hot or cold your streak is.
@@ -49,7 +49,7 @@ const BettingInfoCom = () => {
                         heart at the door. There will be times when you&apos;ll need to bet against your favorite team—don&apos;t
                         let your emotions cloud your judgment.
                         Stick to the facts and data (we&apos;ve got you covered with expert picks), and avoid chasing that
-                        "feel-good" bet. In the long run, being logical wins.
+                        &quot;feel-good&quot; bet. In the long run, being logical wins.
 
 
                     </p>
@@ -133,7 +133,7 @@ const BettingInfoCom = () => {
                                 </i>
                             </span>
                             <p className='overflow-hidden text-md line-clamp-[4]'>
-                                We don&apos;t promise "get rich quick" schemes. Sports betting is about strategy and
+                                We don&apos;t promise &quot;get rich quick&quot; schemes. Sports betting is about strategy and
                                 patience, not overnight success.
 
                             </p>

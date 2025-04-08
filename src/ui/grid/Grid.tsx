@@ -5,7 +5,7 @@ interface PropsI {
 }
 
 const Grid = ({ children }: PropsI) => {
-    return <div className="space-y-2">{children}</div>;
+    return <div className="space-y-2 mb-2">{children}</div>;
 };
 
 Grid.Row = (({ children }: PropsI) => {
@@ -13,25 +13,24 @@ Grid.Row = (({ children }: PropsI) => {
 }) as React.FC<PropsI>;
 Grid.Row.displayName = "Grid.Row";
 
-const getColSpan = (size?: string, isMobile?: boolean) => {
-    if (isMobile) {
-        return size === "xs" ? "col-span-6" : "col-span-12";
+const getColSpan = (size?: string) => {
+    switch (size) {
+        case "xs":
+            return "col-span-6 sm:col-span-3 md:col-span-3 lg:col-span-2";
+        case "sm":
+            return "col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4";
+        case "md":
+            return "col-span-12 sm:col-span-9 md:col-span-9 lg:col-span-6";
+        case "lg":
+            return "col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12";
+        default:
+            return "col-span-12";
     }
-    return size === "xs"
-        ? "col-span-3"
-        : size === "sm"
-            ? "col-span-6"
-            : size === "md"
-                ? "col-span-9"
-                : "col-span-12";
 };
 
+
 const GridCol = ({ size, children }: PropsI) => {
-    return (
-        <div className={`${getColSpan(size, false)} md:${getColSpan(size, true)}`}>
-            {children}
-        </div>
-    );
+    return <div className={getColSpan(size)}>{children}</div>;
 };
 GridCol.displayName = "Grid.Col";
 

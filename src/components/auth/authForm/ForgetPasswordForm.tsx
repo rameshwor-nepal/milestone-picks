@@ -1,6 +1,6 @@
 'use client'
 import Button from '@/ui/button/Button'
-import React, { useEffect } from 'react'
+import React from 'react'
 import AuthContainer from '../container/AuthContainer'
 import { useForgetPasswordMutation } from '@/redux/features/auth/authApi';
 import { ToastError } from '@/utils/toast/ToastError';
@@ -21,7 +21,7 @@ const ForgetPasswordForm = () => {
     } = useForm<FormFields>();
     const email = watch('email');
 
-    const [forgetPassword, { isLoading: isForgetPasswordLoading, isSuccess: isForgetPasswordSuccess }] = useForgetPasswordMutation();
+    const [forgetPassword, { isSuccess: isForgetPasswordSuccess }] = useForgetPasswordMutation();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         await forgetPassword(data)

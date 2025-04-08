@@ -16,7 +16,6 @@ export const authApi = rootApi.injectEndpoints({
       onQueryStarted(_args, { dispatch, queryFulfilled }) {
 
         queryFulfilled.then((data) => {
-          console.log("data after login", data)
           dispatch(initAuthUser(data.data));
         });
       },

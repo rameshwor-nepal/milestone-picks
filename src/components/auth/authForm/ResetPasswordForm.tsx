@@ -2,11 +2,11 @@
 import React from 'react'
 import AuthContainer from '../container/AuthContainer'
 import Button from '@/ui/button/Button'
-import { useRouter } from 'next/router'
-import { useResetPasswordMutation } from '@/redux/features/auth/authApi';
-import { ToastError } from '@/utils/toast/ToastError';
+// import { useRouter } from 'next/navigation';
+// import { useResetPasswordMutation } from '@/redux/features/auth/authApi';
+// import { ToastError } from '@/utils/toast/ToastError';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 interface FormFields {
   password: string;
@@ -14,8 +14,8 @@ interface FormFields {
 }
 
 const ResetPasswordForm = () => {
-  const router = useRouter();
-  const { email, otp } = router.query;
+  // const router = useRouter();
+  // const { email, otp } = router.query;
   const {
     register,
     handleSubmit,
@@ -23,9 +23,10 @@ const ResetPasswordForm = () => {
     watch,
   } = useForm<FormFields>();
   const password1 = watch('password')
-  const [resetPassword, { isLoading: isResetPasswordLoading, isSuccess: isResetPasswordSuccess }] = useResetPasswordMutation();
+  // const [resetPassword, { isLoading: isResetPasswordLoading, isSuccess: isResetPasswordSuccess }] = useResetPasswordMutation();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    console.log("data", data)
     // await resetPassword({
     //   email: email,
     //   otp: otp,
@@ -39,8 +40,8 @@ const ResetPasswordForm = () => {
     //     ToastError.serialize(error);
     //   })
   };
-  console.log("email", email)
-  console.log("otp", otp)
+  // console.log("email", email)
+  // console.log("otp", otp)
   return (
     <AuthContainer>
       <form onSubmit={handleSubmit(onSubmit)}>

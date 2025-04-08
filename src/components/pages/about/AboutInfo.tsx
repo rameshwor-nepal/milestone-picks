@@ -26,7 +26,7 @@ const AboutInfo = () => {
                     player form, and other key metrics to ensure you make well-informed bets with confidence.
                 </p>
                 <p className='h-full w-full overflow-hidden text-base line-clamp-[8]'>
-                    Whether you're a seasoned bettor or just getting started, our carefully curated predictions and betting
+                    Whether you&apos;re a seasoned bettor or just getting started, our carefully curated predictions and betting
                     tips help maximize your winning potential. Stay ahead of the game with our expert recommendations,
                     real-time updates, and strategic betting insights. Your success starts here!
                 </p>
@@ -97,7 +97,7 @@ const AboutInfo = () => {
                                 <span className='text-3xl text-white'> A Growing Legacy </span><br /> Experience, Strategy & Results
                             </h1>
                             <p className='overflow-hidden text-base pt-2 md:pt-5  line-clamp-[8]'>
-                                With seven years in betting, we've only recently started sharing our insights,
+                                With seven years in betting, we&apos;ve only recently started sharing our insights,
                                 offering predictions to subscribers for about a year.
                             </p>
                         </div>
@@ -163,7 +163,7 @@ const AboutInfo = () => {
                             <span className='text-green-3'> Marathon</span>
                         </h1>
                         <p className='overflow-hidden text-base pt-2  line-clamp-[8]'>
-                            We're committed to the long game, focusing on steady profits over weeks and months,
+                            We&apos;re committed to the long game, focusing on steady profits over weeks and months,
                             even if a few tough days come along—that&apos;s just part of betting
 
                         </p>
