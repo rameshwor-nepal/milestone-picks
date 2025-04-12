@@ -34,7 +34,7 @@ interface IconButtonProps {
     disabled?: boolean;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ icon: Icon, onClick, color, tooltip, disabled }) => (
+const IconButton: React.FC<IconButtonProps> = ({ icon: Icon, onClick, color, disabled }) => (
     <li className="relative group">
         <button
             onClick={onClick}
@@ -42,9 +42,9 @@ const IconButton: React.FC<IconButtonProps> = ({ icon: Icon, onClick, color, too
             style={{ backgroundColor: color }}
             disabled={disabled}
         >
-            <Icon size={22} className="text-white" />
+            <Icon size={16} className="text-white" />
         </button>
-        {!disabled && <Tooltip text={tooltip} />}
+        {/* {!disabled && <Tooltip text={tooltip} />} */}
     </li>
 );
 

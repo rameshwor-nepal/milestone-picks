@@ -4,7 +4,7 @@ export const matchApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         fetchMatches: builder.query<MatchesResponseI, SearchFieldI>({
             query: ({ search, page, page_size }) => ({
-                url: `/predictions/matches/?search=${search}&page=${page || 1}&page_size=${page_size || 10}/`,
+                url: `/predictions/matches/?search=${search}&page=${page || 1}&page_size=${page_size || 10}`,
                 method: "GET",
             }),
             providesTags: ['Matches']

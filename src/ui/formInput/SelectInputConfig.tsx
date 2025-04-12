@@ -33,14 +33,15 @@ export const SelectStyles: StylesConfig = {
     }),
     option: (base, { isSelected }) => ({
         ...base,
-        padding: "0.75rem",
+        padding: "0.5rem",
+        marginBottom: "2px",
         fontSize: "0.875rem",
-        backgroundColor: isSelected ? "#e0e6fe" : "#fff",
-        color: "#4D4E5D",
+        backgroundColor: isSelected ? "#7ADEA2" : "#cffae0",
+        color: "#10141a",
         cursor: "pointer",
         "&:hover": {
-            backgroundColor: "#122E99",
-            color: "#fff",
+            backgroundColor: "#7ADEA2",
+            color: "#000",
         },
     }),
     menu: (base) => ({

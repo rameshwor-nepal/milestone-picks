@@ -64,7 +64,7 @@ DataTable.ActionCol = ({ onClick, children, ...props }) => (
 );
 
 DataTable.TCD = ({ children, ...props }) => (
-    <td className="p-2 max-w-[20rem] border border-gray-400" style={{ textAlign: props.align || "left" }}>
+    <td className="px-1 py-2 max-w-[20rem] border border-gray-400" style={{ textAlign: props.align || "left" }}>
         {children}
     </td>
 );
@@ -72,7 +72,7 @@ DataTable.TCD = ({ children, ...props }) => (
 DataTable.EmptyBody = ({ span }) => (
     <tbody>
         <tr>
-            <td className="text-center p-24 text-gray-600 bg-green-3" colSpan={span}>
+            <td className="text-center p-24 text-blue-1 bg-green-3/70" colSpan={span}>
                 No Records Found
             </td>
         </tr>

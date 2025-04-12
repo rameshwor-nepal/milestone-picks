@@ -23,6 +23,7 @@ export const AuthSlice = createSlice({
     initAuthUser: (state, { payload }: PayloadAction<LoginPayloadI>) => {
       state.noAuth = false;
       state.authenticated = true;
+      console.log("payload inside slice", payload)
       // state.authUser = payload.user;
       state.access = payload.access;
       state.refresh = payload.refresh;

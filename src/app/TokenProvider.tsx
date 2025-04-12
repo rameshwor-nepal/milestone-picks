@@ -1,24 +1,24 @@
 'use client'
-// import { useVerifyTokenMutation } from '@/redux/features/auth/authApi';
-// import { useRouter } from 'next/navigation';
+import { useVerifyTokenMutation } from '@/redux/features/auth/authApi';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 interface propsI {
     children: React.ReactNode;
 }
 const TokenProvider = (props: propsI) => {
     // const pathname = window.location.pathname;
-    // const router = useRouter();
+    const router = useRouter();
     const [pathname, setPathname] = useState<string | null>(null);
-    // const [verifyToken] = useVerifyTokenMutation();
+    const [verifyToken] = useVerifyTokenMutation();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
             setPathname(window.location.pathname);
         }
     }, []);
-    console.log("pathname", pathname)
+
     // useEffect(() => {
     //     const authToken = localStorage.getItem("msp_auth_refresh") || "";
 

@@ -41,7 +41,7 @@ const Sidenav = (props: Props) => {
     return (
         <div
             className={`fixed top-0 left-0 h-screen bg-blue-2 border-r border-green-1 transition-all duration-300 shadow-md
-                ${expandedSidebar ? 'w-[14rem]' : 'w-[6rem]'} block z-50`}
+                ${expandedSidebar ? 'w-[14rem]' : 'w-[6rem]'} block`}
         >
             {/* Logo & Expand Button */}
             <div className="relative flex flex-col items-center gap-4 pt-6 pb-4">
@@ -50,7 +50,7 @@ const Sidenav = (props: Props) => {
                 {/* Toggle Button */}
                 <button
                     onClick={handleSideBarExpand}
-                    className="absolute top-7 right-[-1.5rem] h-8 w-8 flex items-center justify-center rounded-full bg-blue-1 border-2 border-blue-1 shadow-lg"
+                    className="absolute top-7 right-[-1.5rem] h-8 w-8 flex items-center justify-center rounded-full bg-green-4 border-2 border-green-4 shadow-lg"
                 >
                     <MdKeyboardDoubleArrowRight
                         className={`text-white text-xl transition-transform ${expandedSidebar ? 'rotate-180' : ''}`}

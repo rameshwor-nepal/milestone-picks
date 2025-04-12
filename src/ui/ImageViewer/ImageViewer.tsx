@@ -11,14 +11,14 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
 
     return (
         <div
-            className="relative inline-block max-w-[300px]  max-h-[180px]"
+            className="relative inline-block max-w-[100px]  max-h-[80px] overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             <img
                 src={src}
                 alt={alt}
-                className={`w-full h-full object-cover transition-all duration-200 ${isHovered ? 'blur-sm' : ''
+                className={`w-full h-full object-contain transition-all duration-200 ${isHovered ? 'blur-sm' : ''
                     }`}
             />
             {isHovered && (

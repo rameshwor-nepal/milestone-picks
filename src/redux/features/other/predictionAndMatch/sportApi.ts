@@ -4,7 +4,7 @@ export const sportApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         fetchSports: builder.query<SportsResponseI, SearchFieldI>({
             query: ({ search, page, page_size }) => ({
-                url: `/predictions/sports/?search=${search}&page=${page || 1}&page_size=${page_size || 10}/`,
+                url: `/predictions/sports/?search=${search}&page=${page || 1}&page_size=${page_size || 10}`,
                 method: "GET",
             }),
             providesTags: ['Sports']

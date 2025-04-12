@@ -6,7 +6,7 @@ export const authApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body: { email: string; password: string }) => ({
-        url: "/api/token/",
+        url: "/api/token/access",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
