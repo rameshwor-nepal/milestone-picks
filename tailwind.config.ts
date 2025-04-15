@@ -25,10 +25,30 @@ const config: Config = {
           1: '#10141a',
           2: '#1F3646',
           3: '#27465c',
-        }
+        },
+        navy: {
+          DEFAULT: '#0a1e3b',
+          light: '#1e3a5f',
+          dark: '#051025',
+          lighter: "#e6eaf2"
+        },
+        gold: {
+          DEFAULT: '#d4af37',
+          light: '#e6c658',
+          dark: '#b3901c',
+          lighter: "#f5f0e1" // '#fff9e3'
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        display: ["Avenir", 'sans-serif']
       },
     },
   },
   plugins: [],
 };
 export default config;
+
+// color: #151240;
+// font-family: "Avenir", sans-serif;
+// font-size: 18px;

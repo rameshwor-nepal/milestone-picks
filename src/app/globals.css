@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #0c0f13;
+  --background: #fff;
   --foreground: #ffffff;
+  /* max-width: 1280px; */
+  /* margin: 0 auto;
+  padding: 2rem; */
+  text-align: center;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -17,10 +21,37 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Avenir", sans-serif;
+  font-family: 18px;
 }
 
 .stroke-text {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(154, 154, 154);
+}
+
+@layer components {
+
+  .btn-base {
+    @apply font-semibold py-3 px-6 rounded-md transition-all duration-200 flex items-center justify-center gap-2;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply btn-base bg-navy hover:bg-navy-light text-white;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply btn-base bg-gold hover:bg-gold-light text-navy;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-display font-bold text-navy mb-3;
+  }
+
+  .card-highlight {
+    @apply border-t-4 border-gold;
+  }
+
 }

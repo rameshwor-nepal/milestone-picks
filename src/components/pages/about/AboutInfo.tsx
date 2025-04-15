@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import FAQs from '@/components/testimonials/FAQs'
-import { MdTune } from 'react-icons/md'
+import { MdArrowForward, MdOutlineTrendingUp, MdTune } from 'react-icons/md'
 import { GiArchiveResearch } from 'react-icons/gi'
 import { FaBookOpen, FaCalendarAlt, FaCheckCircle, FaChessKnight } from 'react-icons/fa'
 import { FiTarget } from 'react-icons/fi'
@@ -9,402 +9,277 @@ import { AiOutlineRise } from 'react-icons/ai'
 import { BiLineChart } from 'react-icons/bi'
 import Testimonial from '@/components/testimonials/Testimonial'
 import Button from '@/ui/button/Button'
+import { features, stats } from '@/utils/ConstantValue'
+import Link from 'next/link'
 
 const AboutInfo = () => {
     return (
         <main className=' text-gray-200'>
-            {/* history section */}
-            <section className='grid md:grid-cols-3 grid-cols-1 gap-8 xl:px-32 md:px-24 px-12 py-12 h-[20rem]'>
-                <div>
-                    <h1 className='text-3xl text-green-3 font-extrabold leading-extra-tight border-b-4 w-fit px-1 py-2 border-green-3'>
-                        Milestone&apos;s History
-                    </h1>
-                </div>
-                <p className='h-full w-full overflow-hidden text-base'>
-                    At Milestone, we leverage data-driven analysis and expert insights to provide you with the most
-                    accurate sports betting predictions. Our platform evaluates historical performance, team statistics,
-                    player form, and other key metrics to ensure you make well-informed bets with confidence.
-                </p>
-                <p className='h-full w-full overflow-hidden text-base line-clamp-[8]'>
-                    Whether you&apos;re a seasoned bettor or just getting started, our carefully curated predictions and betting
-                    tips help maximize your winning potential. Stay ahead of the game with our expert recommendations,
-                    real-time updates, and strategic betting insights. Your success starts here!
-                </p>
-            </section>
 
-            {/* mission, vision and objective section */}
-            <section className='grid md:grid-cols-2 grid-cols-1 gap-8 lg:gap-10 xl:px-32 md:px-24 px-12 py-12'>
-
-                <div>
-                    <h1 className='text-3xl lg:text-4xl text-green-3 font-extrabold max-w-[30rem] py-3'>
-                        <span className='text-white text-3xl'> Our Mission </span><br /> Quality Over Quantity
-                    </h1>
-                    <p className='overflow-hidden text-base pt-2  line-clamp-[8]'>
-                        We offer high-quality, research-backed picks that give you the best chance to win. We don&apos;t
-                        flood your inbox with random selections just to check a box
-                    </p>
-
-                    {/* mission points */}
-                    <div className='flex gap-4 mt-6 md:mt-9 text-gray-200'>
-                        <div className='flex flex-col items-start '>
-                            <span className='inline-block w-fit p-3 rounded-md bg-green-2 text-white max-h-12'>
-                                <i>
-                                    <GiArchiveResearch size={28} />
-                                </i>
-                            </span>
-                            <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                Focused & Research
-                            </h3>
-                            <p className='overflow-hidden text-md line-clamp-[6] '>
-                                Watch out for anyone flaunting their lifestyle on social media but not sharing the
-                                details of their picks. If it looks too good to be true, it probably is.
-                            </p>
-                        </div>
-                        <div className='flex flex-col items-start'>
-                            <span className='inline-block w-fit p-3 rounded-md bg-green-2 text-white max-h-12'>
-                                <i>
-                                    <FaCheckCircle size={28} />
-                                </i>
-                            </span>
-                            <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                Confidence Over Volume
-                            </h3>
-                            <p className='overflow-hidden text-md line-clamp-[6]'>
-                                Our priority is confidence over volume — every pick we share is one we truly believe
-                                in, ensuring you receive only the best insights.
-                            </p>
-                        </div>
+            {/* Stats Section */}
+            <section id="stats" className="py-8 bg-white relative z-10">
+                <div className="container mx-auto px-4 md:px-10 lg:px-20">
+                    <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 -mt-16 transform transition-all duration-1000 translate-y-0 opacity-100`}>
+                        {stats.map((stat, index) => (
+                            <div
+                                key={index}
+                                className="border-none rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white group"
+                            >
+                                <div className="p-6 text-center">
+                                    <div className="flex justify-center mb-4">
+                                        <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                                            {stat.icon}
+                                        </div>
+                                    </div>
+                                    <div className="font-bold text-4xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">{stat.value}</div>
+                                    <div className="text-sm text-gray-600">{stat.label}</div>
+                                </div>
+                                <div className="h-1.5 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform origin-left group-hover:scale-x-100 scale-x-0 transition-transform duration-300"></div>
+                            </div>
+                        ))}
                     </div>
-                </div>
-                <div className='w-full h-auto'>
-                    <img src="/manage-payroll.jpg" alt="betting-info" />
                 </div>
             </section>
 
-            {/* our growing legacy */}
-            <section className='relative min-h-[35rem] max-h-fit w-full flex items-center mt-12 justify-center text-center overflow-hidden'>
-                <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.9),rgba(16,20,26,0.9))]'></div>
-                <Image
-                    src={'/bg3.jpg'}
-                    alt='hero image'
-                    fill
-                    className='object-fill bg-center'
-                />
-                <section className='absolute z-20 w-full flex justify-center text-gray-200'>
-                    <div className='text-center flex flex-col gap-6 md:gap-10 lg:gap-14 items-center'>
-                        <div className=' max-w-[50rem]'>
-                            <h1 className='text-3xl lg:text-4xl text-green-3 font-extrabold text-center'>
-                                <span className='text-3xl text-white'> A Growing Legacy </span><br /> Experience, Strategy & Results
-                            </h1>
-                            <p className='overflow-hidden text-base pt-2 md:pt-5  line-clamp-[8]'>
-                                With seven years in betting, we&apos;ve only recently started sharing our insights,
-                                offering predictions to subscribers for about a year.
+            {/* Welcome Section */}
+            <section id="mission" className="py-16 bg-white overflow-hidden text-left">
+                <div className="container mx-auto px-4 md:px-10 lg:px-20">
+                    <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                        <div className={`w-full md:w-1/2 `}>
+                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Our Mission: Quality Over Quantity</h2>
+                            <div className="w-20 h-1 bg-gold mb-6"></div>
+                            <p className="text-gray-700 leading-relaxed mb-4">
+                                At Milestone Picks, our goal is simple: to offer high-quality, research-backed picks
+                                that give you the best chance to win. We don't flood your inbox with random selections
+                                just to check a box. Instead, we prioritize the picks we truly believe in, even if that
+                                means you won't receive a tip every single day. Rest assured, when we send a pick,
+                                it's one we're confident in.
                             </p>
+                            <p className="text-gray-700 leading-relaxed mb-6">
+                                While we've been immersed in the betting world for over seven years, we're relatively new
+                                to sharing our insights with a broader audience—it's only been about a year since we started
+                                offering our predictions to subscribers. But don't let that fool you. Our experience runs deep,
+                                and we've spent years perfecting our strategies to ensure our subscribers see the profits they deserve.
+                            </p>
+                            <Link href="/ourPlan">
+                                <Button title="Join Our Community" width="fit">
+                                    <MdArrowForward className="ml-1 h-4 w-4" />
+                                </Button>
+                            </Link>
                         </div>
-
-                        <div className='flex gap-4'>
-                            <div className='flex flex-col items-center '>
-                                <span className='inline-block p-3 rounded-md bg-green-2 text-white'>
-                                    <i>
-                                        <FaCalendarAlt size={28} />
-                                    </i>
-                                </span>
-                                <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                    Years of Expertise
-                                </h3>
-                                <p className='overflow-hidden text-md line-clamp-[6] text-center max-w-[24rem]'>
-                                    With over seven years in the betting world, our foundation is built on deep industry
-                                    knowledge and proven strategies.
-                                </p>
-                            </div>
-                            <div className='flex flex-col items-center'>
-                                <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
-                                    <i>
-                                        <FaBookOpen size={28} />
-                                    </i>
-                                </span>
-                                <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                    A New Chapter
-                                </h3>
-                                <p className='overflow-hidden text-md line-clamp-[6] text-center max-w-[24rem]'>
-                                    While we&apos;ve only been sharing our insights with a broader audience for about a year, our years of experience
-                                    ensure our predictions are well-refined and reliable.
-                                </p>
-                            </div>
-                            <div className='flex flex-col items-center'>
-                                <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
-                                    <i>
-                                        <FiTarget size={28} />
-                                    </i>
-                                </span>
-                                <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                    Proven Strategies for Success
-                                </h3>
-                                <p className='overflow-hidden text-base line-clamp-[6] text-cente max-w-[24rem]'>
-                                    We&apos;ve spent years perfecting our approach, focusing on long-term profitability to
-                                    help our subscribers achieve the results they deserve.
-                                </p>
+                        <div className={`w-full md:w-1/2`}>
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+                                <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-navy/40 group-hover:opacity-75 opacity-50 transition-opacity duration-300 mix-blend-overlay"></div>
+                                <img
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%230a1e3b'/%3E%3Ctext x='400' y='250' font-size='24' text-anchor='middle' alignment-baseline='middle' font-family='Avenir, sans-serif' fill='white'%3EMilestone Picks Team Working%3C/text%3E%3C/svg%3E"
+                                    alt="Our Team"
+                                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end">
+                                    <div className="p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                        <p className="text-white text-lg font-medium">Our dedicated team of analysts working to bring you winning picks</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-                </section>
+                </div>
             </section>
 
-            {/* betting is not sprint, it's a marathon */}
-            <section className='xl:px-32 md:px-24 px-12 py-4 md:py-6 lg:py-20 my-4'>
-                <div className='grid md:grid-cols-2 grid-cols-1 gap-8'>
-                    <div className='w-auto h-[15rem]'>
-                        <img src="/manage-payroll.jpg" alt="betting-info" className="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h1 className='text-3xl lg:text-4xl text-white font-extrabold max-w-[30rem] py-3'>
-                            Betting Isn&apos;t a <span className='text-green-3'> Sprint</span>, It&apos;s a
-                            <span className='text-green-3'> Marathon</span>
-                        </h1>
-                        <p className='overflow-hidden text-base pt-2  line-clamp-[8]'>
-                            We&apos;re committed to the long game, focusing on steady profits over weeks and months,
-                            even if a few tough days come along—that&apos;s just part of betting
+            {/* Features Section with Hover Cards */}
+            <section id="features" className="py-16 bg-gray-50 relative overflow-hidden text-left">
 
+                <div className="container mx-auto px-4 relative z-10 md:px-10 lg:px-20">
+                    <div className="max-w-4xl mx-auto text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Why Choose Milestone Picks</h2>
+                        <div className="w-20 h-1 bg-gold mx-auto  mb-6"></div>
+                        <p className="text-gray-700 text-lg">
+                            What makes us different is our transparency and educational approach to sports betting.
                         </p>
                     </div>
-                </div>
-                <div className='grid md:grid-cols-2 grid-cols-1 gap-8 mt-5 md:mt-10 lg:mt-14 text-gray-200'>
-                    <div className='flex items-center gap-5'>
-                        <span className='inline-block px-3 py-5 rounded-md bg-green-2 text-white'>
-                            <i>
-                                <AiOutlineRise size={28} />
-                            </i>
-                        </span>
-                        <div>
-                            <h3 className='text-xl md:text-2xl text-green-3 mb-2 font-bold'>
-                                Long-Term Success Over Short-Term Swings
-                            </h3>
-                            <p className='overflow-hidden text-base line-clamp-[6] text-cente'>
-                                Betting isn&apos;t about daily wins; it&apos;s about long-term growth.
-                                Short-term losses happen, but we focus on consistent profits over weeks and months.
-                            </p>
-                        </div>
-                    </div>
+                    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 `}>
+                        {features.map((feature, index) => (
+                            <div
+                                key={index}
+                                className="bg-white rounded-xl flex flex-col justify-between shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden border border-transparent hover:border-gold/20"
 
-                    <div className='flex items-center gap-5'>
-                        <span className='inline-block w-fit px-3 py-5 rounded-md bg-green-2 text-white'>
-                            <i>
-                                <FaChessKnight size={28} />
-                            </i>
-                        </span>
-                        <div>
-                            <h3 className='text-xl md:text-2xl text-green-3 mb-1 font-bold'>
-                                Smart Strategy, Not Just Luck
-                            </h3>
-                            <p className='overflow-hidden text-base line-clamp-[6] text-cente'>
-                                Winning in betting isn&apos;t about quick picks—it requires patience, discipline, and well-researched
-                                decisions to stay ahead.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className='flex items-center gap-5'>
-                        <span className='inline-block w-fit px-3 py-5 rounded-md bg-green-2 text-white'>
-                            <i>
-                                <MdTune size={28} />
-                            </i>
-                        </span>
-                        <div>
-                            <h3 className='text-xl md:text-2xl text-green-3 font-bold'>
-                                Balanced Approach to Picks
-                            </h3>
-                            <p className='overflow-hidden text-base line-clamp-[6] text-cente'>
-                                Some days we may provide multiple picks, and while not every single one will hit,
-                                our overall strategy ensures you stay profitable in the long run.
-
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className='flex items-center gap-5'>
-                        <span className='inline-block w-fit px-3 py-5 rounded-md bg-green-2 text-white'>
-                            <i>
-                                <BiLineChart size={28} />
-                            </i>
-                        </span>
-                        <div>
-                            <h3 className='text-xl md:text-2xl text-green-3 font-bold'>
-                                Guidance Through the Ups & Downs
-                            </h3>
-                            <p className='overflow-hidden text-base line-clamp-[6] text-cente'>
-                                We&apos;re here to help you navigate the highs and lows, keeping you focused on the
-                                bigger picture rather than short-term results.
-                            </p>
-                        </div>
+                            >
+                                <div className="p-8 text-center">
+                                    <div className="w-16 h-16 bg-navy/5 text-gold rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-navy/10 transition-colors duration-300 transform group-hover:scale-110">
+                                        {feature.icon}
+                                    </div>
+                                    <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold transition-colors">{feature.title}</h3>
+                                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                                </div>
+                                <div className="h-1 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* more than predictions */}
-            <section className='relative min-h-screen max-h-fit w-full flex items-center mt-12 justify-center overflow-hidden'>
-                <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.6),rgba(16,20,26,0.9))]'></div>
-                <Image
-                    src={'/banner2.jpg'}
-                    alt='hero image'
-                    fill
-                    className='object-fill bg-center'
-                />
-                <section className='absolute z-20 w-full xl:px-32 md:px-24 px-12 py-4 md:py-6 lg:py-20 my-4 flex justify-center'>
-                    <div className='grid md:grid-cols-2 grid-cols-1 items-center gap-8'>
-                        <div>
-                            <h1 className='text-3xl lg:text-4xl text-white font-extrabold max-w-[30rem] py-3'>
-                                MORE THAN JUST <span className='text-green-3'> PREDICTIONS</span>
-
-                            </h1>
-                            <p className='overflow-hidden text-lg pt-2  line-clamp-[8]'>
-                                At Milestone Picks, we don&apos;t just give you picks and call it a day. We&apos;re all about teaching you
-                                smart betting strategies.
+            {/* Philosophy Section with Image */}
+            <section id="philosophy" className="py-16 bg-white overflow-hidden text-left">
+                <div className="container mx-auto px-4 md:px-10 lg:px-20">
+                    <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-center">
+                        <div className={`w-full md:w-1/2 `}>
+                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Betting Isn't a Sprint, It's a Marathon</h2>
+                            <div className="w-20 h-1 bg-gold mb-6"></div>
+                            <p className="text-gray-700 leading-relaxed mb-4">
+                                We're in this for the long game, just like you. Sometimes, we might have a tough couple of
+                                days—that's the reality of betting. But don't sweat it! Our focus is on consistent profits
+                                over the course of a week or month.
                             </p>
-                            <div className='flex items-center justify-between py-3 border-b-2 border-gray-600'>
-                                <div className='py-2'>
-                                    <h3 className='text-xl md:text-2xl text-green-3 font-bold'>
-                                        Smart Betting Strategies
-                                    </h3>
-                                    <p className='mt-2'>
-                                        We go beyond picks by teaching you effective betting techniques for long-term success.
-                                    </p>
-                                </div>
-
-                                <h1 className='text-xl md:text-3xl lg:text-4xl font-bold text-transparent stroke-text'>
-                                    01
-                                </h1>
-                            </div>
-                            <div className='flex items-center justify-between py-3 border-b-2 border-gray-600'>
-                                <div className='py-2'>
-                                    <h3 className='text-xl md:text-2xl text-green-3 font-bold'>
-                                        Smart Betting Strategies
-                                    </h3>
-                                    <p className=''>
-                                        We go beyond picks by teaching you effective betting techniques for long-term success.
-                                    </p>
-                                </div>
-                                <h1 className='text-xl md:text-3xl lg:text-4xl font-bold text-transparent stroke-text'>
-                                    02
-                                </h1>
-                            </div>
-                            <div className='flex items-center justify-between mt-3'>
-                                <div className='py-2'>
-                                    <h3 className='text-xl md:text-2xl text-green-3 font-bold'>
-                                        Smart Betting Strategies
-                                    </h3>
-                                    <p className=''>
-                                        We go beyond picks by teaching you effective betting techniques for long-term success.
-                                    </p>
-                                </div>
-                                <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-transparent stroke-text">
-                                    03
-                                </h1>
-                            </div>
+                            <p className="text-gray-700 leading-relaxed mb-6">
+                                We might occasionally send 5-6 picks in a single day, and while a couple may not go our way,
+                                by the end of the week or month, we'll have you in the green. Betting is all about patience
+                                and smart decision-making, and we're here to guide you through it.
+                            </p>
+                            <Link href="/history">
+                                <Button title="View Our Track Record" width="fit">
+                                    <MdArrowForward className="ml-1 h-4 w-4" />
+                                </Button>
+                            </Link>
                         </div>
-                        <div className='w-full h-auto ml-4'>
-                            <img src="/Sports-Betting.jpg" alt="betting-info" />
+                        <div className={`w-full md:w-1/2 `}>
+                            <div className="rounded-2xl overflow-hidden shadow-2xl">
+                                <div className="bg-gradient-to-br from-navy to-navy-light p-1 rounded-2xl">
+                                    <div className="rounded-xl p-8">
+                                        <div className="flex items-center justify-center mb-6">
+                                            <FaBookOpen className="w-12 h-12 text-gold" />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-white mb-4 text-center">More Than Just Predictions</h3>
+                                        <p className="text-gray-100 mb-6">
+                                            At Milestone Picks, we don't just give you picks and call it a day. We're all about teaching
+                                            you smart betting strategies. From managing your bankroll to making value-driven bets,
+                                            we provide you with the insights to ensure your hard-earned money is being placed wisely.
+                                        </p>
+                                        <p className="text-gray-100 mb-8">
+                                            It's not just about what to bet, but how to bet—and that's where we truly set ourselves apart.
+                                        </p>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="bg-navy-lighter p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                                <h4 className="text-navy font-bold flex items-center gap-2">
+                                                    <FiTarget className="w-5 h-5 text-gold" />
+                                                    Strategic Bankroll
+                                                </h4>
+                                                <p className="text-sm text-gray-600">Learn proper money management</p>
+                                            </div>
+                                            <div className="bg-navy-lighter p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                                <h4 className="text-navy font-bold flex items-center gap-2">
+                                                    <MdOutlineTrendingUp className="w-5 h-5 text-gold" />
+                                                    Value Betting
+                                                </h4>
+                                                <p className="text-sm text-gray-600">Find opportunities others miss</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </section>
 
-            {/* why we arre best */}
-            <section className=' h-fit w-full flex items-center py-4 md:py-6 lg:py-20 justify-center text-center overflow-hidden'>
-                <section className='w-full flex justify-center'>
-                    <div className='text-center flex flex-col gap-6 md:gap-10 lg:gap-14 items-center'>
-                        <div className=' max-w-[50rem]'>
-                            <h1 className='text-3xl lg:text-4xl text-green-3 font-extrabold text-center'>
-                                <span className='text-3xl text-white'> Why we are </span> Best
-                            </h1>
-                            <p className='overflow-hidden text-base pt-2 md:pt-5  line-clamp-[8]'>
-                                Many claim to have the perfect betting formula, but we set ourselves apart
-                                with true transparency—showcasing both our wins and losses.
+            {/* Trust & CTA Section with Animated Background - REDESIGNED */}
+            <section id="trust" className="py-20 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-dark to-[#051025]">
+
+                </div>
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-5xl mx-auto">
+                        <div className={`text-center mb-10 `}>
+                            <div>
+                                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why You Can <span className="text-gold">Trust Us</span></h2>
+                                <div className="w-24 h-1 bg-gold mx-auto mb-8"></div>
+
+                            </div>
+                            <p className="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
+                                We know there are a lot of "experts" out there who claim to have the magic formula for betting success.
+                                But what makes us different is our transparency. We don't just show you our wins—we're honest about the losses, too.
+                                It's all part of the game, and by sticking to a disciplined strategy, we make sure our subscribers come out on top in the long run.
                             </p>
                         </div>
 
-                        <div className='flex gap-4 text-gray-200'>
-                            <div className='flex flex-col items-center'>
-                                <span className='inline-block p-3 rounded-md bg-green-2 text-white'>
-                                    <i>
-                                        <FaCalendarAlt size={28} />
-                                    </i>
-                                </span>
-                                <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                    Transparency First
-                                </h3>
-                                <p className='overflow-hidden text-md line-clamp-[6] text-center max-w-[24rem]'>
-                                    We&apos;re open about both our wins and losses—no hiding behind perfect records.
+                        {/* Quote */}
+                        <div className={`bg-white/5 border border-gold rounded-xl p-8  backdrop-blur-sm shadow-xl relative overflow-hidden`}>
+                            <div className="absolute -right-10 -top-10 text-gold/10 text-[200px] font-serif">"</div>
+                            <div className="relative z-10">
+                                <p className="text-lg md:text-xl text-white italic mb-6">
+                                    "With Milestone Picks, I've transformed my betting from guesswork to a strategic investment.
+                                    Their transparent approach and educational resources have been game-changers for me."
                                 </p>
-                            </div>
-                            <div className='flex flex-col items-center'>
-                                <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
-                                    <i>
-                                        <FaBookOpen size={28} />
-                                    </i>
-                                </span>
-                                <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                    Disciplined Strategy
-                                </h3>
-                                <p className='overflow-hidden text-md line-clamp-[6] text-center max-w-[24rem]'>
-                                    Our long-term approach helps subscribers stay profitable over time.
-                                </p>
-                            </div>
-                            <div className='flex flex-col items-center'>
-                                <span className='inline-block p-3 rounded-md bg-green-2 text-white '>
-                                    <i>
-                                        <FiTarget size={28} />
-                                    </i>
-                                </span>
-                                <h3 className='text-xl md:text-2xl text-green-3 font-bold py-3 '>
-                                    Proven Track Record
-                                </h3>
-                                <p className='overflow-hidden text-base line-clamp-[6] text-cente max-w-[24rem]'>
-                                    You can check our pick history anytime—we let the results speak for themselves.
-                                </p>
+                                <div className="flex items-center">
+                                    <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center text-gold font-bold mr-4">JD</div>
+                                    <div>
+                                        <p className="font-bold text-white">James Donovan</p>
+                                        <p className="text-gray-400 text-sm">Member since 2022</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-                </section>
+                </div>
             </section>
 
-            {/* faq section */}
-            <div className="relative h-fit w-full xl:px-32 md:px-24 px-12 text-center md:py-7 my-5 lg:py-14 sm:py-14 py-6 overflow-hidden">
-                <FAQs />
-            </div>
-            <Testimonial />
+            {/* Let's Make Betting Smarter Section - REDESIGNED */}
+            <section id="smarter" className="py-20 bg-white relative overflow-hidden">
 
-            {/* join us now */}
-            <section className='relative min-h-[30rem] max-h-fit w-[80%] mx-auto mb-10 lg:mb-20 flex items-center justify-center overflow-hidden md:py-7 my-5 lg:py-14 sm:py-14 py-6'>
-                <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.5),rgba(16,20,26,0.5))]'></div>
-                <Image
-                    src={'/bg2.jpg'}
-                    alt='hero image'
-                    fill
-                    className='object-fill bg-center'
-                />
-                <section className='absolute z-20 w-full xl:px-32 md:px-24 px-12 py-4 md:py-6 lg:py-20 my-4 flex justify-center'>
-                    <div className='flex flex-col text-center gap-8 items-center py-3'>
-                        <h1 className='text-3xl lg:text-4xl text-green-3 font-bold px-1 '>
-                            <span className='text-white'>  Let&apos;s Make </span>Betting Smarter
-                        </h1>
-                        <h6 className='text-lg leading-6 max-w-[50rem]'>
-                            Bet smarter and stay safe from emotional betting and scams with our expert
-                            tips and transparent pick history. Trust us to guide you through the betting world with confidence!
-                        </h6>
-                        <div className='px-44 w-full' >
-                            <input
-                                className="bg-gray-200 text-blue-1 border border-gray-300 mb-4 md:mb-6 focus:ring-1 focus:ring-green-3 focus:border-green-3 outline-none transition rounded py-2 px-4 w-full"
-                                type="email"
-                                placeholder='Enter email'
 
-                            />
-                            <Button title='Join Now' />
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-7xl mx-auto">
+                        <div className={`text-center mb-16`}>
+                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Let's Make Betting <span className="text-gold">Smarter</span></h2>
+                            <div className="w-24 h-1 bg-gold mx-auto mb-8"></div>
+                            <p className="text-lg text-navy-light mb-8 max-w-3xl mx-auto">
+                                Whether you're new to sports betting or a seasoned pro, Milestone Picks is here to help you
+                                level up your game. We believe in making betting smarter, more strategic, and ultimately more profitable
+                                for our subscribers. So, if you're ready to make informed bets and start seeing real results,
+                                join our community today.
+                            </p>
                         </div>
 
+
+                        {/* CTA Section */}
+                        <div className={`rounded-2xl overflow-hidden relative`} >
+                            <div className="bg-gradient-to-br from-navy via-navy to-navy-dark p-1">
+                                <div className="bg-gradient-to-br from-navy-light/20 to-navy-dark/20 backdrop-blur-sm rounded-xl p-8 md:p-12">
+                                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                                        <div>
+                                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Join Our Community?</h3>
+                                            <p className="text-gray-300 mb-0 md:mb-4 max-w-xl">
+                                                Take the first step towards more profitable betting. Sign up today and get access to our expert picks,
+                                                educational resources, and a supportive community.
+                                            </p>
+                                        </div>
+                                        <div className="flex flex-col sm:flex-row gap-4">
+                                            <div className="relative overflow-hidden group">
+                                                {/* <div className="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold to-gold-light opacity-70 blur-xl group-hover:opacity-100 transition-opacity"></div> */}
+                                                <div className="relative">
+                                                    <Link href="/ourPlan">
+                                                        <Button title="Join Milestone Picks" secondary>
+                                                            <MdArrowForward className="ml-1 h-4 w-4" />
+                                                        </Button>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                            <Link href="/contactUs" className="inline-block border-2 border-gold/65 text-white hover:border-gold hover:text-gold py-3 px-8 rounded-md transition-all duration-300 hover:shadow-lg transform">
+                                                <div className="flex items-center gap-2">
+                                                    <span>Contact Our Team</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                        <path d="M5 12h14"></path>
+                                                        <path d="m12 5 7 7-7 7"></path>
+                                                    </svg>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </section>
+                </div>
             </section>
         </main>
     )

@@ -1,70 +1,85 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { MdMenu } from "react-icons/md";
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
     const [isMobileNavBar, setIsMobileNavBar] = useState(false);
+    const pathname = usePathname();
+
+    const isActive = (path: string) => {
+        return pathname === path;
+    };
+
+    console.log("pathname", pathname)
+    const navLinks = [
+        { name: "Home", path: "/" },
+        { name: "About Us", path: "/about" },
+        { name: "Betting Info", path: "/bettingInfo" },
+        { name: "Our Plans", path: "/plan" },
+        { name: "Previous History", path: "/history" },
+        { name: "Contact Us", path: "/contact" },
+    ];
 
     return (
-        <>
-            {/* Main Navbar */}
-            <nav className="lg:px-14 px-10 py-6 flex justify-between items-center">
-                {/* Logo */}
-                <div>
-                    <span className="text-xl sm:text-2xl lg:text-3xl tracking-wider font-medium">
-                        Milestone Logo
-                    </span>
-                </div>
+        <nav className="bg-white shadow-md">
+            <div className="w-full h-16 mx-auto px-4 py-4 md:px-8 lg:px-14">
+                <div className="flex justify-between items-center">
+                    <Link href="/" className="flex items-center">
+                        <span className="font-display font-bold text-2xl text-navy">Milestone<span className="text-gold">Picks</span></span>
+                    </Link>
 
-                {/* Desktop Menu */}
-                <div className="hidden md:block">
-                    <ul className="flex gap-5 cursor-pointer no-underline">
-
-                        <a href="/" className="hover:scale-105 transition-transform duration-300 ease-in-out">
-                            Home
-                        </a>
-                        <a href="/about" className="hover:scale-105 transition-transform duration-300 ease-in-out">
-                            About Us
-                        </a>
-                        <a href="/plan" className="hover:scale-105 transition-transform duration-300 ease-in-out">
-                            Our Plans
-                        </a>
-                        <a href="/bettingInfo" className="hover:scale-105 transition-transform duration-300 ease-in-out">
-                            Betting Info
-                        </a>
-                        <a href="/history" className="hover:scale-105 transition-transform duration-300 ease-in-out">
-                            Previous History
-                        </a>
-                        <a href="/contact" className="hover:scale-105 transition-transform duration-300 ease-in-out">
-                            Contact Us
-                        </a>
-                    </ul>
-                </div>
-
-                {/* Mobile Menu Icon */}
-                <div className="block md:hidden  cursor-pointer" onClick={() => setIsMobileNavBar(true)}>
-                    <MdMenu size={40} />
-                </div>
-            </nav>
-
-            {/* Mobile Menu */}
-            {isMobileNavBar && (
-                <div className="fixed inset-0 bg-green-900 text-white flex flex-col items-center justify-center z-50">
-                    <div className="absolute top-6 right-6 cursor-pointer" onClick={() => setIsMobileNavBar(false)}>
-                        <ImCross size={30} />
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex space-x-8">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                href={link.path}
+                                className={`font-medium ${isActive(link.path)
+                                    ? "text-gold border-b-2 border-gold"
+                                    : "text-gray-600 hover:text-navy"
+                                    } transition-colors duration-200`}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                     </div>
-                    <ul className="flex flex-col gap-6 text-xl">
-                        <a href="/" onClick={() => setIsMobileNavBar(false)}>Home</a>
-                        <a href="/about" onClick={() => setIsMobileNavBar(false)}>About Us</a>
-                        <a href="/plan" onClick={() => setIsMobileNavBar(false)}>Our Plans</a>
-                        <a href="/bettingInfo" onClick={() => setIsMobileNavBar(false)}>Betting Info</a>
-                        <a href="/history" onClick={() => setIsMobileNavBar(false)}>Previous History</a>
-                        <a href="/contact" onClick={() => setIsMobileNavBar(false)}>Contact Us</a>
-                    </ul>
+
+                    {/* Mobile Navigation Toggle */}
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setIsMobileNavBar(!isMobileNavBar)}
+                            className="text-navy focus:outline-none"
+                        >
+                            {isMobileNavBar ? <ImCross size={24} /> : <MdMenu size={24} />}
+                        </button>
+                    </div>
                 </div>
-            )}
-        </>
+
+                {/* Mobile Navigation Menu */}
+                {isMobileNavBar && (
+                    <div className="md:hidden mt-4 pb-4">
+                        <div className="flex flex-col space-y-4">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.path}
+                                    href={link.path}
+                                    onClick={() => setIsMobileNavBar(false)}
+                                    className={`py-2 px-4 rounded-md ${isActive(link.path)
+                                        ? "bg-navy text-white"
+                                        : "text-gray-600 hover:bg-gray-100"
+                                        }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </nav>
     );
 };
 

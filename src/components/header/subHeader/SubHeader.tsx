@@ -11,7 +11,7 @@ const SubHeader = ({ subTitle, title }: PropI) => {
     return (
         <div className='h-96 w-full bg-blue-200 relative'>
             {/* <div className='absolute h-full w-full z-10 bg-[linear-gradient(to_bottom,rgba(19,24,32,0.3),rgba(19,24,32,0.8))]'></div> */}
-            <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.9),rgba(16,20,26,0.9))]'></div>
+            <div className='absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(16,20,26,0.8),rgba(16,20,26,0.7))]'></div>
 
             <Image
                 src={`/subheader.jpg`}
