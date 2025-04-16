@@ -14,7 +14,7 @@ const ModalForm = ({ closeModal, isModalOpen, children, title }: PropsI) => {
     if (!isModalOpen) return null;
     return (
         <div
-            className="overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 backdrop-blur-md z-[999] flex justify-center items-center bg-black bg-opacity-50"
+            className="overflow-y-auto overflow-x-hidden fixed inset-0 bottom-0 backdrop-blur-[7px] z-[999] flex justify-center items-center bg-black bg-opacity-50"
         >
             <div className="relative p-4 w-full max-w-2xl max-h-full">
                 <div className="relative bg-blue-2 rounded-lg shadow-gray-600 shadow-md">
@@ -31,7 +31,6 @@ const ModalForm = ({ closeModal, isModalOpen, children, title }: PropsI) => {
                         </button>
                     </div>
                     {children}
-
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { useCreateMatchMutation } from '@/redux/features/other/predictionAndMatch/matchApi';
+import { useFetchSportsQuery } from '@/redux/features/other/predictionAndMatch/sportApi';
 import Button from '@/ui/button/Button';
-import { DateInput, Form, TextInput } from '@/ui/formInput/FormInput';
+import { DateInput, Form, SelectInput, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import { ToastError } from '@/utils/toast/ToastError';
 import React from 'react'
@@ -10,10 +11,13 @@ interface PropsI {
     closeModal: () => void;
 }
 interface FormFields {
-    sports: string;
+    sport: {
+        label: string;
+        value: string;
+    };
     team_1: string;
     team_2: string;
-    location: string;
+    location: string | null;
     match_date: string;
 }
 const MatchModalForm = ({ closeModal }: PropsI) => {
@@ -21,13 +25,22 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
         register,
         handleSubmit,
         formState: { errors },
+        control,
     } = useForm<FormFields>();
 
     const [createMatch] = useCreateMatchMutation();
+    const { data: sportData, isLoading: isSportLoading, isFetching: isSportFetching } = useFetchSportsQuery({ search: '', page: 1, page_size: 10 });
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
 
-        await createMatch(data).unwrap()
+        const postData = {
+            sport: data?.sport.value,
+            team_1: data?.team_1,
+            team_2: data?.team_2,
+            location: data?.location,
+            match_date: data?.match_date
+        }
+        await createMatch(postData).unwrap()
             .then(() => {
                 toast.success("Match created successfully");
                 closeModal()
@@ -43,16 +56,27 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
                 <Grid>
                     <Grid.Row>
                         <Grid.Col size='lg'>
-                            <TextInput
-                                label='Sport'
-                                placeholder='Enter a sport'
-                                {...register("sports", {
+                            <SelectInput
+                                required
+                                control={control}
+                                rules={{
                                     required: {
                                         value: true,
                                         message: "Sport is required.",
                                     },
-                                })}
-                                errorMsg={errors?.sports?.message}
+                                }}
+                                label="Sport"
+                                name="sport"
+                                placeholder="Select Sport"
+                                options={
+                                    sportData && sportData.results.length > 0 ?
+                                        sportData.results.map((el) => ({
+                                            value: el.id, label: el.name
+                                        }))
+                                        : []
+                                }
+                                helperText={errors?.sport?.message}
+                                loading={isSportFetching || isSportLoading}
                             />
                         </Grid.Col>
                         <Grid.Col size='lg'>
@@ -66,6 +90,7 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
                                     },
                                 })}
                                 errorMsg={errors?.team_1?.message}
+                                required
                             />
 
                         </Grid.Col>
@@ -80,6 +105,7 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
                                     },
                                 })}
                                 errorMsg={errors?.team_2?.message}
+                                required
                             />
                         </Grid.Col>
 
@@ -87,12 +113,7 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
                             <TextInput
                                 label='Location'
                                 placeholder='Enter a location'
-                                {...register("location", {
-                                    required: {
-                                        value: true,
-                                        message: "Location is required.",
-                                    },
-                                })}
+                                {...register("location")}
                                 errorMsg={errors?.location?.message}
                             />
                         </Grid.Col>
@@ -108,6 +129,7 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
                                     },
                                 })}
                                 errorMsg={errors?.match_date?.message}
+                                required
                             />
                         </Grid.Col>
 

@@ -5,6 +5,7 @@ import { BsFileExcelFill, BsFilePdfFill } from "react-icons/bs";
 
 type PropsI = {
     onTableSearch: (val: string) => void;
+    onClearSearch?: () => void;
     onPdf?: () => void;
     onExcel?: () => void;
     onPrint?: () => void;
@@ -19,13 +20,14 @@ const DataTableSearchContainer = ({
     onPdf,
     onExcel,
     onPrint,
+    onClearSearch,
     children
 }: PropsI) => {
     // const filterDiv = useRef(null);
     // const filterWrapperDiv = useRef(null);
     // const [filterShown, setFilterShown] = useState(false);
     // const [filterDivHeight, setFilterDivHeight] = useState("0px");
-    const [searchVal, setSearchVal] = useState("");
+    const [searchVal, setSearchVal] = useState<string | null>(null);
 
     // useEffect(() => {
     //     if (!filterWrapperDiv.current) return;
@@ -35,6 +37,11 @@ const DataTableSearchContainer = ({
     //     resizeWatcher.observe(filterWrapperDiv.current);
     //     return () => resizeWatcher.disconnect();
     // }, []);
+
+    const handleClearSearch = () => {
+        setSearchVal("");
+        onClearSearch && onClearSearch();
+    };
 
     return (
         <div className="mb-4">
@@ -55,15 +62,15 @@ const DataTableSearchContainer = ({
                         </button>
                         <input
                             type="text"
-                            value={searchVal}
+                            value={searchVal ? searchVal : ''}
                             placeholder="Search..."
                             className="w-full text-blue-1 pl-10 pr-10 py-2 border rounded focus:border-blue-500 focus:outline-none"
                             onChange={(e) => setSearchVal(e.target.value)}
-                            onKeyDown={(e) => e.key === "Enter" && onTableSearch(searchVal)}
+                            onKeyDown={(e) => e.key === "Enter" && onTableSearch(searchVal ? searchVal : '')}
                         />
                         <button
                             className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
-                            onClick={() => setSearchVal("")}
+                            onClick={handleClearSearch}
                         >
                             <MdClose size={18} />
                         </button>

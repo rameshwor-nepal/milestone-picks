@@ -4,23 +4,23 @@ import { useState } from "react";
 
 interface PropsI {
     loading: boolean;
-    onPageLimitChange: (val: string) => void;
-    onPageChange: (val: string) => void;
+    onPageLimitChange: (val: number) => void;
+    onPageChange: (val: number) => void;
     totalRecords: number;
 }
 
 const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) => {
-    const [currentPage, setCurrentPage] = useState<string>("1");
-    const [pageLimit, setPageLimit] = useState<string>("10");
-    const totalPages: number = Math.ceil(totalRecords / parseInt(pageLimit));
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [pageLimit, setPageLimit] = useState<number>(10);
+    const totalPages: number = Math.ceil(totalRecords / pageLimit);
 
-    const handlePageLimitChange = (val: string) => {
-        setCurrentPage("1");
+    const handlePageLimitChange = (val: number) => {
+        setCurrentPage(1);
         setPageLimit(val);
         onPageLimitChange(val);
     };
 
-    const handlePageChange = (val: string) => {
+    const handlePageChange = (val: number) => {
         setCurrentPage(val);
         if (currentPage !== val) {
             onPageChange(val);
@@ -33,8 +33,8 @@ const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) =
                 <span className="text-sm font-normal text-green-3">Show per page:</span>
                 <div className="relative">
                     <select
-                        className="p-2 min-w-[7.5rem] bg-white text-sm font-normal text-green-3 border rounded-md focus:border-blue-3 appearance-none"
-                        onChange={(e) => handlePageLimitChange(e.target.value)}
+                        className="p-2 min-w-12 bg-green-3 text-sm font-normal text-blue-1  rounded-md outline-none  appearance-none"
+                        onChange={(e) => handlePageLimitChange(parseInt(e.target.value))}
                         value={pageLimit}
                         disabled={totalRecords === 0}
                     >
@@ -49,10 +49,10 @@ const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) =
             <div className="flex items-center justify-start gap-4 flex-wrap">
                 {totalRecords ? (
                     <span className="text-sm font-normal text-green-3">
-                        {(parseInt(currentPage) - 1) * parseInt(pageLimit) + 1} - {" "}
-                        {parseInt(currentPage) * parseInt(pageLimit) > totalRecords
+                        {((currentPage) - 1) * (pageLimit) + 1} - {" "}
+                        {(currentPage) * (pageLimit) > totalRecords
                             ? totalRecords
-                            : parseInt(currentPage) * parseInt(pageLimit)}{" "}
+                            : (currentPage) * (pageLimit)}{" "}
                         of {totalRecords} items
                     </span>
                 ) : (
@@ -62,11 +62,11 @@ const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) =
                     {Array.from({ length: totalPages }, (_, index) => (
                         <button
                             key={index + 1}
-                            className={`min-w-[4rem] p-2 text-sm font-medium text-center rounded-md transition duration-200 cursor-pointer ${currentPage === String(index + 1)
-                                ? "bg-blue-500 text-white"
-                                : "bg-blue-1 text-green-3 hover:brightness-90"
+                            className={`min-w-[2rem] p-2 text-sm font-medium text-center rounded-md transition duration-200 cursor-pointer ${currentPage === (index + 1)
+                                ? "bg-green-3 text-blue-1"
+                                : "bg-green-1 text-green-3 hover:brightness-90"
                                 }`}
-                            onClick={() => handlePageChange(String(index + 1))}
+                            onClick={() => handlePageChange((index + 1))}
                         >
                             {index + 1}
                         </button>

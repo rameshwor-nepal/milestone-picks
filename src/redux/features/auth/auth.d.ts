@@ -9,7 +9,7 @@ interface AuthUserI {
 interface LoginPayloadI {
   refresh: string;
   access: string;
-  user: AuthUserI;
+  user?: AuthUserI;
 }
 
 interface SignUpI {

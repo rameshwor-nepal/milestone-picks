@@ -7,9 +7,18 @@ import { PageLayoutHeader } from '@/ui/layout/PageLayout';
 import ModalForm from '@/ui/modal/ModalForm';
 import React, { useState } from 'react'
 import MatchModalForm from './MatchModalForm';
+import { useFetchMatchesQuery } from '@/redux/features/other/predictionAndMatch/matchApi';
+import Pagination from '@/ui/pagination/Pagination';
+import { formatDate } from '@/utils/dateFormat/dateFormat';
 
 const MatchList = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+    const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
+        search: '',
+        page: 1,
+        page_size: 10
+    });
+    const { data, isLoading, isFetching } = useFetchMatchesQuery(searchQuery);
 
     const handleModalClose = () => {
         setAddModalOpen(false);
@@ -20,8 +29,11 @@ const MatchList = () => {
                 <Button title='Add Match' secondary={true} onClick={() => setAddModalOpen(true)} />
             </PageLayoutHeader>
             <DataTableContainer>
-                <DataTableSearchContainer onTableSearch={() => { }} />
-                <DataTable loading={false}>
+                <DataTableSearchContainer
+                    onTableSearch={(val) => setSearchQuery({ ...searchQuery, search: val })}
+                    onClearSearch={() => setSearchQuery({ ...searchQuery, search: '' })}
+                />
+                <DataTable loading={isLoading || isFetching}>
                     <DataTable.TH>
                         <DataTable.TR>
                             <DataTable.THD align="center">
@@ -45,7 +57,7 @@ const MatchList = () => {
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
-                                {"Result"}
+                                {"Date"}
                             </DataTable.THD>
 
                             <DataTable.ActionCol align="center">
@@ -53,49 +65,53 @@ const MatchList = () => {
                             </DataTable.ActionCol>
                         </DataTable.TR>
                     </DataTable.TH>
-                    {/* {records.results.length ? ( */}
-                    <DataTable.TB>
-                        {/* {records.results.map((el, index) => ( */}
-                        <DataTable.TR >
-                            <DataTable.TCD align="center">{1}</DataTable.TCD>
-                            <DataTable.TCD align="center">{"Sport"}</DataTable.TCD>
-                            <DataTable.TCD align="center">{"Team 1"}</DataTable.TCD>
-                            <DataTable.TCD align="center">{"Team 2"}</DataTable.TCD>
-                            <DataTable.TCD align="center">{"Location"} </DataTable.TCD>
-                            <DataTable.TCD align="center">{"Result"}</DataTable.TCD>
-                            <DataTable.TCD>
-                                <>
-                                    <ActionButton>
-                                        <ActionButton.EditIcon
-                                            onClick={() => { }}
-                                        // disabled={
-                                        //   !canUpdateRecord({
-                                        //     status: el.status,
-                                        //     authRoles: roles,
-                                        //   })
-                                        // }
-                                        />
-                                        <ActionButton.DeleteIcon
-                                            onClick={() => { }}
-                                        // onClick={() => navigate(`details/${el.id}`)}
-                                        />
+                    {data && data.results?.length ? (
+                        <DataTable.TB>
+                            {data.results.map((el, index) => (
+                                <DataTable.TR key={el.id}>
+                                    <DataTable.TCD align="center">{index + 1}</DataTable.TCD>
+                                    <DataTable.TCD align="center">{el.sport}</DataTable.TCD>
+                                    <DataTable.TCD align="center">{el.team_1}</DataTable.TCD>
+                                    <DataTable.TCD align="center">{el.team_2}</DataTable.TCD>
+                                    <DataTable.TCD align="center">{el?.location || '-'} </DataTable.TCD>
+                                    <DataTable.TCD align="center">{formatDate(el?.match_date)}</DataTable.TCD>
+                                    <DataTable.TCD>
+                                        <>
+                                            <ActionButton>
+                                                <ActionButton.EditIcon
+                                                    onClick={() => { }}
+                                                // disabled={
+                                                //   !canUpdateRecord({
+                                                //     status: el.status,
+                                                //     authRoles: roles,
+                                                //   })
+                                                // }
+                                                />
+                                                <ActionButton.DeleteIcon
+                                                    onClick={() => { }}
+                                                // onClick={() => navigate(`details/${el.id}`)}
+                                                />
 
-                                    </ActionButton>
-                                </>
-                            </DataTable.TCD>
-                        </DataTable.TR>
-                        {/* // ))} */}
-                    </DataTable.TB>
-                    {/*  ) : ( 
-                                            <DataTable.EmptyBody span={11} />
-                                        {/*  )} */}
+                                            </ActionButton>
+                                        </>
+                                    </DataTable.TCD>
+                                </DataTable.TR>
+                            ))}
+                        </DataTable.TB>
+                    ) : (
+                        <DataTable.EmptyBody span={11} />
+                    )}
                 </DataTable>
-                {/* <Pagination
-                              loading={false}
-                              onPageLimitChange={() => { }}
-                              onPageChange={() => { }}
-                              totalRecords={0}
-                            /> */}
+                <Pagination
+                    loading={false}
+                    totalRecords={data ? data.count : 0}
+                    onPageChange={(val) =>
+                        setSearchQuery({ ...searchQuery, page: val })
+                    }
+                    onPageLimitChange={(val) =>
+                        setSearchQuery({ ...searchQuery, page_size: val, page: 1 })
+                    }
+                />
             </DataTableContainer>
             <ModalForm
                 isModalOpen={addModalOpen}
