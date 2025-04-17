@@ -6,7 +6,7 @@ const MemberShipCard = () => {
         <div>
             <section className="py-16 bg-gray-50 text-left">
                 <div className="container mx-auto px-4 md:px-10 lg:px-20">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+                    <div className="bg-[#f0f6ff] rounded-lg shadow-xl overflow-hidden">
                         <div className="flex flex-col md:flex-row">
                             <div className="md:w-2/3 p-8 md:p-12">
                                 <h3 className="text-2xl md:text-3xl font-display font-bold text-navy mb-4">

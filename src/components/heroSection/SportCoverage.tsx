@@ -6,7 +6,7 @@ const SportCoverage = () => {
     return (
         <>
             <div className="min-h-screen w-full text-white relative">
-                <div className="absolute h-full w-full z-10 bg-[linear-gradient(to_bottom,rgba(10,30,59,0.9),rgba(10,30,59,0.8))]"></div>
+                <div className="absolute h-full w-full z-10 bg-[linear-gradient(to_right,rgba(10,30,59,0.9),rgba(10,30,59,0.8))]"></div>
 
                 {/* Background Image */}
                 <div className="absolute z-0 h-full w-full">
@@ -30,7 +30,7 @@ const SportCoverage = () => {
                             {sports.map((sport, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 card-highlight"
+                                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full h-full"
                                 >
                                     <div className="p-6">
                                         <div className="flex flex-col items-center text-center">

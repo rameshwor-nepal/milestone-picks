@@ -17,15 +17,15 @@ const OurPlanCom = () => {
 
             {/* Plans Section */}
             <section className="py-16 bg-white">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-5xl mx-auto">
+                <div className="px-4 md:px-10 lg:px-20">
+                    <div className="max-w-5xl">
                         <h2 className="text-3xl md:text-4xl font-bold mb-3 text-navy text-center">Select Your Plan</h2>
                         <div className="w-20 h-1 bg-gold mb-6 mx-auto"></div>
                         <p className="text-xl text-navy-light font-medium mb-8 text-center ">
                             Our flexible plans are designed to fit your betting style and budget.
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 mt-12 lg:mt-16">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 mt-12 lg:mt-16 px-4">
                             <SubscriptionCard
                                 name="Weekly All-in-One Pass"
                                 price="$99"

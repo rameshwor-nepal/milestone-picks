@@ -166,7 +166,7 @@ const BettingInfoCom = () => {
                                     <p className=" mb-3">
                                         A bet on the margin of victory in a game. The favorite gives points, while the underdog gets points.
                                     </p>
-                                    <p className='bg-white p-2 md:p-4'>
+                                    <p className='bg-slate-50 p-2 md:p-4'>
                                         <span className='block font-semibold'>Example:</span>
                                         Lakers -5.5 means the Lakers need to win by 6 or more points for the bet to win.
                                     </p>
@@ -182,7 +182,7 @@ const BettingInfoCom = () => {
                                     <p className=" mb-3">
                                         A straight-up bet on which team will win the game outright, with no point spread involved.
                                     </p>
-                                    <p className='bg-white p-2 md:p-4'>
+                                    <p className='bg-slate-50 p-2 md:p-4'>
                                         <span className='block font-semibold'>Example:</span>
                                         Celtics +150 means a $100 bet would win $150 if the Celtics win the game outright.
                                     </p>
@@ -199,7 +199,7 @@ const BettingInfoCom = () => {
                                         A bet on the combined score of both teams, regardless of which team wins.
                                     </p>
 
-                                    <p className='bg-white p-2 md:p-4'>
+                                    <p className='bg-slate-50 p-2 md:p-4'>
                                         <span className='block font-semibold'>Example:</span>
                                         Over 220.5 means the combined score must be 221 or higher for the bet to win.
                                     </p>
@@ -216,7 +216,7 @@ const BettingInfoCom = () => {
                                         Bets on specific events or player performances within a game.
                                     </p>
 
-                                    <p className='bg-white p-2 md:p-4'>
+                                    <p className='bg-slate-50 p-2 md:p-4'>
                                         <span className='block font-semibold'>Example:</span>
                                         LeBron James Over 25.5 points means LeBron needs to score 26 or more points for the bet to win.
                                     </p>
@@ -233,7 +233,7 @@ const BettingInfoCom = () => {
                                         Combining multiple bets into one wager for a higher potential payout. All selections must win.
                                     </p>
 
-                                    <p className='bg-white p-2 md:p-4'>
+                                    <p className='bg-slate-50 p-2 md:p-4'>
                                         <span className='block font-semibold'>Example:</span>
                                         Lakers -5.5, Over 220.5, and Celtics ML combined into one bet for a larger payout.
                                     </p>
@@ -250,7 +250,7 @@ const BettingInfoCom = () => {
                                         Similar to parlays, but allows you to adjust the point spread in your favor for a lower payout.
                                     </p>
 
-                                    <p className='bg-white p-2 md:p-4'>
+                                    <p className='bg-slate-50 p-2 md:p-4'>
                                         <span className='block font-semibold'>Example:</span>
                                         Adjusting Lakers -5.5 to Lakers +0.5 as part of a teaser bet.
                                     </p>
@@ -267,9 +267,9 @@ const BettingInfoCom = () => {
             </section>
 
             {/* Trust Message Card */}
-            <div className='pt-4 px-4 md:px-10 lg:px-20 mb-4 md:mb-10 lg:mb-20'>
-                <div className="bg-gradient-to-r from-navy to-navy-light rounded-xl p-1 ">
-                    <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row gap-8">
+            <div className='pt-4 px-4 md:px-10 lg:px-20 mb-4 md:mb-10 lg:mb-20 '>
+                <div className="bg-gradient-to-r from-navy to-navy-light rounded-xl p-1 shadow-xl">
+                    <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row gap-8 shadow-xl">
                         <div className="md:w-3/4">
                             <h3 className="text-2xl font-bold mb-3 text-navy">Trust Us to Help You Make Smart, Informed Bets</h3>
                             <p className="text-navy mb-6">

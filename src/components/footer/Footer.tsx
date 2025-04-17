@@ -6,7 +6,7 @@ import { MdPhone, MdMyLocation } from 'react-icons/md'
 
 const Footer = () => {
     return (
-        <footer className="bg-navy text-white text-left">
+        <footer className="bg-navy-dark text-white text-left">
             <div className="container mx-auto px-4 py-12 md:px-10 lg:px-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
