@@ -18,7 +18,6 @@ const UserPasswordChange = ({ closeForm }: PropsI) => {
         register,
         handleSubmit,
         formState: { errors },
-        control,
     } = useForm<FormFields>();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
 

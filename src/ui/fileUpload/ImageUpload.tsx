@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { MdEdit, MdDelete, MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 
 type ImageInputProps = {
     name: string;
@@ -59,10 +60,15 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
             {label && <label className="text-gray-700 mb-2 font-medium">{label}</label>}
             {val || value ? (
                 <label htmlFor={name} className="relative w-64 h-32 overflow-hidden group cursor-pointer">
-                    <img
-                        src={val ? returnImgUrl(val) : value ? returnImgUrl(value) : ''}
-                        className="w-full h-full object-cover group-hover:blur-sm group-hover:brightness-75"
-                    />
+                    <div className="relative w-full h-full">
+                        <Image
+                            src={val ? returnImgUrl(val) : value ? returnImgUrl(value) : ''}
+                            alt="Uploaded"
+                            fill
+                            unoptimized
+                            className="object-cover group-hover:blur-sm group-hover:brightness-75"
+                        />
+                    </div>
                     <span className="absolute bottom-[37%] left-[40%] transform -translate-x-1/2 bg-green-2 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition">
                         <MdEdit size={18} />
                     </span>

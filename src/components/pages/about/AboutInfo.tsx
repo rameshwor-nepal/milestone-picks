@@ -1,13 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import FAQs from '@/components/testimonials/FAQs'
-import { MdArrowForward, MdOutlineTrendingUp, MdTune } from 'react-icons/md'
-import { GiArchiveResearch } from 'react-icons/gi'
-import { FaBookOpen, FaCalendarAlt, FaCheckCircle, FaChessKnight } from 'react-icons/fa'
+import { MdArrowForward, MdOutlineTrendingUp } from 'react-icons/md'
+import { FaBookOpen } from 'react-icons/fa'
 import { FiTarget } from 'react-icons/fi'
-import { AiOutlineRise } from 'react-icons/ai'
-import { BiLineChart } from 'react-icons/bi'
-import Testimonial from '@/components/testimonials/Testimonial'
 import Button from '@/ui/button/Button'
 import { features, stats } from '@/utils/ConstantValue'
 import Link from 'next/link'
@@ -50,16 +45,16 @@ const AboutInfo = () => {
                             <div className="w-20 h-1 bg-gold mb-6"></div>
                             <p className="text-gray-700 leading-relaxed mb-4">
                                 At Milestone Picks, our goal is simple: to offer high-quality, research-backed picks
-                                that give you the best chance to win. We don't flood your inbox with random selections
+                                that give you the best chance to win. We don&apos;t flood your inbox with random selections
                                 just to check a box. Instead, we prioritize the picks we truly believe in, even if that
-                                means you won't receive a tip every single day. Rest assured, when we send a pick,
-                                it's one we're confident in.
+                                means you won&apos;t receive a tip every single day. Rest assured, when we send a pick,
+                                it&apos;s one we&apos;re confident in.
                             </p>
                             <p className="text-gray-700 leading-relaxed mb-6">
-                                While we've been immersed in the betting world for over seven years, we're relatively new
-                                to sharing our insights with a broader audience—it's only been about a year since we started
-                                offering our predictions to subscribers. But don't let that fool you. Our experience runs deep,
-                                and we've spent years perfecting our strategies to ensure our subscribers see the profits they deserve.
+                                While we&apos;ve been immersed in the betting world for over seven years, we&apos;re relatively new
+                                to sharing our insights with a broader audience—it&apos;s only been about a year since we started
+                                offering our predictions to subscribers. But don&apos;t let that fool you. Our experience runs deep,
+                                and we&apos;ve spent years perfecting our strategies to ensure our subscribers see the profits they deserve.
                             </p>
                             <Link href="/ourPlan">
                                 <Button title="Join Our Community" width="fit">
@@ -70,11 +65,13 @@ const AboutInfo = () => {
                         <div className={`w-full md:w-1/2`}>
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-navy/40 group-hover:opacity-75 opacity-50 transition-opacity duration-300 mix-blend-overlay"></div>
-                                <img
-                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%230a1e3b'/%3E%3Ctext x='400' y='250' font-size='24' text-anchor='middle' alignment-baseline='middle' font-family='Avenir, sans-serif' fill='white'%3EMilestone Picks Team Working%3C/text%3E%3C/svg%3E"
-                                    alt="Our Team"
-                                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
-                                />
+                                <div className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                                    <Image
+                                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%230a1e3b'/%3E%3Ctext x='400' y='250' font-size='24' text-anchor='middle' alignment-baseline='middle' font-family='Avenir, sans-serif' fill='white'%3EMilestone Picks Team Working%3C/text%3E%3C/svg%3E"
+                                        alt="Our Team"
+                                        fill
+                                    />
+                                </div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end">
                                     <div className="p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                         <p className="text-white text-lg font-medium">Our dedicated team of analysts working to bring you winning picks</p>
@@ -123,17 +120,17 @@ const AboutInfo = () => {
                 <div className="container mx-auto px-4 md:px-10 lg:px-20">
                     <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-center">
                         <div className={`w-full md:w-1/2 `}>
-                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Betting Isn't a Sprint, It's a Marathon</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Betting Isn&apos;t a Sprint, It&apos;s a Marathon</h2>
                             <div className="w-20 h-1 bg-gold mb-6"></div>
                             <p className="text-gray-700 leading-relaxed mb-4">
-                                We're in this for the long game, just like you. Sometimes, we might have a tough couple of
-                                days—that's the reality of betting. But don't sweat it! Our focus is on consistent profits
+                                We&apos;re in this for the long game, just like you. Sometimes, we might have a tough couple of
+                                days—that&apos;s the reality of betting. But don&apos;t sweat it! Our focus is on consistent profits
                                 over the course of a week or month.
                             </p>
                             <p className="text-gray-700 leading-relaxed mb-6">
                                 We might occasionally send 5-6 picks in a single day, and while a couple may not go our way,
-                                by the end of the week or month, we'll have you in the green. Betting is all about patience
-                                and smart decision-making, and we're here to guide you through it.
+                                by the end of the week or month, we&apos;ll have you in the green. Betting is all about patience
+                                and smart decision-making, and we&apos;re here to guide you through it.
                             </p>
                             <Link href="/history">
                                 <Button title="View Our Track Record" width="fit">
@@ -150,12 +147,12 @@ const AboutInfo = () => {
                                         </div>
                                         <h3 className="text-2xl font-bold text-white mb-4 text-center">More Than Just Predictions</h3>
                                         <p className="text-gray-100 mb-6">
-                                            At Milestone Picks, we don't just give you picks and call it a day. We're all about teaching
+                                            At Milestone Picks, we don&apos;t just give you picks and call it a day. We&apos;re all about teaching
                                             you smart betting strategies. From managing your bankroll to making value-driven bets,
                                             we provide you with the insights to ensure your hard-earned money is being placed wisely.
                                         </p>
                                         <p className="text-gray-100 mb-8">
-                                            It's not just about what to bet, but how to bet—and that's where we truly set ourselves apart.
+                                            It&apos;s not just about what to bet, but how to bet—and that&apos;s where we truly set ourselves apart.
                                         </p>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="bg-navy-lighter p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -196,19 +193,19 @@ const AboutInfo = () => {
 
                             </div>
                             <p className="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
-                                We know there are a lot of "experts" out there who claim to have the magic formula for betting success.
-                                But what makes us different is our transparency. We don't just show you our wins—we're honest about the losses, too.
-                                It's all part of the game, and by sticking to a disciplined strategy, we make sure our subscribers come out on top in the long run.
+                                We know there are a lot of &quot;experts&quot; out there who claim to have the magic formula for betting success.
+                                But what makes us different is our transparency. We don&apos;t just show you our wins—we&apos;re honest about the losses, too.
+                                It&apos;s all part of the game, and by sticking to a disciplined strategy, we make sure our subscribers come out on top in the long run.
                             </p>
                         </div>
 
                         {/* Quote */}
                         <div className={`bg-white/5 border border-gold rounded-xl p-8  backdrop-blur-sm shadow-xl relative overflow-hidden`}>
-                            <div className="absolute -right-10 -top-10 text-gold/10 text-[200px] font-serif">"</div>
+                            <div className="absolute -right-10 -top-10 text-gold/10 text-[200px] font-serif">&quot;</div>
                             <div className="relative z-10">
                                 <p className="text-lg md:text-xl text-white italic mb-6">
-                                    "With Milestone Picks, I've transformed my betting from guesswork to a strategic investment.
-                                    Their transparent approach and educational resources have been game-changers for me."
+                                    &quot;With Milestone Picks, I&apos;ve transformed my betting from guesswork to a strategic investment.
+                                    Their transparent approach and educational resources have been game-changers for me.&quot;
                                 </p>
                                 <div className="flex items-center">
                                     <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center text-gold font-bold mr-4">JD</div>
@@ -223,19 +220,19 @@ const AboutInfo = () => {
                 </div>
             </section>
 
-            {/* Let's Make Betting Smarter Section - REDESIGNED */}
+            {/* Let&apos;s Make Betting Smarter Section - REDESIGNED */}
             <section id="smarter" className="py-20 bg-white relative overflow-hidden">
 
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         <div className={`text-center mb-16`}>
-                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Let's Make Betting <span className="text-gold">Smarter</span></h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Let&apos;s Make Betting <span className="text-gold">Smarter</span></h2>
                             <div className="w-24 h-1 bg-gold mx-auto mb-8"></div>
                             <p className="text-lg text-navy-light mb-8 max-w-3xl mx-auto">
-                                Whether you're new to sports betting or a seasoned pro, Milestone Picks is here to help you
+                                Whether you&apos;re new to sports betting or a seasoned pro, Milestone Picks is here to help you
                                 level up your game. We believe in making betting smarter, more strategic, and ultimately more profitable
-                                for our subscribers. So, if you're ready to make informed bets and start seeing real results,
+                                for our subscribers. So, if you&apos;re ready to make informed bets and start seeing real results,
                                 join our community today.
                             </p>
                         </div>

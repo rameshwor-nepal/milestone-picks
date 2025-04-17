@@ -1,6 +1,6 @@
 'use client'
 import Button from '@/ui/button/Button';
-import { DateInput, Form, TextInput } from '@/ui/formInput/FormInput';
+import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -19,7 +19,6 @@ const UserProfile = () => {
         register,
         handleSubmit,
         formState: { errors },
-        control,
     } = useForm<FormFields>();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
 
@@ -118,9 +117,6 @@ const UserProfile = () => {
                             />
                         )
                     }
-
-
-
                 </div>
 
             </div>

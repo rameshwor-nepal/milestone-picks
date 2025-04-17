@@ -48,7 +48,7 @@ const HeroSection = () => {
                                     <div className="md:w-1/2 flex justify-center md:justify-end">
                                         <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
                                             <div className="flex items-center justify-between mb-4">
-                                                <h3 className="font-display font-bold text-navy text-xl">Today's Top Pick</h3>
+                                                <h3 className="font-display font-bold text-navy text-xl">Today&apos;s Top Pick</h3>
                                                 <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Premium</span>
                                             </div>
                                             <div className="bg-gray-50 p-4 rounded-md mb-4 text-navy">

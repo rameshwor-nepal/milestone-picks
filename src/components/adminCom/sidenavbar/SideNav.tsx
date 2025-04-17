@@ -5,6 +5,7 @@ import { LinksProps } from './NavLinks';
 import { SidenavLink } from './SidenavLink';
 import { SidenavLinkMain } from './SidenavLinkMain';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export const NavContext = createContext({
     sideBarExpanded: false,
@@ -49,7 +50,15 @@ const Sidenav = (props: Props) => {
                 <div >
                     {/* Logo & Expand Button */}
                     <div className="relative flex flex-col items-center gap-4 pt-6 pb-4">
-                        <img src="/man1.png" className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all`} />
+                        <div className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all h-full relative`}>
+                            <Image
+                                src={"/man1.png"}
+                                alt='logo image'
+                                fill
+                                className='object-cover'
+                            />
+                        </div>
+                        {/* <img src= className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all`} /> */}
 
                         {/* Toggle Button */}
                         <button

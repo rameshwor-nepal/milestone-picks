@@ -5,7 +5,6 @@ import { MdDashboard, MdInfo, MdOutlineSettings, MdOutlineSportsVolleyball, MdPe
 import { MdBatchPrediction } from "react-icons/md";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { TbBallFootball } from "react-icons/tb";
-import { IoMdStats } from "react-icons/io";
 
 export type LinksProps<TExtended = boolean> = TExtended extends true
     ? {

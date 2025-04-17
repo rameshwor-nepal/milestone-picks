@@ -1,4 +1,4 @@
-import { features, sports } from '@/utils/ConstantValue'
+import { features } from '@/utils/ConstantValue'
 import React from 'react'
 
 const WhyChooseUs = () => {

@@ -10,7 +10,7 @@ const ContactUs = () => {
             <Navbar />
             <SubHeader
                 title='Contact Us'
-                subTitle='Have questions or need support? Reach out to our team, and we’ll help you with all your betting needs and inquiries.'
+                subTitle='Have questions or need support? Reach out to our team, and we&apos;ll help you with all your betting needs and inquiries.'
             />
             <ContactForm />
             <Footer />

@@ -145,7 +145,7 @@ const PredictionCard: React.FC<PredictionCardProps> = ({
                                 Boston has been dominant at home this season with a 24-3 record.
                                 Their defense should give the Lakers trouble, especially with Anthony
                                 Davis facing double teams. Expect the Celtics to cover the spread as
-                                they've done in 7 of their last 8 home games.
+                                they&apos;ve done in 7 of their last 8 home games.
                             </p>
                         </div>
                     }
