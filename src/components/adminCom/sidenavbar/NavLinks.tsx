@@ -1,12 +1,13 @@
 'use client'
 import { FaHistory } from "react-icons/fa";
 import { IconType } from "react-icons";
-import { MdDashboard, MdInfo, MdOutlineSportsVolleyball } from "react-icons/md";
+import { MdDashboard, MdInfo, MdOutlineSettings, MdOutlineSportsVolleyball, MdPerson } from "react-icons/md";
 import { MdBatchPrediction } from "react-icons/md";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { TbBallFootball } from "react-icons/tb";
+import { IoMdStats } from "react-icons/io";
 
-type LinksProps<TExtended = boolean> = TExtended extends true
+export type LinksProps<TExtended = boolean> = TExtended extends true
     ? {
         extended: TExtended;
         text: string;
@@ -23,7 +24,7 @@ type LinksProps<TExtended = boolean> = TExtended extends true
         active: boolean;
     };
 
-export const navLinks = (
+export const AdminNavLinks = (
     currentPath: string
 ): LinksProps[] => {
     {
@@ -102,6 +103,44 @@ export const navLinks = (
                         active: currentPath === "/admin/info/message",
                     },
                 ],
+            },
+        ];
+    }
+};
+
+
+export const UserNavLinks = (
+    currentPath: string
+): LinksProps[] => {
+    {
+        return [
+            {
+                extended: false,
+                text: "Dashboard",
+                icon: MdDashboard as IconType,
+                to: "/user",
+                active: currentPath === "/user",
+            },
+            {
+                extended: false,
+                text: "History",
+                icon: MdBatchPrediction as IconType,
+                to: "/user/history",
+                active: currentPath.startsWith("/user/history"),
+            },
+            {
+                extended: false,
+                text: "Profile",
+                icon: MdPerson as IconType,
+                to: "/user/profile",
+                active: currentPath.startsWith("/user/profile"),
+            },
+            {
+                extended: false,
+                text: "Settings",
+                icon: MdOutlineSettings as IconType,
+                to: "/user/settings",
+                active: currentPath.startsWith("/user/settings"),
             },
         ];
     }

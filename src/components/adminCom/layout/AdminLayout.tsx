@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Sidenav from '../sidenavbar/SideNav'
+import { AdminNavLinks } from '../sidenavbar/NavLinks';
 
 const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     const [sideNavExpanded, setSideNavExpanded] = useState(true);
@@ -25,6 +26,7 @@ const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             {/* Sidebar */}
             <Sidenav
                 onExpand={(val) => setSideNavExpanded(val)}
+                navLinks={AdminNavLinks}
             />
 
             {/* Main Content */}

@@ -19,16 +19,16 @@ export const SelectStyles: StylesConfig = {
             ? "#fff"
             : state.isDisabled
                 ? "#F5F4F7"
-                : "#fafafa",
+                : "#fff",
         borderRadius: "0.25rem", // rounded
-        borderColor: state.isFocused ? "#757474" : "#d0d0d0",
-        borderWidth: "1px",
+        borderColor: state.isFocused ? "#d4af37" : "#fafafa",
+        borderWidth: "2px",
         boxShadow: "none",
         fontSize: "0.875rem",
         fontWeight: "400",
         transition: "all 0.2s ease",
         "&:hover": {
-            borderColor: state.isFocused ? "#757474" : "#d0d0d0",
+            borderColor: state.isFocused ? "#d4af37" : "#fafafa",
         },
     }),
     option: (base, { isSelected }) => ({
@@ -87,6 +87,6 @@ export const SelectStyles: StylesConfig = {
     }),
     dropdownIndicator: (base) => ({
         ...base,
-        padding: "0.25rem",
+        padding: "0.6rem",
     }),
 };
