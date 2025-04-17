@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "./store";
+// import { RootState } from "./store";
 import { BASE_API_URL } from "@/redux/utils/urlConfig";
 import type {
   BaseQueryFn,
@@ -10,7 +10,7 @@ import { initAuthUser, logout } from "./auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_API_URL,
-  prepareHeaders: (headers, { getState }) => {
+  prepareHeaders: (headers) => {
     // const token = (getState() as RootState).auth.access;
     const token = localStorage.getItem("msp_auth_access") || "";
     if (token) {

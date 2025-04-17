@@ -27,7 +27,7 @@ const UserDashboard = () => {
             <section className='my-10'>
                 <div className="flex items-center gap-3  rounded-md px-3 py-2 bg-navy">
                     <FaTrophy className="text-gold h-6 w-6" />
-                    <h2 className="text-2xl font-bold text-white">Today's Expert Picks</h2>
+                    <h2 className="text-2xl font-bold text-white">Today&apos;s Expert Picks</h2>
                 </div>
 
                 {/* filter section */}

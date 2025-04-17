@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { IoMdEye } from 'react-icons/io';
+import Image from 'next/image';
 
 const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -15,12 +16,14 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <img
-                src={src}
-                alt={alt}
-                className={`w-full h-full object-contain transition-all duration-200 ${isHovered ? 'blur-sm' : ''
-                    }`}
-            />
+            <div className={`w-full h-full object-contain transition-all duration-200 ${isHovered ? 'blur-sm' : ''
+                }`}>
+                <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    className='object-cover' />
+            </div>
             {isHovered && (
                 <i
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 

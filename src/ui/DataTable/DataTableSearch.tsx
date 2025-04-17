@@ -40,7 +40,8 @@ const DataTableSearchContainer = ({
 
     const handleClearSearch = () => {
         setSearchVal("");
-        onClearSearch && onClearSearch();
+        // onClearSearch && onClearSearch();
+        if (onClearSearch) onClearSearch();
     };
 
     return (

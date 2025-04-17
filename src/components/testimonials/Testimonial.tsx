@@ -54,7 +54,15 @@ const Testimonial = () => {
                         </div>
 
                         <footer className="mt-4 text-sm font-medium sm:mt-6 flex items-center gap-2">
-                            <img src="man1.png" alt="testimonials" className="size-14 rounded-full object-cover" />
+                            <div className='size-14 rounded-full relative'>
+                                <Image
+                                    src="/man1.png"
+                                    alt="testimonials"
+                                    fill
+                                    className=' object-cover'
+                                />
+                            </div>
+
                             <div className="block">
                                 <p>
                                     Michael Scott
@@ -90,7 +98,14 @@ const Testimonial = () => {
                         </div>
 
                         <footer className="mt-4 text-sm font-medium sm:mt-6 flex items-center gap-2">
-                            <img src="man1.png" alt="testimonials" className="size-14 rounded-full object-cover" />
+                            <div className='size-14 rounded-full relative'>
+                                <Image
+                                    src="/man1.png"
+                                    alt="testimonials"
+                                    fill
+                                    className=' object-cover'
+                                />
+                            </div>
                             <div className="block">
                                 <p>
                                     Michael Scott
@@ -126,7 +141,14 @@ const Testimonial = () => {
                         </div>
 
                         <footer className="mt-4 text-sm font-medium sm:mt-6 flex items-center gap-2">
-                            <img src="man1.png" alt="testimonials" className="size-14 rounded-full object-cover" />
+                            <div className='size-14 rounded-full relative'>
+                                <Image
+                                    src="/man1.png"
+                                    alt="testimonials"
+                                    fill
+                                    className=' object-cover'
+                                />
+                            </div>
                             <div className="block">
                                 <p>
                                     Michael Scott

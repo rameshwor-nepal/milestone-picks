@@ -1,11 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import { FaAward, FaShieldAlt, FaWallet } from 'react-icons/fa'
+import { FaAward, FaShieldAlt } from 'react-icons/fa'
 import { RiLineChartLine, RiMoneyDollarCircleLine } from 'react-icons/ri'
 import { tipCards } from '@/utils/ConstantValue'
 import { Card, CardContent } from '@/ui/card/Card'
-import { FiTarget } from 'react-icons/fi'
-import { MdArrowForward, MdOutlineTrendingUp } from 'react-icons/md'
+import { MdArrowForward } from 'react-icons/md'
 import Link from 'next/link'
 import Button from '@/ui/button/Button'
 
@@ -21,7 +20,7 @@ const BettingInfoCom = () => {
                                 <h2 className="text-3xl font-bold mb-3 text-navy">Betting Information That Actually Works</h2>
                                 <div className="w-20 h-1 bg-gold mb-6"></div>
                                 <p className="text-navy mb-6 text-lg">
-                                    Whether you're new to sports betting or looking to refine your strategy,
+                                    Whether you&apos;re new to sports betting or looking to refine your strategy,
                                     our expert guidance is designed to help you make smarter decisions
                                     and increase your chances of long-term success.
                                 </p>
@@ -98,7 +97,7 @@ const BettingInfoCom = () => {
                                         </li>
                                         <li className="flex items-start">
                                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
-                                            <span>We don't promise "get rich quick" schemes. Sports betting is about strategy and patience, not overnight success.</span>
+                                            <span>We don&apos;t promise &quot;get rich quick&quot; schemes. Sports betting is about strategy and patience, not overnight success.</span>
                                         </li>
                                         <li className="flex items-start">
                                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
@@ -274,9 +273,9 @@ const BettingInfoCom = () => {
                         <div className="md:w-3/4">
                             <h3 className="text-2xl font-bold mb-3 text-navy">Trust Us to Help You Make Smart, Informed Bets</h3>
                             <p className="text-navy mb-6">
-                                By following these tips, you'll not only make smarter bets, but you'll also protect yourself from
+                                By following these tips, you&apos;ll not only make smarter bets, but you&apos;ll also protect yourself from
                                 the pitfalls of emotional betting and shady scam artists. With our transparent pick history and
-                                expert tips, you can trust that we're here to guide you through the ups and downs of the betting world.
+                                expert tips, you can trust that we&apos;re here to guide you through the ups and downs of the betting world.
                             </p>
                             <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gold">Stay Smart, Stay Consistent, and Bet with Confidence!</p>
                         </div>

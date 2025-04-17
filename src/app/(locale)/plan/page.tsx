@@ -2,7 +2,6 @@ import Footer from '@/components/footer/Footer'
 import Navbar from '@/components/header/navbar/Navbar'
 import SubHeader from '@/components/header/subHeader/SubHeader'
 import OurPlanCom from '@/components/pages/plan/OurPlan'
-import FAQs from '@/components/testimonials/FAQs'
 import React from 'react'
 
 const OurPlan = () => {

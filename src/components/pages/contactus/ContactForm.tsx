@@ -46,7 +46,7 @@ const ContactForm: React.FC = () => {
                             <div>
                                 <h2 className="section-heading">Get In Touch</h2>
                                 <p className="text-navy mb-8">
-                                    Whether you have questions about our membership plans, need help with your account, or want to learn more about our sports picks service, we'd love to hear from you.
+                                    Whether you have questions about our membership plans, need help with your account, or want to learn more about our sports picks service, we&apos;d love to hear from you.
                                 </p>
 
                                 <div className="space-y-6">
