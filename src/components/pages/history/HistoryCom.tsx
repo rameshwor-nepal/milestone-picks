@@ -68,7 +68,7 @@ const HistoryCom = () => {
     return (
         <section className='bg-white '>
             {/* monthly Picks */}
-            <div className="max-w-4xl mx-auto py-4 md:py-10 lg:py-14">
+            <div className="max-w-4xl mx-auto py-4 md:py-10 lg:py-14 px-4 md:px-10">
                 <h2 className="section-title text-center py-4">Monthly Performance</h2>
                 {months.map((month) => (
                     <div key={month.id} className="mb-4">
@@ -161,7 +161,7 @@ const HistoryCom = () => {
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id as SportKey)}
-                                        className={`px-4 py-2 rounded-md text-sm font-medium ${activeTab === tab.id
+                                        className={`px-3 py-2 rounded-md text-sm font-medium ${activeTab === tab.id
                                             ? 'bg-navy text-white'
                                             : 'text-gray-600 hover:bg-gray-100'
                                             }`}
@@ -239,9 +239,9 @@ const HistoryCom = () => {
             <section className="py-20 bg-navy relative overflow-hidden mb-4 md:mb-10 lg:mb-14 mx-4 md:mx-10 lg:mx-20 rounded-md">
                 <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')" }}></div>
                 <div className="container mx-auto px-4 relative z-10">
-                    <div className="max-w-[53rem] mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Winning?</h2>
-                        <p className="text-xl text-gray-300 mb-8">
+                    <div className="max-w-[53rem] mx-auto text-center flex flex-col items-center gap-5">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Start Winning?</h2>
+                        <p className="text-xl text-gray-300">
                             Join thousands of satisfied members who are beating the bookmakers with our expert picks.
                             Choose your plan and elevate your sports betting success.
                         </p>

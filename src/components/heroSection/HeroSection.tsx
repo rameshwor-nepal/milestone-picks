@@ -25,27 +25,27 @@ const HeroSection = () => {
                     <div className="absolute z-20 w-full h-full">
                         {/* Hero Content */}
                         <section className="flex items-center justify-center h-full ">
-                            <div className="w-full mx-auto px-4 md:px-10 lg:px-20">
+                            <div className="w-full mx-auto px-4 md:px-8 lg:px-20">
                                 <div className="flex flex-col md:flex-row items-center">
                                     <div className="md:w-1/2 mb-10 md:mb-0">
                                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
                                             Expert Sports Picks <span className="text-gold">That Win</span>
                                         </h1>
-                                        <p className="text-lg md:text-xl text-gray-300 mt-6 mb-8 max-w-lg">
+                                        <p className="text-lg md:text-xl text-gray-300 mt-3 mb-4 md:mt-6 md:mb-8 max-w-lg">
                                             Join thousands of members who trust our professional sports betting picks for NBA, NFL, MLB, NHL and College Basketball.
                                         </p>
                                         <div className="flex flex-col sm:flex-row gap-4">
                                             <Link href="/plans" className="inline-block">
-                                                <Button title="View Our Plans" secondary width="fit">
+                                                <Button title="View Our Plans" secondary width="full">
                                                     <MdArrowForward size={18} />
                                                 </Button>
                                             </Link>
-                                            <Link href="/history" className="text-white font-semibold py-2 px-6 border-2 border-white rounded-md hover:bg-white/10 transition-colors duration-200 flex items-center justify-center">
+                                            <Link href="/history" className="text-white font-semibold py-2 px-6 border-2 border-white rounded-md hover:bg-white/10 transition-colors duration-200">
                                                 View Past Results
                                             </Link>
                                         </div>
                                     </div>
-                                    <div className="md:w-1/2 flex justify-center md:justify-end">
+                                    <div className="md:w-1/2 flex justify-center md:justify-end w-full">
                                         <div className="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
                                             <div className="flex items-center justify-between mb-4">
                                                 <h3 className="font-display font-bold text-navy text-xl">Today&apos;s Top Pick</h3>

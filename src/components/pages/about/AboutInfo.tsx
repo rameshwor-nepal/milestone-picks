@@ -18,7 +18,7 @@ const AboutInfo = () => {
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
-                                className="border-none rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-white group"
+                                className="border-none rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-slate-50 group"
                             >
                                 <div className="p-6 text-center">
                                     <div className="flex justify-center mb-4">
@@ -38,11 +38,11 @@ const AboutInfo = () => {
 
             {/* Welcome Section */}
             <section id="mission" className="py-16 bg-white overflow-hidden text-left">
-                <div className="container mx-auto px-4 md:px-10 lg:px-20">
+                <div className=" px-4 md:px-10 lg:px-20">
+                    <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 w-full">Our Mission: Quality Over Quantity</h2>
+                    <div className="w-20 h-1 bg-gold mb-4"></div>
                     <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                         <div className={`w-full md:w-1/2 `}>
-                            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Our Mission: Quality Over Quantity</h2>
-                            <div className="w-20 h-1 bg-gold mb-6"></div>
                             <p className="text-gray-700 leading-relaxed mb-4">
                                 At Milestone Picks, our goal is simple: to offer high-quality, research-backed picks
                                 that give you the best chance to win. We don&apos;t flood your inbox with random selections
@@ -64,19 +64,19 @@ const AboutInfo = () => {
                         </div>
                         <div className={`w-full md:w-1/2`}>
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-                                <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-navy/40 group-hover:opacity-75 opacity-50 transition-opacity duration-300 mix-blend-overlay"></div>
-                                <div className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                                <div className="w-full h-96 relative transform group-hover:scale-105 transition-transform duration-700">
                                     <Image
-                                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%230a1e3b'/%3E%3Ctext x='400' y='250' font-size='24' text-anchor='middle' alignment-baseline='middle' font-family='Avenir, sans-serif' fill='white'%3EMilestone Picks Team Working%3C/text%3E%3C/svg%3E"
+                                        src="/mission.jpg"
                                         alt="Our Team"
                                         fill
+                                        className='object-cover'
                                     />
                                 </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end">
-                                    <div className="p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                {/* <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end">
+                                    <div className="p-8 transform translate-y-4 ">
                                         <p className="text-white text-lg font-medium">Our dedicated team of analysts working to bring you winning picks</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ const AboutInfo = () => {
             </section>
 
             {/* Features Section with Hover Cards */}
-            <section id="features" className="py-16 bg-gray-50 relative overflow-hidden text-left">
+            <section id="features" className="py-16 bg-[#e6effc] relative overflow-hidden text-left">
 
                 <div className="container mx-auto px-4 relative z-10 md:px-10 lg:px-20">
                     <div className="max-w-4xl mx-auto text-center mb-12">

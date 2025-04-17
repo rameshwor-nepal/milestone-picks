@@ -31,7 +31,7 @@ const UserDashboard = () => {
                 </div>
 
                 {/* filter section */}
-                <div className='flex gap-5 py-5 max-w-2xl'>
+                <div className='flex gap-5 py-5 max-md:flex-wrap max-w-2xl'>
                     <DateInput
                         label=""
                         name="date"
@@ -46,7 +46,7 @@ const UserDashboard = () => {
                         onChange={(option) => { setSelectedSport(option as DropDownI) }}
                     />
                     <button
-                        className='bg-navy-lighter px-3 py-2 border-2 flex items-center rounded-md border-navy-light/30 text-navy w-full hover:bg-navy-lighter/10'
+                        className='bg-[#cfe3ff] px-3 py-2 border-2 flex items-center rounded-md border-navy-light/30 text-navy w-full hover:bg-navy-lighter/10'
                         onClick={() => onFilterClear()}
                     >
                         <span className='mr-2'> <MdClose size={20} /></span>   Clear Filter

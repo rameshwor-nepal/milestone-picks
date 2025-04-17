@@ -30,7 +30,7 @@ const config: Config = {
           DEFAULT: '#0a1e3b',
           light: '#1e3a5f',
           dark: '#051025',
-          lighter: "#e6eaf2"
+          lighter: "#e6effc"
         },
         gold: {
           DEFAULT: '#d4af37',
