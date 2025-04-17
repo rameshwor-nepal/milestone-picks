@@ -3,3 +3,8 @@ interface SearchFieldI {
     page: number | null;
     page_size: number | null;
 }
+
+interface DropDownI {
+    value: string | number;
+    label: string;
+}
