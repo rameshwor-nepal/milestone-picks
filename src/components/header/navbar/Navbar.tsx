@@ -13,7 +13,6 @@ const Navbar = () => {
         return pathname === path;
     };
 
-    console.log("pathname", pathname)
     const navLinks = [
         { name: "Home", path: "/" },
         { name: "About Us", path: "/about" },
@@ -30,7 +29,6 @@ const Navbar = () => {
                     <Link href="/" className="flex items-center">
                         <span className="font-display font-bold text-2xl text-navy">Milestone<span className="text-gold">Picks</span></span>
                     </Link>
-
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-8 text-base">
                         {navLinks.map((link) => (
@@ -46,7 +44,6 @@ const Navbar = () => {
                             </Link>
                         ))}
                     </div>
-
                     {/* Mobile Navigation Toggle */}
                     <div className="md:hidden">
                         <button
@@ -57,28 +54,28 @@ const Navbar = () => {
                         </button>
                     </div>
                 </div>
-
-                {/* Mobile Navigation Menu */}
-                {isMobileNavBar && (
-                    <div className="md:hidden mt-4 pb-4">
-                        <div className="flex flex-col space-y-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.path}
-                                    href={link.path}
-                                    onClick={() => setIsMobileNavBar(false)}
-                                    className={`py-2 px-4 rounded-md ${isActive(link.path)
-                                        ? "bg-navy text-white"
-                                        : "text-gray-600 hover:bg-gray-100"
-                                        }`}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                )}
             </div>
+
+            {/* Mobile Navigation Menu */}
+            {isMobileNavBar && (
+                <div className="bg-blue-50 pb-3 ">
+                    <div className="flex flex-col space-y-2">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                href={link.path}
+                                onClick={() => setIsMobileNavBar(false)}
+                                className={`py-2 px-4 rounded-md ${isActive(link.path)
+                                    ? "bg-navy text-white"
+                                    : "text-gray-600 hover:bg-gray-100"
+                                    }`}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
         </nav>
     );
 };
