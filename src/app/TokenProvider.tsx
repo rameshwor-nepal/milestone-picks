@@ -12,6 +12,10 @@ const TokenProvider = (props: propsI) => {
     // const [pathname, setPathname] = useState<string | null>(null);
     // const [verifyToken] = useVerifyTokenMutation();
 
+    const publicRoutes = ["/", "/about", "/bettingInfo", "/plan", "/history", "contactUs"]
+    const userProtectedRoutes = ["/user"]
+    const adminProtectedRoutes = ["/admin"]
+
     // useEffect(() => {
     //     if (typeof window !== "undefined") {
     //         setPathname(window.location.pathname);

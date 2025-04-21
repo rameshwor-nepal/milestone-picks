@@ -6,7 +6,7 @@ const FAQs = () => {
         <div className='flex  gap-16 justify-between max-sm:flex-wrap'>
             <div className='w-[52rem] h-[30rem] mt-12 relative bg-navy rounded-t-[50%]'>
                 <Image
-                    src={'/using-laptop3.jpeg'}
+                    src={'/using-laptop.jpeg'}
                     alt='hero image'
                     fill
                     className='object-cover rounded-t-[50%]'

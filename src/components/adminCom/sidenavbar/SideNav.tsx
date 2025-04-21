@@ -42,15 +42,15 @@ const Sidenav = (props: Props) => {
 
     return (
         <section
-            className={`fixed top-0 left-0 h-screen bg-navy-light border-r border-green-1 transition-all duration-300 shadow-md
+            className={`fixed top-0 left-0 h-screen bg-navy border-r border-green-1 transition-all duration-300 shadow-md
                 ${expandedSidebar ? 'w-[14rem]' : 'w-[6rem]'} block`}
         >
             <div className='flex flex-col justify-between h-full items-center'>
 
                 <div >
                     {/* Logo & Expand Button */}
-                    <div className="relative flex flex-col items-center gap-4 pt-6 pb-4">
-                        <div className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all h-full relative`}>
+                    <div className="relative w-full flex flex-col items-center gap-4 pt-6 pb-4">
+                        <div className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all aspect-[3/4] relative`}>
                             <Image
                                 src={"/man1.png"}
                                 alt='logo image'
@@ -58,12 +58,9 @@ const Sidenav = (props: Props) => {
                                 className='object-cover'
                             />
                         </div>
-                        {/* <img src= className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all`} /> */}
-
-                        {/* Toggle Button */}
                         <button
                             onClick={handleSideBarExpand}
-                            className="absolute top-7 right-[-1.2rem] h-8 w-8 flex items-center justify-center rounded-full bg-gold border-2 border-gold shadow-lg"
+                            className={`absolute top-7 ${expandedSidebar ? 'right-[-1.2rem]' : 'right-5'} h-8 w-8 flex items-center justify-center rounded-full bg-gold border-2 border-gold shadow-lg`}
                         >
                             <MdKeyboardDoubleArrowRight
                                 className={`text-white text-xl transition-transform ${expandedSidebar ? 'rotate-180' : ''}`}
@@ -72,7 +69,7 @@ const Sidenav = (props: Props) => {
                     </div>
 
                     {/* Navigation Links */}
-                    <div className="h-[calc(100%-50px)] overflow-hidden hover:overflow-y-auto ">
+                    <div className="h-full w-full overflow-hidden hover:overflow-y-auto">
                         <ul className="px-2 list-none">
                             {props.navLinks(currentPath).map((el, index) => (
                                 el.extended ? (

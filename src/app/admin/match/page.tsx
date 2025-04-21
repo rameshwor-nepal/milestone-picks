@@ -6,7 +6,7 @@ const Match = () => {
     return (
         <PageLayout
             title='Match Section'
-            subtitle='Add/Edit Matchs'
+            subtitle='Add/Edit Matches'
         >
             <MatchList />
         </PageLayout>

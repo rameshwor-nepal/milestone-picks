@@ -26,7 +26,7 @@ const SportList = () => {
     return (
         <div>
             <PageLayoutHeader>
-                <Button title='Add Sport Category' secondary={true} onClick={() => setAddModalOpen(true)} />
+                <Button title='Add Sport Category' secondary={true} onClick={() => setAddModalOpen(true)} width='fit' />
             </PageLayoutHeader>
             <DataTableContainer>
                 <DataTableSearchContainer

@@ -37,7 +37,7 @@ const ForgetPasswordForm = () => {
         <AuthContainer>
             {!isForgetPasswordSuccess ?
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="mt-4">
+                    <div className="mt-4 text-left">
                         <label className="block  text-sm font-bold mb-2">Email Address</label>
                         <input
                             className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
@@ -54,7 +54,7 @@ const ForgetPasswordForm = () => {
                     </div>
 
                     <div className="mt-4">
-                        <Button title={"Continue"} type="submit" />
+                        <Button title={"Continue"} type="submit" secondary />
                     </div>
                 </form>
                 :

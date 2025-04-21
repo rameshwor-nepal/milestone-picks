@@ -21,7 +21,7 @@ const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     }, []);
 
     return (
-        <div className="relative flex min-h-screen bg-blue-2">
+        <div className="relative flex min-h-screen bg-navy-dark">
 
             {/* Sidebar */}
             <Sidenav
@@ -31,7 +31,7 @@ const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
             {/* Main Content */}
             <div
-                className={`relative z-10 transition-all duration-300 ease-in-out bg-blue-1 p-1 md:p-2 lg:p-4 overflow-x-hidden 
+                className={`relative transition-all duration-300 ease-in-out bg-blue-1 p-1 md:p-2 lg:p-4 overflow-x-hidden 
                 mt-[5rem] min-h-[calc(100vh-5rem)] w-full ${sideNavExpanded ? 'ml-56' : 'ml-[6rem]'}`}
             >
                 <div className="bg-blue-1 p-1 md:p-2 lg:p-4 rounded-lg shadow-md">

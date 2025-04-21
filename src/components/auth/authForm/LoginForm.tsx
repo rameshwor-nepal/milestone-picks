@@ -42,9 +42,9 @@ const LoginForm = () => {
     };
 
     return (
-        <AuthContainer>
+        <AuthContainer redirectLink={'/signup'}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mt-2">
+                <div className="mt-2 text-left">
                     <label className="block  text-sm font-bold mb-2">Email Address</label>
                     <input
                         className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
@@ -83,7 +83,7 @@ const LoginForm = () => {
                 </div>
 
                 <div className="mt-4">
-                    <Button title={"Save"} type="submit" />
+                    <Button title={"Save"} type="submit" secondary />
                 </div>
             </form>
 

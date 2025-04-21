@@ -41,7 +41,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputPropsI>(
                 }
                 <input
                     ref={ref} // Forwarding ref here
-                    className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-green-3 focus:border-green-3 outline-none transition"
+                    className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-gold-lighter focus:border-gold-lighter outline-none transition"
                     placeholder={placeholder || ""}
                     type="text"
                     {...rest}
@@ -71,7 +71,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, TextInputPropsI>(
                         name={name}
                         placeholder={placeholder || ""}
                         type={visibility ? "text" : "password"}
-                        className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-green-3 focus:border-green-3 outline-none transition"
+                        className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-gold-lighter focus:border-gold-lighter outline-none transition"
                     />
                     <div
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
@@ -107,7 +107,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 }
                 <textarea
                     ref={ref}
-                    className="w-full p-2 text-blue-1 border rounded-md resize-none focus:ring-1 focus:ring-green-3 focus:border-green-3 outline-none"
+                    className="w-full p-2 text-blue-1 border rounded-md resize-none focus:ring-1 focus:ring-gold-lighter focus:border-gold-lighter outline-none"
                     rows={rows}
                     placeholder={placeholder || ""}
                     {...rest}
@@ -131,7 +131,7 @@ export const DateInput = forwardRef<HTMLInputElement, TextInputPropsI>(
                 }
                 <input
                     ref={ref}
-                    className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-gold-light focus:border-gold-liring-gold-light outline-none transition"
+                    className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-gold-lighter-light focus:border-gold-lighter-liring-gold-lighter-light outline-none transition"
                     placeholder={placeholder || ""}
                     type="date"
                     {...rest}
