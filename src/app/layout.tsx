@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toast } from "@/utils/toast/Toast";
 import ReduxProvider from "./Provider";
 import TokenProvider from "./TokenProvider";
+import { ProtectedRoute } from "@/utils/routes/ProtectedRoutes";
 
 export const metadata: Metadata = {
   title: "Milestone Picks",
@@ -20,10 +21,11 @@ export default function RootLayout({
         className=""
       >
         <ReduxProvider>
-          <TokenProvider>
+          <ProtectedRoute>
+            <TokenProvider />
             <Toast />
             {children}
-          </TokenProvider>
+          </ProtectedRoute>
 
         </ReduxProvider>
 
