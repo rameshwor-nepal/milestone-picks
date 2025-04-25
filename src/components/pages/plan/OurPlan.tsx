@@ -18,7 +18,7 @@ const OurPlanCom = () => {
             {/* Plans Section */}
             <section className="py-16 bg-white">
                 <div className="px-4 md:px-10 lg:px-20">
-                    <div className="max-w-5xl">
+                    <div className="w-full">
                         <h2 className="text-3xl md:text-4xl font-bold mb-3 text-navy text-center">Select Your Plan</h2>
                         <div className="w-20 h-1 bg-gold mb-6 mx-auto"></div>
                         <p className="text-xl text-navy-light font-medium mb-8 text-center ">
@@ -82,13 +82,13 @@ const OurPlanCom = () => {
                                 View Membership Plans
                                 <MdArrowForward size={18} className="ml-2" />
                             </Link> */}
-                            <Link href={"/ourPlan"}>
+                            <Link href={"/ourPlan"} data-aos="fade-right" data-duration="1000">
                                 <Button title="Get Start Now" secondary width='fit'>
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>
                             </Link>
 
-                            <Link href={"/history"}>
+                            <Link href={"/history"} data-aos="fade-left" data-duration="1000">
                                 <Button title="View Our Track Record" width='fit'>
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>

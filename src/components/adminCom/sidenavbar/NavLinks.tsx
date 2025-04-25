@@ -3,7 +3,6 @@ import { FaHistory } from "react-icons/fa";
 import { IconType } from "react-icons";
 import { MdDashboard, MdInfo, MdOutlineSettings, MdOutlineSportsVolleyball, MdPerson } from "react-icons/md";
 import { MdBatchPrediction } from "react-icons/md";
-import { BsGraphUpArrow } from "react-icons/bs";
 import { TbBallFootball } from "react-icons/tb";
 
 export type LinksProps<TExtended = boolean> = TExtended extends true
@@ -34,13 +33,6 @@ export const AdminNavLinks = (
                 icon: MdDashboard as IconType,
                 to: "/admin/dashboard",
                 active: currentPath === "/admin/dashboard",
-            },
-            {
-                extended: false,
-                text: "Graph",
-                icon: BsGraphUpArrow as IconType,
-                to: "/admin/graph",
-                active: currentPath.startsWith("/admin/graph"),
             },
             {
                 extended: false,

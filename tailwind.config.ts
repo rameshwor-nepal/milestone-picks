@@ -36,7 +36,8 @@ const config: Config = {
           DEFAULT: '#d4af37',
           light: '#e6c658',
           dark: '#b3901c',
-          lighter: "#f5f0e1" // '#fff9e3'
+
+          lighter: "#e8d697" // '#fff9e3'
         },
       },
       fontFamily: {

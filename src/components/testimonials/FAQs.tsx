@@ -6,7 +6,7 @@ const FAQs = () => {
         <div className='flex  gap-16 justify-between max-sm:flex-wrap'>
             <div className='w-[52rem] h-[30rem] mt-12 relative bg-navy rounded-t-[50%]'>
                 <Image
-                    src={'/using-laptop3.jpeg'}
+                    src={'/using-laptop.jpeg'}
                     alt='hero image'
                     fill
                     className='object-cover rounded-t-[50%]'
@@ -17,7 +17,10 @@ const FAQs = () => {
                 <div className="w-20 h-1 bg-gold mb-6"></div>
 
                 <div className='pt-6 flex flex-col gap-3'>
-                    <details className="group border-s-8 border-gold bg-navy px-6 py-3">
+                    <details
+                        className="group border-s-8 border-gold bg-navy px-6 py-3"
+                        data-aos="fade-left" data-duration="1000"
+                    >
                         <summary className="flex cursor-pointer items-center justify-between gap-1.5">
                             <h2 className="text-lg font-medium text-white">
                                 What is sports betting prediction?
@@ -45,7 +48,10 @@ const FAQs = () => {
                             and actionable predictions for better betting decisions.
                         </p>
                     </details>
-                    <details className="group border-s-8 border-gold bg-navy px-6 py-3">
+                    <details
+                        className="group border-s-8 border-gold bg-navy px-6 py-3"
+                        data-aos="fade-left" data-duration="1000"
+                    >
                         <summary className="flex cursor-pointer items-center justify-between gap-1.5">
                             <h2 className="text-lg font-medium text-white">
                                 How accurate are your predictions?
@@ -73,7 +79,10 @@ const FAQs = () => {
                             reliable results over time.
                         </p>
                     </details>
-                    <details className="group border-s-8 border-gold bg-navy px-6 py-3">
+                    <details
+                        className="group border-s-8 border-gold bg-navy px-6 py-3"
+                        data-aos="fade-left" data-duration="1000"
+                    >
                         <summary className="flex cursor-pointer items-center justify-between gap-1.5">
                             <h2 className="text-lg font-medium text-white">
                                 Is your service suitable for beginners?
@@ -101,7 +110,10 @@ const FAQs = () => {
                             decisions at every level.
                         </p>
                     </details>
-                    <details className="group border-s-8 border-gold bg-navy px-6 py-3">
+                    <details
+                        className="group border-s-8 border-gold bg-navy px-6 py-3"
+                        data-aos="fade-left" data-duration="1000"
+                    >
                         <summary className="flex cursor-pointer items-center justify-between gap-1.5">
                             <h2 className="text-lg font-medium text-white">
                                 How do you update your predictions?
@@ -129,7 +141,10 @@ const FAQs = () => {
                             are as current and relevant as possible.
                         </p>
                     </details>
-                    <details className="group border-s-8 border-gold bg-navy px-6 py-3">
+                    <details
+                        className="group border-s-8 border-gold bg-navy px-6 py-3"
+                        data-aos="fade-left" data-duration="1000"
+                    >
                         <summary className="flex cursor-pointer items-center justify-between gap-1.5">
                             <h2 className="text-lg font-medium text-white">
                                 What makes your platform different from others?

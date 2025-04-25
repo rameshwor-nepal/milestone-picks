@@ -34,13 +34,21 @@ const HeroSection = () => {
                                         <p className="text-lg md:text-xl text-gray-300 mt-3 mb-4 md:mt-6 md:mb-8 max-w-lg">
                                             Join thousands of members who trust our professional sports betting picks for NBA, NFL, MLB, NHL and College Basketball.
                                         </p>
-                                        <div className="flex flex-col sm:flex-row gap-4">
-                                            <Link href="/plans" className="inline-block">
+                                        <div className="flex flex-col sm:flex-row gap-4" data-aos="fade-right">
+                                            <Link
+                                                data-aos="fade-right"
+                                                href="/plans"
+                                                className="inline-block"
+                                            >
                                                 <Button title="View Our Plans" secondary width="full">
                                                     <MdArrowForward size={18} />
                                                 </Button>
                                             </Link>
-                                            <Link href="/history" className="text-white font-semibold py-2 px-6 border-2 border-white rounded-md hover:bg-white/10 transition-colors duration-200">
+                                            <Link
+                                                data-aos="fade-left"
+                                                href="/history"
+                                                className="text-white font-semibold py-2 px-6 border-2 border-white rounded-md hover:bg-white/10 transition-colors duration-200"
+                                            >
                                                 View Past Results
                                             </Link>
                                         </div>
@@ -63,7 +71,10 @@ const HeroSection = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <Link href="/plans" className="btn-primary w-full flex items-center justify-center">
+                                            <Link
+                                                href="/plans"
+                                                className="btn-primary w-full flex items-center justify-center"
+                                                data-aos="fade-right">
                                                 Unlock All Picks
                                             </Link>
                                         </div>
@@ -71,9 +82,9 @@ const HeroSection = () => {
                                 </div>
                             </div>
                         </section>
-                    </div>
-                </div>
-            </section>
+                    </div >
+                </div >
+            </section >
         </>
     )
 }

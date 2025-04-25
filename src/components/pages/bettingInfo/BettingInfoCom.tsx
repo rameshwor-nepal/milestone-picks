@@ -85,7 +85,10 @@ const BettingInfoCom = () => {
                                 </div>
                             </div>
 
-                            <div className="md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+                            <div
+                                className={`md:w-1/2 p-8 md:p-10 flex flex-col justify-center`}
+                                data-aos={`${index % 2 === 0 ? 'fade-left' : 'fade-right'}`}
+                            >
                                 <h3 className="text-2xl text-navy font-bold mb-3 group-hover:text-gold transition-colors">{card.title}</h3>
                                 <p className="text-navy">{card.description}</p>
 
@@ -125,13 +128,13 @@ const BettingInfoCom = () => {
                                 View Membership Plans
                                 <MdArrowForward size={18} className="ml-2" />
                             </Link> */}
-                            <Link href={"/ourPlan"}>
+                            <Link href={"/ourPlan"} data-aos="fade-right">
                                 <Button title="View Membership Plans" secondary width='fit'>
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>
                             </Link>
 
-                            <Link href={"/history"}>
+                            <Link href={"/history"} data-aos="fade-left">
                                 <Button title="View Our Track Record" width='fit'>
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>
@@ -277,7 +280,12 @@ const BettingInfoCom = () => {
                                 the pitfalls of emotional betting and shady scam artists. With our transparent pick history and
                                 expert tips, you can trust that we&apos;re here to guide you through the ups and downs of the betting world.
                             </p>
-                            <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gold">Stay Smart, Stay Consistent, and Bet with Confidence!</p>
+                            <p
+                                className="text-xl md:text-2xl lg:text-3xl font-bold text-gold"
+                                data-aos="zoom-in" data-aos-duration="1000"
+                            >
+                                Stay Smart, Stay Consistent, and Bet with Confidence!
+                            </p>
                         </div>
                         <div className="md:w-1/4 flex items-center justify-center">
                             <div className="relative">

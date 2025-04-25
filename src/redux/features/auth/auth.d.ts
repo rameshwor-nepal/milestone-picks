@@ -9,7 +9,10 @@ interface AuthUserI {
 interface LoginPayloadI {
   refresh: string;
   access: string;
-  user?: AuthUserI;
+  is_admin: boolean;
+  is_verified: boolean;
+  username: string;
+  email: string;
 }
 
 interface SignUpI {

@@ -10,13 +10,13 @@ const PredictionModalForm = ({ closeModal }: PropsI) => {
             <div className="flex items-center gap-5 p-4 md:p-5 border-t border-green-3 rounded-b">
                 <Button
                     title='Save'
-                // onClick={handleSubmit(onSubmit)}
-
+                    // onClick={handleSubmit(onSubmit)}
+                    secondary={true}
                 />
                 <Button
                     onClick={closeModal}
                     title='Cancel'
-                    secondary={true}
+
                 />
             </div>
         </div>

@@ -91,7 +91,7 @@ const PreviousResults = () => {
                 </div>
 
                 <div className="text-center">
-                    <Button title=" View Full History" width="fit">
+                    <Button title=" View Full History" width="fit" data-aos="zoom-in" data-aos-duration="1000">
                         <Link href="/history">
                             <MdArrowForward className="ml-1 h-4 w-4" />
                         </Link>

@@ -16,17 +16,24 @@ const MemberShipCard = () => {
                                     Get immediate access to all our premium picks across NBA, NFL, MLB, NHL, and College Basketball with our All-in-One Pass.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    <Link href="/plans" className="btn-primary">
+                                    <Link
+                                        // data-aos="fade-right"
+                                        href="/plans"
+                                        className="btn-primary"
+                                    >
                                         View Membership Options
                                     </Link>
-                                    <Link href="/history" className="text-navy border-2 border-navy font-semibold py-2 px-6 rounded-md hover:bg-navy hover:text-white transition-colors duration-200 text-center">
+                                    <Link
+                                        // data-aos="fade-left"
+                                        href="/history"
+                                        className="text-navy border-2 border-navy font-semibold py-2 px-6 rounded-md hover:bg-navy hover:text-white transition-colors duration-200 text-center">
                                         View Past Results
                                     </Link>
                                 </div>
                             </div>
                             <div className="md:w-1/3 bg-navy-dark flex items-center justify-center p-8">
                                 <div className="text-center">
-                                    <p className="text-gold font-display font-bold text-4xl mb-2">60%+</p>
+                                    <p className="text-gold font-display font-bold text-4xl mb-2" data-aos="zoom-in" data-aos-duration="1000">60%+</p>
                                     <p className="text-white text-lg">Win Rate</p>
                                     <div className="h-px w-16 bg-gold mx-auto my-4"></div>
                                     <p className="text-white">Documented results across all sports</p>

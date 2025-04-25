@@ -124,11 +124,12 @@ const FaqModalForm = ({ closeModal }: PropsI) => {
                     <Button
                         title='Save'
                         onClick={handleSubmit(onSubmit)}
+                        secondary={true}
                     />
                     <Button
                         onClick={closeModal}
                         title='Cancel'
-                        secondary={true}
+
                     />
                 </div>
             </Form>

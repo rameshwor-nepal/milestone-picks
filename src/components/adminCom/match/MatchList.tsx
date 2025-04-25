@@ -24,9 +24,14 @@ const MatchList = () => {
         setAddModalOpen(false);
     };
     return (
-        <div>
+        <div className='text-left'>
             <PageLayoutHeader>
-                <Button title='Add Match' secondary={true} onClick={() => setAddModalOpen(true)} />
+                <Button
+                    title='Add Match'
+                    secondary={true}
+                    onClick={() => setAddModalOpen(true)}
+                    width='fit'
+                />
             </PageLayoutHeader>
             <DataTableContainer>
                 <DataTableSearchContainer

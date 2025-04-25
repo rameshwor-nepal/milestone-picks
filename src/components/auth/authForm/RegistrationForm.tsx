@@ -63,8 +63,8 @@ const RegistrationForm = () => {
                     type="text" />
                 </div>
             </div> */}
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='mt-2'>
+            <form onSubmit={handleSubmit(onSubmit)} className='text-left'>
+                <div className='mt-2 text-left'>
                     <label className="block  text-sm font-bold mb-2">Username <span className='text-red-500'>*</span></label>
                     <input
                         className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full"
@@ -129,7 +129,7 @@ const RegistrationForm = () => {
 
                 <div className="mt-4">
                     <Button
-                        title={"Save"} type="submit"
+                        title={"Save"} type="submit" secondary
                     />
                 </div>
             </form>

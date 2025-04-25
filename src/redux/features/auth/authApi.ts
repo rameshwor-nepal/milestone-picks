@@ -4,19 +4,15 @@ import { initAuthUser, logout } from "./authSlice";
 
 export const authApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (body: { email: string; password: string }) => ({
+    login: builder.mutation<LoginPayloadI, { email: string; password: string }>({
+      query: (body) => ({
         url: "/api/token/access",
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body,
       }),
       onQueryStarted(_args, { dispatch, queryFulfilled }) {
-
-        queryFulfilled.then((data) => {
-          dispatch(initAuthUser(data.data));
+        queryFulfilled.then((result) => {
+          dispatch(initAuthUser(result.data));
         });
       },
     }),

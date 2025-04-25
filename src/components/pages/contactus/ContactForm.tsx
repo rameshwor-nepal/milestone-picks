@@ -212,6 +212,7 @@ const ContactForm: React.FC = () => {
                                         </div>
 
                                         <button
+                                            data-aos="zoom-in" data-aos-duration="1000"
                                             type="submit"
                                             disabled={isSubmitting}
                                             className={`w-full py-3 px-6 ${isSubmitting

@@ -4,7 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export const DataTableContainer: React.FC<{ title?: string; children?: React.ReactNode }> = ({ title, children }) => {
     return (
-        <div className="py-3 md:py-4 lg:py-6 rounded-md bg-blue-2">
+        <div className="py-3 md:py-4 lg:py-6 rounded-md bg-navy">
             {title && <p className="mb-8 text-gray-900 text-xl font-medium">{title}</p>}
             {children}
         </div>
@@ -36,9 +36,9 @@ const DataTable: React.FC<{ loading: boolean; children?: React.ReactNode }> & {
     );
 };
 
-DataTable.TH = ({ children }) => <thead className=" border-b border-gray-500 h-5 bg-blue-1/70">{children}</thead>;
+DataTable.TH = ({ children }) => <thead className=" border-b border-gray-500 h-5 bg-navy/70">{children}</thead>;
 DataTable.TB = ({ children }) => <tbody>{children}</tbody>;
-DataTable.TR = ({ children }) => <tr className="h-5 hover:bg-blue-1/30">{children}</tr>;
+DataTable.TR = ({ children }) => <tr className="h-5 hover:bg-navy/30">{children}</tr>;
 DataTable.THD = ({ onClick, maxWidth, children, ...props }) => (
     <th
         onClick={onClick}
@@ -72,7 +72,7 @@ DataTable.TCD = ({ children, ...props }) => (
 DataTable.EmptyBody = ({ span }) => (
     <tbody>
         <tr>
-            <td className="text-center p-24 text-blue-1 bg-green-3/70" colSpan={span}>
+            <td className="text-center p-24 text-navy bg-green-3/70" colSpan={span}>
                 No Records Found
             </td>
         </tr>
