@@ -17,6 +17,7 @@ const AboutInfo = () => {
                     <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 -mt-16 transform transition-all duration-1000 translate-y-0 opacity-100`}>
                         {stats.map((stat, index) => (
                             <div
+                                data-aos="zoom-in" data-aos-duration="1000"
                                 key={index}
                                 className="border-none rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-slate-50 group"
                             >
@@ -56,7 +57,7 @@ const AboutInfo = () => {
                                 offering our predictions to subscribers. But don&apos;t let that fool you. Our experience runs deep,
                                 and we&apos;ve spent years perfecting our strategies to ensure our subscribers see the profits they deserve.
                             </p>
-                            <Link href="/ourPlan">
+                            <Link href="/ourPlan" data-aos="fade-right" data-aos-duration="1000">
                                 <Button title="Join Our Community" width="fit">
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>
@@ -97,6 +98,7 @@ const AboutInfo = () => {
                     <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 `}>
                         {features.map((feature, index) => (
                             <div
+                                data-aos="zoom-in" data-aos-duration="1000"
                                 key={index}
                                 className="bg-white rounded-xl flex flex-col justify-between shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden border border-transparent hover:border-gold/20"
 
@@ -132,7 +134,7 @@ const AboutInfo = () => {
                                 by the end of the week or month, we&apos;ll have you in the green. Betting is all about patience
                                 and smart decision-making, and we&apos;re here to guide you through it.
                             </p>
-                            <Link href="/history">
+                            <Link href="/history" data-aos="zoom-in" data-aos-duration="1000">
                                 <Button title="View Our Track Record" width="fit">
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>
@@ -262,7 +264,7 @@ const AboutInfo = () => {
                                                 </div>
                                             </div>
                                             <Link href="/contactUs" className="inline-block border-2 border-gold/65 text-white hover:border-gold hover:text-gold py-3 px-8 rounded-md transition-all duration-300 hover:shadow-lg transform">
-                                                <div className="flex items-center gap-2">
+                                                <div className="flex items-center gap-2" data-aos="zoom-in" data-aos-duration="1000">
                                                     <span>Contact Our Team</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                         <path d="M5 12h14"></path>

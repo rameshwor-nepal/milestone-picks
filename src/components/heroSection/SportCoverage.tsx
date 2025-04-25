@@ -29,15 +29,15 @@ const SportCoverage = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-center">
                             {sports.map((sport, index) => (
                                 <div
+                                    data-aos="zoom-in" data-aos-duration="1000"
                                     key={index}
-                                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full h-full"
-                                >
+                                    className="bg-white rounded-xl flex flex-col justify-between shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden border border-transparent hover:border-gold/20"                                    >
                                     <div className="p-6">
                                         <div className="flex flex-col items-center text-center">
-                                            <div className="mb-4">
+                                            <div className="w-16 h-16 bg-navy/5 text-gold rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-navy/10 transition-colors duration-700 transform group-hover:scale-110">
                                                 {sport.icon}
                                             </div>
-                                            <h3 className="font-display font-bold text-xl text-navy mb-2">{sport.name}</h3>
+                                            <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold transition-colors">{sport.name}</h3>
                                             <p className="text-gray-600 mb-4">{sport.description}</p>
                                             <ul className="space-y-2 text-sm text-gray-700 w-full">
                                                 {sport.features.map((feature, idx) => (
@@ -51,6 +51,7 @@ const SportCoverage = () => {
                                             </ul>
                                         </div>
                                     </div>
+                                    <div className="h-1 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                                 </div>
                             ))}
                         </div>

@@ -6,5 +6,13 @@ export const publicRoutes = [
     "/history",
     "/contactUs",
 ];
-export const userProtectedRoutes = ["/user"];
-export const adminProtectedRoutes = ["/admin"];
+export const userProtectedRoutes = [
+    "/user",
+    // "/user/profile",
+    // "/user/settings",
+    // "/user/history"
+];
+export const adminProtectedRoutes = [
+    "/admin",
+
+];

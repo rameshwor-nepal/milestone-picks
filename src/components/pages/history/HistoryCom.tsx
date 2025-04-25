@@ -227,7 +227,7 @@ const HistoryCom = () => {
                         </DataTableContainer>
                     </div>
 
-                    <div className="mt-8 text-center">
+                    <div className="mt-8 text-center" data-aos="zoom-in" data-aos-duration="1000">
                         <Button title=' Load More Picks' secondary width='fit'>
 
                         </Button>
@@ -250,7 +250,7 @@ const HistoryCom = () => {
                                 View Membership Plans
                                 <MdArrowForward size={18} className="ml-2" />
                             </Link> */}
-                            <Link href={"/ourPlan"}>
+                            <Link href={"/ourPlan"} data-aos="zoom-in" data-aos-duration="1000">
                                 <Button title="Get Start Now" secondary width='fit'>
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>

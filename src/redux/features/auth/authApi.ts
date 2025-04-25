@@ -8,9 +8,6 @@ export const authApi = rootApi.injectEndpoints({
       query: (body) => ({
         url: "/api/token/access",
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body,
       }),
       onQueryStarted(_args, { dispatch, queryFulfilled }) {

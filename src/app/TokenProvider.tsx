@@ -1,6 +1,6 @@
 'use client'
 import { useVerifyTokenMutation } from '@/redux/features/auth/authApi';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 const TokenProvider = () => {
     const [verifyToken] = useVerifyTokenMutation();

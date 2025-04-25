@@ -13,16 +13,22 @@ const WhyChooseUs = () => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" >
                         {features.map((feature, index) => (
-                            <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="mb-4 text-gold">
+                            <div
+                                data-aos="zoom-in" data-aos-duration="1000"
+                                key={index}
+                                className="bg-white rounded-xl flex flex-col justify-between shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden border border-transparent hover:border-gold/20"
+
+                            >
+                                <div className="p-8 text-center">
+                                    <div className="w-16 h-16 bg-navy/5 text-gold rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-navy/10 transition-colors duration-300 transform group-hover:scale-110">
                                         {feature.icon}
                                     </div>
-                                    <h3 className=" font-bold text-xl text-navy mb-2">{feature.title}</h3>
-                                    <p className="text-gray-600">{feature.description}</p>
+                                    <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold transition-colors">{feature.title}</h3>
+                                    <p className="text-gray-600 text-sm">{feature.description}</p>
                                 </div>
+                                <div className="h-1 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                             </div>
                         ))}
                     </div>

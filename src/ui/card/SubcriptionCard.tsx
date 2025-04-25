@@ -69,6 +69,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                         ? 'bg-gold hover:bg-gold-light text-navy'
                         : 'bg-navy hover:bg-navy-light text-white'
                         }`}
+                    data-aos="zoom-in" data-aos-duration="1000"
                 >
                     Get Started
                 </Link>
