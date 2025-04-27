@@ -57,7 +57,7 @@ ActionButton.AddIcon = ({ onClick, ...props }) => (
 );
 
 ActionButton.EditIcon = ({ onClick, ...props }) => (
-    <IconButton onClick={onClick} color="#28C76F" icon={MdEdit} tooltip="Edit Record" {...props} />
+    <IconButton onClick={onClick} color="#b3901c" icon={MdEdit} tooltip="Edit Record" {...props} />
 );
 
 // Add display names for all components

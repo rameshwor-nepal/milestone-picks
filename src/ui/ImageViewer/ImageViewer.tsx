@@ -16,7 +16,7 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className={`w-full h-full object-contain transition-all duration-200 ${isHovered ? 'blur-sm' : ''
+            <div className={`min-w-[50px] min-h-[50px] relative transition-all duration-200 ${isHovered ? 'blur-sm' : ''
                 }`}>
                 <Image
                     src={src}
@@ -27,7 +27,7 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
             {isHovered && (
                 <i
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                    bg-green-4 text-white px-4 py-2 rounded text-2xl
+                    bg-green-4 text-white px-3 py-2 rounded text-2xl
                     hover:bg-green-4/60 transition-all duration-200 cursor-pointer"
                     onClick={handleViewClick}
                 >

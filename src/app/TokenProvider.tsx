@@ -1,23 +1,42 @@
-'use client'
-import { useVerifyTokenMutation } from '@/redux/features/auth/authApi';
-import { useEffect } from 'react'
+// TokenProvider.tsx (optional client-side redirect)
+"use client";
+import { useVerifyTokenMutation } from "@/redux/features/auth/authApi";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
+import { logout } from "@/redux/features/auth/authSlice";
+import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/features/store";
 
 const TokenProvider = () => {
     const [verifyToken] = useVerifyTokenMutation();
+    const dispatch = useAppDispatch();
+    const router = useRouter();
 
     useEffect(() => {
-        const refreshToken = localStorage.getItem("msp_auth_refresh");
-        if (refreshToken) {
+        const refreshToken = Cookies.get("msp_auth_refresh");
+        const authenticatedCookie = Cookies.get("authenticated");
+
+        if (refreshToken && authenticatedCookie === "true") {
             verifyToken({ refresh: refreshToken })
                 .unwrap()
                 .catch(() => {
-                    localStorage.removeItem("msp_auth_access");
-                    localStorage.removeItem("msp_auth_refresh");
+                    Cookies.remove("msp_auth_access");
+                    Cookies.remove("msp_auth_refresh");
+                    Cookies.remove("authenticated");
+                    Cookies.remove("is_admin");
+                    dispatch(logout());
+                    router.replace("/"); // Redirect to home on invalid token
                 });
+        } else {
+            Cookies.remove("msp_auth_access");
+            Cookies.remove("msp_auth_refresh");
+            Cookies.remove("authenticated");
+            Cookies.remove("is_admin");
+            dispatch(logout());
         }
-    }, [verifyToken]);
+    }, [verifyToken, dispatch, router]);
 
     return null;
-}
+};
 
-export default TokenProvider
+export default TokenProvider;

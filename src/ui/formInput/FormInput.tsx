@@ -163,6 +163,7 @@ interface SelectPropsI {
 }
 
 export const SelectInput = (props: SelectPropsI) => {
+    console.log("options in select", props.options)
     return (
         <div className="flex flex-col w-full">
             {props.label && (
@@ -179,8 +180,8 @@ export const SelectInput = (props: SelectPropsI) => {
                 render={({ field }) => (
                     <Select
                         {...field}
-                        menuPlacement="auto"
-                        menuPortalTarget={document.body}
+                        // menuPlacement="auto"
+                        // menuPortalTarget={document.body}
                         styles={SelectStyles}
                         isClearable={props.isClearable}
                         isMulti={Boolean(props.isMulti)}

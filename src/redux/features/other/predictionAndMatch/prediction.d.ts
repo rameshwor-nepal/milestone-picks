@@ -43,3 +43,11 @@ interface PredictionResponseI {
     previous: number | null;
     results: PredictionI[];
 }
+
+interface CreatePredictionI {
+    user: string;
+    match: string;
+    prediction_type: string;
+    predicted_outcome: string;
+    result: string;
+}

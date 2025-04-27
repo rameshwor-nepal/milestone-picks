@@ -1,4 +1,5 @@
 "use client"
+import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi';
 import PredictionCard from '@/ui/card/PredictionCard';
 import { DateInput, FormSelectInput } from '@/ui/formInput/FormInput';
 import React, { useState } from 'react'
@@ -17,10 +18,28 @@ const UserDashboard = () => {
     const [selectedDate, setSelectedDate] = useState(() =>
         new Date().toISOString().split("T")[0]
     );
+    const { data: predictionData } = useFetchPredictionsQuery({
+        search: '',
+        page: 1,
+        page_size: 10
+    })
+
     const onFilterClear = () => {
         setSelectedSport(null)
         setSelectedDate(new Date().toISOString().split("T")[0])
     }
+
+    const getFormatStatus = (status: string) => {
+        if (status === "CORRECT") {
+            return "win"
+        }
+        else if (status === 'INCORRECT') {
+            return "loss"
+        }
+        else
+            return "pending"
+    }
+
     return (
         <section>
             {/* prediction section */}
@@ -53,45 +72,24 @@ const UserDashboard = () => {
                     </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <PredictionCard
-                        sport="NBA"
-                        match="LA Lakers @ Boston Celtics"
-                        date={new Date()}
-                        time="7:30 PM ET"
-                        prediction="Boston Celtics -5.5"
-                        confidenceLevel={4}
-                        status="win"
-                    />
-
-                    <PredictionCard
-                        sport="NBA"
-                        match="Denver Nuggets @ Miami Heat"
-                        date={new Date()}
-                        time="7:30 PM ET"
-                        prediction="Denver Nuggets +2.5"
-                        confidenceLevel={4}
-                        status="pending"
-                    />
-
-                    <PredictionCard
-                        sport="NFL"
-                        match="Chiefs vs. Ravens"
-                        date={new Date()}
-                        time="8:15 PM ET"
-                        prediction="Chiefs -3"
-                        confidenceLevel={5}
-                        status="loss"
-                    />
-
-                    <PredictionCard
-                        sport="MLB"
-                        match="Yankees vs. Red Sox"
-                        date={new Date()}
-                        time="1:05 PM ET"
-                        prediction="Yankees ML"
-                        confidenceLevel={3}
-                        status="pending"
-                    />
+                    {
+                        predictionData && predictionData.results?.length > 0 ?
+                            predictionData.results.map((el) => (
+                                <PredictionCard
+                                    key={el.id}
+                                    sport="NBA"
+                                    match={el.match.toString()}
+                                    date={new Date(el.placed_at).toLocaleDateString()}
+                                    time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    prediction="Boston Celtics -5.5"
+                                    confidenceLevel={4}
+                                    status={getFormatStatus(el.result as string)}
+                                    detail={el.predicted_outcome}
+                                />
+                            ))
+                            :
+                            null
+                    }
                 </div>
             </section>
 
@@ -103,25 +101,24 @@ const UserDashboard = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <PredictionCard
-                        sport="NHL"
-                        match="Maple Leafs vs. Bruins"
-                        date={new Date(Date.now() - 86400000)}
-                        time="7:00 PM ET"
-                        prediction="Bruins ML"
-                        confidenceLevel={3}
-                        status="win"
-                    />
-
-                    <PredictionCard
-                        sport="Soccer"
-                        match="Man City vs. Liverpool"
-                        date={new Date(Date.now() - 172800000)}
-                        time="3:00 PM ET"
-                        prediction="Over 2.5"
-                        confidenceLevel={4}
-                        status="win"
-                    />
+                    {
+                        predictionData && predictionData.results?.length > 0 ?
+                            predictionData.results.map((el) => (
+                                <PredictionCard
+                                    key={el.id}
+                                    sport="NBA"
+                                    match={el.match.toString()}
+                                    date={new Date(el.placed_at).toLocaleDateString()}
+                                    time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    prediction="Boston Celtics -5.5"
+                                    confidenceLevel={4}
+                                    status={getFormatStatus(el.result as string)}
+                                    detail={el.predicted_outcome}
+                                />
+                            ))
+                            :
+                            null
+                    }
                 </div>
             </section>
 

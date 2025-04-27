@@ -5,6 +5,54 @@ import { IoFootballSharp } from "react-icons/io5";
 import { MdOutlineTrendingUp, MdPeople, MdSportsHockey } from "react-icons/md";
 import { RiLineChartLine } from "react-icons/ri";
 
+export const PredictionType = [
+  {
+    label: "Win",
+    value: "WIN"
+  },
+  {
+    label: "Lose",
+    value: "LOSE"
+  },
+  {
+    label: "Over_under",
+    value: "OVER_UNDER"
+  },
+  {
+    label: "Handicap",
+    value: "HANDICAP"
+  },
+  {
+    label: "Other",
+    value: "OTHER"
+  },
+
+]
+
+export const PredictionResultType = [
+  {
+    label: "Pending",
+    value: "PENDING"
+  },
+  {
+    label: "Correct",
+    value: "CORRECT"
+  },
+  {
+    label: "Incorrect",
+    value: "INCORRECT"
+  },
+  {
+    label: "Handicap",
+    value: "HANDICAP"
+  },
+  {
+    label: "Other",
+    value: "OTHER"
+  },
+
+]
+
 export const features = [
   {
     icon: <FaRegCircleCheck size={40} />,

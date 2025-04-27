@@ -5,8 +5,8 @@ import type {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
 import { initAuthUser, logout } from "./auth/authSlice";
-
 import { BASE_API_URL } from "@/redux/utils/urlConfig";
+import Cookies from "js-cookie";
 
 interface LoginPayloadI {
   refresh: string;
@@ -20,7 +20,7 @@ interface LoginPayloadI {
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_API_URL,
   prepareHeaders: (headers) => {
-    const token = localStorage.getItem("msp_auth_access") || "";
+    const token = Cookies.get("msp_auth_access") || "";
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
@@ -38,7 +38,7 @@ const baseQueryWithReauth: BaseQueryFn<
   // Handle 401 Unauthorized errors
   if (result.error && result.error.status === 401) {
     // Get the refresh token from localStorage
-    const refreshToken = localStorage.getItem("msp_auth_refresh") || "";
+    const refreshToken = Cookies.get("msp_auth_refresh") || "";
 
     if (!refreshToken) {
       api.dispatch(logout());

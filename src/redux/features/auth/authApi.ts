@@ -1,6 +1,7 @@
 // import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { rootApi } from "../root.api";
 import { initAuthUser, logout } from "./authSlice";
+import Cookies from "js-cookie";
 
 export const authApi = rootApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -27,6 +28,9 @@ export const authApi = rootApi.injectEndpoints({
         queryFulfilled
           .then((data) => {
             dispatch(initAuthUser(data.data));
+            console.log("token response data", data.data)
+            Cookies.set("authenticated", "true");
+            Cookies.set("is_admin", data?.data?.is_admin.toString());
           })
           .catch(() => {
             dispatch(logout());

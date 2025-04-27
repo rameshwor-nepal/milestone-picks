@@ -9,8 +9,14 @@ import { useFetchMatchesQuery } from '@/redux/features/other/predictionAndMatch/
 import Pagination from '@/ui/pagination/Pagination';
 import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi';
 
+export interface MatchInfoI {
+    team1: string;
+    team2: string;
+    id: string;
+}
 const PredictionList = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+    const [MatchInfo, setMatchInfo] = useState<MatchInfoI | null>(null)
     const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
         search: '',
         page: 1,
@@ -19,14 +25,23 @@ const PredictionList = () => {
     const { data, isLoading, isFetching } = useFetchMatchesQuery(searchQuery);
     const { data: predictionData } = useFetchPredictionsQuery(searchQuery)
 
-    const handleModalClose = () => {
-        setAddModalOpen(false);
-    };
-
     const getPredictionForMatch = (matchId: string | number) => {
         if (!predictionData || !predictionData.results) return null;
         return predictionData.results.find((pred) => pred.match === matchId) || null;
     };
+
+    const handleModalClose = () => {
+        setAddModalOpen(false);
+    };
+
+    const handleAddIconClick = (id: string, team1: string, team2: string) => {
+        setMatchInfo({
+            team1: team1,
+            team2: team2,
+            id: id
+        })
+        setAddModalOpen(true);
+    }
 
     return (
         <div>
@@ -93,15 +108,22 @@ const PredictionList = () => {
                                         <DataTable.TCD>
                                             <>
                                                 <ActionButton>
-                                                    <ActionButton.AddIcon
-                                                    // onClick={() => navigate(`update/${el.id}`)}
-                                                    // disabled={
-                                                    //   !canUpdateRecord({
-                                                    //     status: el.status,
-                                                    //     authRoles: roles,
-                                                    //   })
-                                                    // }
-                                                    />
+                                                    {
+                                                        prediction == null ?
+                                                            <ActionButton.AddIcon
+                                                                onClick={() => handleAddIconClick(el.id, el.team_1, el.team_2)}
+                                                            // disabled={
+                                                            //   !canUpdateRecord({
+                                                            //     status: el.status,
+                                                            //     authRoles: roles,
+                                                            //   })
+                                                            // }
+                                                            /> :
+                                                            <ActionButton.EditIcon
+                                                                onClick={() => { }}
+                                                            />
+                                                    }
+
                                                     <ActionButton.DeleteIcon
                                                     // onClick={() => navigate(`details/${el.id}`)}
                                                     />
@@ -132,9 +154,9 @@ const PredictionList = () => {
             <ModalForm
                 isModalOpen={addModalOpen}
                 closeModal={handleModalClose}
-                title='Add Faq'
+                title='Add Prediction'
             >
-                <PredictionModalForm closeModal={handleModalClose} />
+                <PredictionModalForm closeModal={handleModalClose} matchInfo={MatchInfo as MatchInfoI} />
             </ModalForm>
         </div>
     )

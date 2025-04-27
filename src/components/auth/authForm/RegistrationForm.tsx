@@ -35,7 +35,7 @@ const RegistrationForm = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            toast.success("Logged In successfully.");
+            toast.success("User has been successfully register.");
             router.push('/login')
         }
     }, [isSuccess]);

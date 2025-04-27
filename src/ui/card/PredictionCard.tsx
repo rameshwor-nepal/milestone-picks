@@ -9,21 +9,23 @@ import { IoChevronDown } from 'react-icons/io5';
 interface PredictionCardProps {
     sport: string;
     match: string;
-    date: Date;
+    date: string;
     time: string;
     prediction: string;
     confidenceLevel: 1 | 2 | 3 | 4 | 5;
     status: 'win' | 'loss' | 'pending';
+    detail: string;
 }
 
 const PredictionCard: React.FC<PredictionCardProps> = ({
     sport,
     match,
-    // date,
+    date,
     time,
     prediction,
     confidenceLevel,
-    status
+    status,
+    detail
 }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -99,7 +101,7 @@ const PredictionCard: React.FC<PredictionCardProps> = ({
                 <div className="flex items-center gap-4 mb-3">
                     <div className="flex items-center text-navy-light">
                         <MdCalendarMonth size={16} className="mr-1" />
-                        {/* <span className="text-sm">{format(date, "EEE, MMM d")}</span> */}
+                        <span className="text-sm">{date}</span>
                     </div>
                     <div className="flex items-center text-navy-light">
                         <MdLockClock size={16} className="mr-1" />
@@ -142,10 +144,7 @@ const PredictionCard: React.FC<PredictionCardProps> = ({
                         isExpanded &&
                         <div className="pt-3 text-sm text-navy-light">
                             <p>
-                                Boston has been dominant at home this season with a 24-3 record.
-                                Their defense should give the Lakers trouble, especially with Anthony
-                                Davis facing double teams. Expect the Celtics to cover the spread as
-                                they&apos;ve done in 7 of their last 8 home games.
+                                {detail}
                             </p>
                         </div>
                     }

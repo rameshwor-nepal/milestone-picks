@@ -1,9 +1,26 @@
 'use client'
+import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi'
 import PredictionCard from '@/ui/card/PredictionCard'
 import React from 'react'
 import { FaHistory } from 'react-icons/fa'
 
 const UserHistory = () => {
+    const { data: predictionData } = useFetchPredictionsQuery({
+        search: '',
+        page: 1,
+        page_size: 10
+    })
+
+    const getFormatStatus = (status: string) => {
+        if (status === "CORRECT") {
+            return "win"
+        }
+        else if (status === 'INCORRECT') {
+            return "loss"
+        }
+        else
+            return "pending"
+    }
     return (
         <div>
             <section className='py-5 '>
@@ -13,25 +30,24 @@ const UserHistory = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <PredictionCard
-                        sport="NHL"
-                        match="Maple Leafs vs. Bruins"
-                        date={new Date(Date.now() - 86400000)}
-                        time="7:00 PM ET"
-                        prediction="Bruins ML"
-                        confidenceLevel={3}
-                        status="win"
-                    />
-
-                    <PredictionCard
-                        sport="Soccer"
-                        match="Man City vs. Liverpool"
-                        date={new Date(Date.now() - 172800000)}
-                        time="3:00 PM ET"
-                        prediction="Over 2.5"
-                        confidenceLevel={4}
-                        status="win"
-                    />
+                    {
+                        predictionData && predictionData.results?.length > 0 ?
+                            predictionData.results.map((el) => (
+                                <PredictionCard
+                                    key={el.id}
+                                    sport="NBA"
+                                    match={el.match.toString()}
+                                    date={new Date(el.placed_at).toLocaleDateString()}
+                                    time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    prediction="Boston Celtics -5.5"
+                                    confidenceLevel={4}
+                                    status={getFormatStatus(el.result as string)}
+                                    detail={el.predicted_outcome}
+                                />
+                            ))
+                            :
+                            null
+                    }
                 </div>
             </section>
         </div>

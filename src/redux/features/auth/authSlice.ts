@@ -1,4 +1,6 @@
+// authSlice.ts
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 interface InitialStateI {
   noAuth: boolean;
@@ -19,7 +21,7 @@ const initialState: InitialStateI = {
   is_admin: false,
   is_verified: false,
   username: null,
-  email: null
+  email: null,
 };
 
 export const AuthSlice = createSlice({
@@ -36,8 +38,11 @@ export const AuthSlice = createSlice({
       state.username = payload.username;
       state.email = payload.email;
 
-      localStorage.setItem("msp_auth_refresh", payload.refresh);
-      localStorage.setItem("msp_auth_access", payload.access);
+      // Set cookies for middleware access
+      Cookies.set("msp_auth_refresh", payload.refresh);
+      Cookies.set("msp_auth_access", payload.access);
+      Cookies.set("authenticated", "true");
+      Cookies.set("is_admin", payload.is_admin.toString());
     },
     logout: (state) => {
       state.authenticated = false;
@@ -47,10 +52,13 @@ export const AuthSlice = createSlice({
       state.is_admin = false;
       state.is_verified = false;
       state.username = null;
-      state.email = null
+      state.email = null;
 
-      localStorage.removeItem("msp_auth_refresh");
-      localStorage.removeItem("msp_auth_access");
+      // Clear all cookies
+      Cookies.remove("msp_auth_refresh");
+      Cookies.remove("msp_auth_access");
+      Cookies.remove("authenticated");
+      Cookies.remove("is_admin");
     },
   },
 });

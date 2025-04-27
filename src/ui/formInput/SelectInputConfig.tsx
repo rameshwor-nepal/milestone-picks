@@ -58,7 +58,7 @@ export const SelectStyles: StylesConfig = {
     }),
     menuPortal: (base) => ({
         ...base,
-        zIndex: 25,
+        zIndex: 100,
     }),
     container: (base) => ({
         ...base,

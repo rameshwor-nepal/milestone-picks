@@ -9,38 +9,38 @@ export const predictionApi = rootApi.injectEndpoints({
             }),
             providesTags: ['Predictions']
         }),
-        // createMatch: builder.mutation<void, Omit<MatchesI, "id">>({
-        //     query: (body) => ({
-        //         url: "/predictions/",
-        //         method: "POST",
-        //         body
-        //     }),
-        //     invalidatesTags: ["Matches"]
-        // }),
-        // updateMatch: builder.mutation<void, { body: Omit<MatchesI, "id">, id: string }>({
-        //     query: ({ body, id }) => ({
-        //         url: `/predictions/${id}/`,
-        //         method: "PUT",
-        //         body
-        //     }),
-        //     invalidatesTags: ["Matches"]
-        // }),
-        // deleteMatch: builder.mutation<void, string>({
-        //     query: (id) => ({
-        //         url: `/predictions/${id}/`,
-        //         method: "DELETE",
+        createPrediction: builder.mutation<void, CreatePredictionI>({
+            query: (body) => ({
+                url: "/predictions/",
+                method: "POST",
+                body
+            }),
+            invalidatesTags: ["Predictions"]
+        }),
+        updatePrediction: builder.mutation<void, { body: CreatePredictionI, id: string }>({
+            query: ({ body, id }) => ({
+                url: `/predictions/${id}/`,
+                method: "PUT",
+                body
+            }),
+            invalidatesTags: ["Predictions"]
+        }),
+        deletePrediction: builder.mutation<void, string>({
+            query: (id) => ({
+                url: `/predictions/${id}/`,
+                method: "DELETE",
 
-        //     }),
-        //     invalidatesTags: ["Matches"]
-        // }),
+            }),
+            invalidatesTags: ["Predictions"]
+        }),
 
     }),
 });
 
 export const {
     useFetchPredictionsQuery,
-    // useLazyFetchMatchesQuery,
-    // useCreateMatchMutation,
-    // useUpdateMatchMutation,
-    // useDeleteMatchMutation,
+    useLazyFetchPredictionsQuery,
+    useCreatePredictionMutation,
+    useUpdatePredictionMutation,
+    useDeletePredictionMutation
 } = predictionApi

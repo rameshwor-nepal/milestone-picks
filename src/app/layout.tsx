@@ -4,7 +4,6 @@ import { Toast } from "@/utils/toast/Toast";
 import ReduxProvider from "./Provider";
 import TokenProvider from "./TokenProvider";
 import { AOSInit } from "./Aos";
-// import { ProtectedRoute } from "@/utils/routes/ProtectedRoutes";
 
 export const metadata: Metadata = {
   title: "Milestone Picks",
@@ -22,12 +21,10 @@ export default function RootLayout({
         className=""
       >
         <ReduxProvider>
-          {/* <ProtectedRoute> */}
           <TokenProvider />
           <AOSInit />
           <Toast />
           {children}
-          {/* </ProtectedRoute> */}
 
         </ReduxProvider>
 
