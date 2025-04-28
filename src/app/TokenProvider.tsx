@@ -1,4 +1,3 @@
-// TokenProvider.tsx (optional client-side redirect)
 "use client";
 import { useVerifyTokenMutation } from "@/redux/features/auth/authApi";
 import { useEffect } from "react";

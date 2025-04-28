@@ -7,6 +7,8 @@ import { useSignUpMutation } from '@/redux/features/auth/authApi';
 import { ToastError } from '@/utils/toast/ToastError';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { Form, PasswordInput, TextInput } from '@/ui/formInput/FormInput';
+import Grid from '@/ui/grid/Grid';
 
 interface FormFields {
     username: string;
@@ -51,19 +53,77 @@ const RegistrationForm = () => {
     };
     return (
         <AuthContainer redirectText='or sign in' redirectLink={'/login'}>
-            {/* <div className='w-full flex flex-col lg:flex-row gap-3 pr-3 mt-8'>
-               <div>
-                    <label className="block  text-sm font-bold mb-2">First Name</label>
-                    <input className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block" 
-                    type="text" />
+            <Form>
+                <Grid>
+                    <Grid.Row>
+                        <Grid.Col size='lg'>
+                            <TextInput
+                                label='Username'
+                                placeholder='Enter a username'
+                                {...register("username", {
+                                    required: {
+                                        value: true,
+                                        message: "Username is required.",
+                                    },
+                                })}
+                                errorMsg={errors?.username?.message}
+                                required
+                            />
+                        </Grid.Col>
+
+                        <Grid.Col size='lg'>
+                            <TextInput
+                                label='Email'
+                                placeholder='Enter a email'
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: "Email is required.",
+                                    },
+                                })}
+                                errorMsg={errors?.email?.message}
+                                required
+                            />
+                        </Grid.Col>
+
+                        <Grid.Col size='lg'>
+                            <PasswordInput
+                                label='Password'
+                                placeholder='Enter a password'
+                                {...register("password", {
+                                    required: {
+                                        value: true,
+                                        message: "Password is required.",
+                                    },
+                                })}
+                                errorMsg={errors?.password?.message}
+                                required
+                            />
+                        </Grid.Col>
+                        <Grid.Col size='lg'>
+                            <PasswordInput
+                                label='Confirm Password'
+                                placeholder='Re-enter a password'
+                                {...register("confirmPassword", {
+                                    required: "Confirm Password is required.",
+                                    validate: (value) => value === password1 || "Passwords do not match.",
+                                })}
+                                errorMsg={errors?.confirmPassword?.message}
+                            />
+                        </Grid.Col>
+
+                    </Grid.Row>
+                </Grid>
+                <div className='mt-5'>
+                    <Button
+                        title='Save'
+                        onClick={handleSubmit(onSubmit)}
+                        secondary={true}
+                    />
                 </div>
-                <div>
-                    <label className="block  text-sm font-bold mb-2">Last Name</label>
-                    <input className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block" 
-                    type="text" />
-                </div>
-            </div> */}
-            <form onSubmit={handleSubmit(onSubmit)} className='text-left'>
+
+            </Form>
+            {/* <form onSubmit={handleSubmit(onSubmit)} className='text-left'>
                 <div className='mt-2 text-left'>
                     <label className="block  text-sm font-bold mb-2">Username <span className='text-red-500'>*</span></label>
                     <input
@@ -106,6 +166,12 @@ const RegistrationForm = () => {
                             },
                         })}
                     />
+                    <span
+                        className=" right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={() => setVisibility(!visibility)}
+                    >
+                        {visibility ? <IoMdEye size={20} /> : <IoMdEyeOff size={20} />}
+                    </span>
                     <span className='mt-1 text-[12px] text-red-500 min-h-[18px] block'>{errors?.password?.message}</span>
                 </div>
 
@@ -118,11 +184,14 @@ const RegistrationForm = () => {
                             required: "Confirm Password is required.",
                             validate: (value) => value === password1 || "Passwords do not match.",
                         })}
-                    // value={confirmPassword ? confirmPassword : ''}
-                    // onChange={(e) => setConfirmPassword(e.target.value)}
                     />
+                    <span
+                        className=" right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={() => setVisibility(!visibility)}
+                    >
+                        {visibility ? <IoMdEye size={20} /> : <IoMdEyeOff size={20} />}
+                    </span>
                     <span className='mt-1 text-[12px] text-red-500 min-h-[18px] block'>
-                        {/* {passwordMatchError ? passwordMatchError : ''} */}
                         {errors?.confirmPassword?.message}
                     </span>
                 </div>
@@ -132,7 +201,7 @@ const RegistrationForm = () => {
                         title={"Save"} type="submit" secondary
                     />
                 </div>
-            </form>
+            </form> */}
 
         </AuthContainer>
     )

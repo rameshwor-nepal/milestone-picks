@@ -28,7 +28,7 @@ export function middleware(request: NextRequest) {
 
     // Redirect unauthenticated users to home
     if (!authenticated) {
-        return NextResponse.redirect(new URL("/", request.url));
+        return NextResponse.redirect(new URL("/login", request.url));
     }
 
     // Allow authenticated users to access user-protected routes
@@ -38,7 +38,7 @@ export function middleware(request: NextRequest) {
 
     // Restrict admin routes to admin users
     if (isAdminProtectedRoute && !is_admin) {
-        return NextResponse.redirect(new URL("/user", request.url));
+        return NextResponse.redirect(new URL("/403", request.url));
     }
 
     // Allow access to valid routes

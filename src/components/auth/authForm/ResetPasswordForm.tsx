@@ -6,6 +6,8 @@ import Button from '@/ui/button/Button'
 // import { useResetPasswordMutation } from '@/redux/features/auth/authApi';
 // import { ToastError } from '@/utils/toast/ToastError';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Form, PasswordInput } from '@/ui/formInput/FormInput';
+import Grid from '@/ui/grid/Grid';
 // import { toast } from 'react-toastify';
 
 interface FormFields {
@@ -44,42 +46,47 @@ const ResetPasswordForm = () => {
   // console.log("otp", otp)
   return (
     <AuthContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mt-2">
-          <label className="block  text-sm font-bold mb-2">Password</label>
-          <input
-            className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-            type="password"
-            {...register("password", {
-              required: {
-                value: true,
-                message: "password is required.",
-              },
-            })}
+      <Form>
+        <Grid>
+          <Grid.Row>
+
+            <Grid.Col size='lg'>
+              <PasswordInput
+                label='Password'
+                placeholder='Enter a password'
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password is required.",
+                  },
+                })}
+                errorMsg={errors?.password?.message}
+                required
+              />
+            </Grid.Col>
+            <Grid.Col size='lg'>
+              <PasswordInput
+                label='Confirm Password'
+                placeholder='Re-enter a password'
+                {...register("confirmPassword", {
+                  required: "Confirm Password is required.",
+                  validate: (value) => value === password1 || "Passwords do not match.",
+                })}
+                errorMsg={errors?.confirmPassword?.message}
+              />
+            </Grid.Col>
+
+          </Grid.Row>
+        </Grid>
+        <div className='mt-5'>
+          <Button
+            title='Save'
+            onClick={handleSubmit(onSubmit)}
+            secondary={true}
           />
-        </div>
-        <div className="mt-2">
-          <label className="block  text-sm font-bold mb-2"> Confirm Password <span className='text-red-500'>*</span></label>
-          <input
-            className="bg-gray-200 text-blue-1 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full"
-            type="password"
-            {...register("confirmPassword", {
-              required: "Confirm Password is required.",
-              validate: (value) => value === password1 || "Passwords do not match.",
-            })}
-          // value={confirmPassword ? confirmPassword : ''}
-          // onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <span className='mt-1 text-[12px] text-red-500 min-h-[18px] block'>
-            {/* {passwordMatchError ? passwordMatchError : ''} */}
-            {errors?.confirmPassword?.message}
-          </span>
         </div>
 
-        <div className="mt-8">
-          <Button title={"Continue"} type="submit" />
-        </div>
-      </form>
+      </Form>
 
     </AuthContainer>
   )
