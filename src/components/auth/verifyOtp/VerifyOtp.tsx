@@ -94,7 +94,7 @@ const VerifyOtp = ({ email }: PropsI) => {
         inputRefs.current[index]?.select();
     };
 
-    const onOTPSubmit: SubmitHandler<FormFieldsOtp> = async (data) => {
+    const onOTPSubmit: SubmitHandler<FormFieldsOtp> = async () => {
         await verifyOtp({
             otp: otp,
             email: email

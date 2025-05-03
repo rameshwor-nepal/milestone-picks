@@ -16,7 +16,7 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className={`min-w-[50px] min-h-[50px] relative transition-all duration-200 ${isHovered ? 'blur-sm' : ''
+            <div className={`min-w-[100px] min-h-[100px] w-full h-full relative transition-all duration-200 ${isHovered ? 'blur-sm' : ''
                 }`}>
                 <Image
                     src={src}

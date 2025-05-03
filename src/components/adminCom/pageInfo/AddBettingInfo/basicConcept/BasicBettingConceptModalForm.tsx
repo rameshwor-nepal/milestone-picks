@@ -1,4 +1,4 @@
-import { useCreateBettingTipsInfoMutation } from '@/redux/features/other/bettingInfo/bettingTipsInfo/bettingTipsApi';
+import { useCreateBettingConceptInfoMutation } from '@/redux/features/other/bettingInfo/bettingConceptInfo/bettingConceptInfoApi';
 import Button from '@/ui/button/Button';
 import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
 import { Form, SelectInput, TextInput } from '@/ui/formInput/FormInput';
@@ -34,7 +34,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
         formState: { errors },
         control
     } = useForm<FormFields>();
-    const [createBettingTips] = useCreateBettingTipsInfoMutation();
+    const [createBettingConcept] = useCreateBettingConceptInfoMutation();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const formData = new FormData();
@@ -49,7 +49,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
         if (missionImage) {
             formData.append("icon", missionImage);
         }
-        await createBettingTips(formData).unwrap()
+        await createBettingConcept(formData).unwrap()
             .then(() => {
                 toast.success("Betting Concept added successfully");
                 closeModal()

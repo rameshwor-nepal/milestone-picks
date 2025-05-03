@@ -40,6 +40,7 @@ export class ToastError {
                     toast.error("An error occurred while processing the request.");
                 }
             } catch (err) {
+                console.log(err)
                 toast.error("Unknown error occurred.");
             }
         } else {

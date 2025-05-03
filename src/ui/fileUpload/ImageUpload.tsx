@@ -57,7 +57,7 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
 
     return (
         <div className="flex flex-col gap-2">
-            {label && <label className="text-gray-700 mb-2 font-medium">{label}</label>}
+            {label && <label className="text-slate-50 mb-2 font-medium">{label}</label>}
             {val || value ? (
                 <label htmlFor={name} className="relative w-64 h-32 overflow-hidden group cursor-pointer">
                     <div className="relative w-full h-full">

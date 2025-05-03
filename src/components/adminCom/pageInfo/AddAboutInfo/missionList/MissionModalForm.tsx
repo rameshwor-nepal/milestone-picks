@@ -1,9 +1,12 @@
+import { useCreateMissionInfoMutation } from '@/redux/features/other/aboutInfo/missionInfo/missionInfoApi';
 import Button from '@/ui/button/Button';
 import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
 import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
+import { ToastError } from '@/utils/toast/ToastError';
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 interface PropsI {
     closeModal: () => void;
 }
@@ -19,6 +22,7 @@ const MissionModalForm = ({ closeModal }: PropsI) => {
         handleSubmit,
         formState: { errors },
     } = useForm<FormFields>();
+    const [addMission] = useCreateMissionInfoMutation();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const formData = new FormData();
@@ -28,14 +32,14 @@ const MissionModalForm = ({ closeModal }: PropsI) => {
         if (missionImage) {
             formData.append("image", missionImage);
         }
-        //  await createSportCategory(formData).unwrap()
-        //      .then(() => {
-        //          toast.success("Content for Hero section created successfully");
-        //          closeModal()
-        //      })
-        //      .catch((error) => {
-        //          ToastError.serialize(error);
-        //      })
+        await addMission(formData).unwrap()
+            .then(() => {
+                toast.success("Mission content added successfully");
+                closeModal()
+            })
+            .catch((error) => {
+                ToastError.serialize(error);
+            })
     };
     return (
         <div>

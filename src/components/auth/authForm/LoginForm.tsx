@@ -1,6 +1,6 @@
 'use client'
 import Button from '@/ui/button/Button'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import AuthContainer from '../container/AuthContainer'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
@@ -16,7 +16,6 @@ interface FormFields {
 }
 
 const LoginForm = () => {
-    const [visibility, setVisibility] = useState(false);
     const {
         register,
         handleSubmit,
