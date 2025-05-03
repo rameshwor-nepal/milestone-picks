@@ -5,11 +5,9 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
-    console.log("pathname", pathname)
 
     // Get cookies
     const authenticated = request.cookies.get("authenticated")?.value === "true";
-    console.log("authenticated", authenticated)
     const is_admin = request.cookies.get("is_admin")?.value === "true";
 
     // Check route types

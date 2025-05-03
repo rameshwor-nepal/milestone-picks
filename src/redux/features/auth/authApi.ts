@@ -28,7 +28,6 @@ export const authApi = rootApi.injectEndpoints({
         queryFulfilled
           .then((data) => {
             dispatch(initAuthUser(data.data));
-            console.log("token response data", data.data)
             Cookies.set("authenticated", "true");
             Cookies.set("is_admin", data?.data?.is_admin.toString());
           })

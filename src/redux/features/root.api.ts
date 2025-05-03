@@ -85,5 +85,10 @@ export const rootApi = createApi({
     "Matches",
     "Sports",
     "Predictions",
+    "MissionInfo",
+    "StatisticsInfo",
+    "FeatureInfo",
+    "BettingTipsInfo",
+    "BettingConceptInfo"
   ],
 });

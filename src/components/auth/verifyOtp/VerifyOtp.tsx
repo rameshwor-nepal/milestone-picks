@@ -95,7 +95,6 @@ const VerifyOtp = ({ email }: PropsI) => {
     };
 
     const onOTPSubmit: SubmitHandler<FormFieldsOtp> = async (data) => {
-        console.log("data", data)
         await verifyOtp({
             otp: otp,
             email: email
