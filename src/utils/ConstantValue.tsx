@@ -53,6 +53,15 @@ export const PredictionResultType = [
 
 ]
 
+export const ContentType = [
+  { value: "point_spreads", label: "Point Spreads" },
+  { value: "moneylines", label: "Moneylines" },
+  { value: "totals", label: "Totals (Over/Under)" },
+  { value: "prop_bets", label: "Prop Bets" },
+  { value: "parlays", label: "Parlays" },
+  { value: "teasers", label: "Teasers" }
+]
+
 export const features = [
   {
     icon: <FaRegCircleCheck size={40} />,

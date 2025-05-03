@@ -7,7 +7,6 @@ type PossibleError = {
 
 export class ToastError {
     static serialize(error: unknown) {
-        console.log("Full error object:", JSON.stringify(error, null, 2));
 
         const errorObj = error as PossibleError;
 
@@ -41,7 +40,6 @@ export class ToastError {
                     toast.error("An error occurred while processing the request.");
                 }
             } catch (err) {
-                console.log("Exception caught:", err);
                 toast.error("Unknown error occurred.");
             }
         } else {

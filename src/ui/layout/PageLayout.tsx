@@ -11,7 +11,7 @@ interface PropsI {
 export const PageLayout = ({ title, subtitle, children, isLoading }: PropsI) => {
 
     return (
-        <div className=" p-2 md:p-4 lg:p-6 bg-navy shadow-md shadow-gray-500 rounded-sm text-left">
+        <div className=" p-2 md:p-4 lg:p-6 bg-navy shadow-md shadow-gray-700 rounded-sm text-left">
             <div className="mb-4 flex justify-between items-start">
                 <div>
                     <h1 className="text-3xl font-bold text-gold">{title}</h1>

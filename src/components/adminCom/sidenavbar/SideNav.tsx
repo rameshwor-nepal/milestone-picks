@@ -47,39 +47,37 @@ const Sidenav = (props: Props) => {
         >
             <div className='flex flex-col justify-between h-full items-center'>
 
-                <div >
-                    {/* Logo & Expand Button */}
-                    <div className="relative w-full flex flex-col items-center gap-4 pt-6 pb-4">
-                        <div className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all aspect-[3/4] relative`}>
-                            <Image
-                                src={"/man1.png"}
-                                alt='logo image'
-                                fill
-                                className='object-cover'
-                            />
-                        </div>
-                        <button
-                            onClick={handleSideBarExpand}
-                            className={`absolute top-7 ${expandedSidebar ? 'right-[-1.2rem]' : 'right-5'} h-8 w-8 flex items-center justify-center rounded-full bg-gold border-2 border-gold shadow-lg`}
-                        >
-                            <MdKeyboardDoubleArrowRight
-                                className={`text-white text-xl transition-transform ${expandedSidebar ? 'rotate-180' : ''}`}
-                            />
-                        </button>
+                {/* Logo & Expand Button */}
+                <div className="relative w-full flex flex-col items-center gap-4 pt-6 pb-4">
+                    <div className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all aspect-[3/4] relative`}>
+                        <Image
+                            src={"/man1.png"}
+                            alt='logo image'
+                            fill
+                            className='object-cover'
+                        />
                     </div>
+                    <button
+                        onClick={handleSideBarExpand}
+                        className={`absolute top-7 ${expandedSidebar ? 'right-[-1.2rem]' : 'right-5'} h-8 w-8 flex items-center justify-center rounded-full bg-gold border-2 border-gold shadow-lg`}
+                    >
+                        <MdKeyboardDoubleArrowRight
+                            className={`text-white text-xl transition-transform ${expandedSidebar ? 'rotate-180' : ''}`}
+                        />
+                    </button>
+                </div>
 
-                    {/* Navigation Links */}
-                    <div className="h-full w-full overflow-hidden hover:overflow-y-auto">
-                        <ul className="px-2 list-none">
-                            {props.navLinks(currentPath).map((el, index) => (
-                                el.extended ? (
-                                    <SidenavLink key={index} text={el.text} icon={el.icon} active={el.active} sublinks={el.sublinks} expandedSidebar={expandedSidebar} />
-                                ) : (
-                                    <SidenavLinkMain key={index} text={el.text} icon={el.icon} to={el.to} active={el.active} expandedSidebar={expandedSidebar} />
-                                )
-                            ))}
-                        </ul>
-                    </div>
+                {/* Navigation Links */}
+                <div className="flex-1 w-full overflow-auto">
+                    <ul className="px-2 list-none">
+                        {props.navLinks(currentPath).map((el, index) => (
+                            el.extended ? (
+                                <SidenavLink key={index} text={el.text} icon={el.icon} active={el.active} sublinks={el.sublinks} expandedSidebar={expandedSidebar} />
+                            ) : (
+                                <SidenavLinkMain key={index} text={el.text} icon={el.icon} to={el.to} active={el.active} expandedSidebar={expandedSidebar} />
+                            )
+                        ))}
+                    </ul>
                 </div>
 
                 {/* logout section */}
@@ -87,7 +85,6 @@ const Sidenav = (props: Props) => {
                     <span><MdLogout size={25} /></span> {expandedSidebar ? "Logout" : ''}
                 </button>
             </div>
-
         </section>
     );
 };

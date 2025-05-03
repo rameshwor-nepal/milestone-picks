@@ -1,0 +1,15 @@
+interface BettingConceptResponseI {
+    count: number;
+    next: string;
+    previous: string;
+    results: {
+        id: number;
+        title: string;
+        description: string;
+        example: string;
+        concept_type: string;
+        icon: string;
+        order: number;
+        is_active: boolean;
+    }[]
+}

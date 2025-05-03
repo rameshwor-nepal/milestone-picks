@@ -5,13 +5,21 @@ import { MdDashboard, MdInfo, MdOutlineSettings, MdOutlineSportsVolleyball, MdPe
 import { MdBatchPrediction } from "react-icons/md";
 import { TbBallFootball } from "react-icons/tb";
 
+type SublinkProps = {
+    text: string;
+    to: string;
+    active: boolean;
+    extended?: boolean;
+    sublinks?: { to: string; text: string; active: boolean }[];
+};
+
 export type LinksProps<TExtended = boolean> = TExtended extends true
     ? {
         extended: TExtended;
         text: string;
         icon: IconType;
         active: boolean;
-        sublinks: { text: string; to: string; active: boolean }[];
+        sublinks: SublinkProps[];
         to?: string;
     }
     : {
@@ -69,26 +77,52 @@ export const AdminNavLinks = (
                 active: currentPath.startsWith("/admin/info"),
                 sublinks: [
                     {
-                        text: "Page Info",
+                        extended: false,
+                        text: "Home",
                         to: "/admin/info/pageInfo",
                         active: currentPath === "/admin/info/pageInfo",
+
                     },
                     {
+                        extended: false,
+                        text: "About page",
+                        to: "/admin/info/about",
+                        active: currentPath === "/admin/info/about",
+                        // sublinks: [
+                        //     {
+                        //         text: "Sub Header",
+                        //         to: "/admin/info/about/sub-header",
+                        //         active: currentPath === "/admin/info/about/sub-header"
+                        //     }
+                        // ]
+
+                    },
+                    {
+                        extended: false,
                         text: "Testimonial",
                         to: "/admin/info/testimonial",
                         active: currentPath === "/admin/info/testimonial",
                     },
                     {
+                        extended: false,
+                        text: "Betting Info",
+                        to: "/admin/info/betting",
+                        active: currentPath === "/admin/info/betting",
+                    },
+                    {
+                        extended: false,
                         text: "FAQ",
                         to: "/admin/info/faq",
                         active: currentPath === "/admin/info/faq",
                     },
                     {
+                        extended: false,
                         text: "Sports Category",
                         to: "/admin/info/sportCategory",
                         active: currentPath === "/admin/info/sportCategory",
                     },
                     {
+                        extended: false,
                         text: "Message",
                         to: "/admin/info/message",
                         active: currentPath === "/admin/info/message",

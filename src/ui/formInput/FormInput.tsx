@@ -58,7 +58,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputPropsI>(
                     className="w-full px-4 py-2 text-blue-1 border rounded-md focus:ring-1 focus:ring-gold-lighter focus:border-gold-lighter outline-none transition"
                     placeholder={placeholder || ""}
                     type="text"
-
+                    // value={internalValue}
                     onChange={handleInputChange}
                     maxLength={maxlength}
                     {...rest}
@@ -160,7 +160,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     className="w-full p-2 text-blue-1 border rounded-md resize-none focus:ring-1 focus:ring-gold-lighter focus:border-gold-lighter outline-none"
                     rows={rows}
                     placeholder={placeholder || ""}
-                    value={currentValue} // Use controlled or internal value
+                    // value={currentValue} // Use controlled or internal value
                     onChange={handleInputChange}
                     maxLength={maxlength}
                     {...rest}
@@ -224,7 +224,6 @@ interface SelectPropsI {
 }
 
 export const SelectInput = (props: SelectPropsI) => {
-    console.log("options in select", props.options)
     return (
         <div className="flex flex-col w-full">
             {props.label && (
