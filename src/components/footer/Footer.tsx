@@ -37,8 +37,8 @@ const Footer = () => {
                             {[
                                 { name: "Home", path: "/" },
                                 { name: "About Us", path: "/about" },
-                                { name: "Betting Info", path: "/betting-info" },
-                                { name: "Our Plans", path: "/plans" },
+                                { name: "Betting Info", path: "/bettingInfo" },
+                                { name: "Our Plans", path: "/plan" },
                                 { name: "Previous History", path: "/history" },
                                 { name: "Contact Us", path: "/contact" },
                             ].map((link) => (
@@ -61,7 +61,7 @@ const Footer = () => {
                             {["NBA", "NFL", "MLB", "NHL", "College Basketball"].map((sport) => (
                                 <li key={sport}>
                                     <a
-                                        href="#"
+                                        // href="#"
                                         className="text-gray-300 hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
                                     >
                                         {sport} Picks

@@ -37,7 +37,7 @@ const HeroSection = () => {
                                         <div className="flex flex-col sm:flex-row gap-4" data-aos="fade-right">
                                             <Link
                                                 data-aos="fade-right"
-                                                href="/plans"
+                                                href="/plan"
                                                 className="inline-block"
                                             >
                                                 <Button title="View Our Plans" secondary width="full">
@@ -67,12 +67,12 @@ const HeroSection = () => {
                                                     </div>
                                                     <div className="text-right">
                                                         <p className="font-bold ">Lakers +3.5</p>
-                                                        <p className="text-green-600 text-sm font-medium">Confidence: 85%</p>
+                                                        {/* <p className="text-green-600 text-sm font-medium">Confidence: 85%</p> */}
                                                     </div>
                                                 </div>
                                             </div>
                                             <Link
-                                                href="/plans"
+                                                href="/plan"
                                                 className="btn-primary w-full flex items-center justify-center"
                                                 data-aos="fade-right">
                                                 Unlock All Picks

@@ -57,7 +57,7 @@ const AboutInfo = () => {
                                 offering our predictions to subscribers. But don&apos;t let that fool you. Our experience runs deep,
                                 and we&apos;ve spent years perfecting our strategies to ensure our subscribers see the profits they deserve.
                             </p>
-                            <Link href="/ourPlan" data-aos="fade-right" data-aos-duration="1000">
+                            <Link href="/plan" data-aos="fade-right" data-aos-duration="1000">
                                 <Button title="Join Our Community" width="fit">
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>
@@ -256,14 +256,14 @@ const AboutInfo = () => {
                                             <div className="relative overflow-hidden group">
                                                 {/* <div className="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold to-gold-light opacity-70 blur-xl group-hover:opacity-100 transition-opacity"></div> */}
                                                 <div className="relative">
-                                                    <Link href="/ourPlan">
+                                                    <Link href="/plan">
                                                         <Button title="Join Milestone Picks" secondary>
                                                             <MdArrowForward className="ml-1 h-4 w-4" />
                                                         </Button>
                                                     </Link>
                                                 </div>
                                             </div>
-                                            <Link href="/contactUs" className="inline-block border-2 border-gold/65 text-white hover:border-gold hover:text-gold py-3 px-8 rounded-md transition-all duration-300 hover:shadow-lg transform">
+                                            <Link href="/contact" className="inline-block border-2 border-gold/65 text-white hover:border-gold hover:text-gold py-3 px-8 rounded-md transition-all duration-300 hover:shadow-lg transform">
                                                 <div className="flex items-center gap-2" data-aos="zoom-in" data-aos-duration="1000">
                                                     <span>Contact Our Team</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

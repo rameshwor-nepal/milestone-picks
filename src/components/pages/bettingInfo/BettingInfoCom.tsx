@@ -128,7 +128,7 @@ const BettingInfoCom = () => {
                                 View Membership Plans
                                 <MdArrowForward size={18} className="ml-2" />
                             </Link> */}
-                            <Link href={"/ourPlan"} data-aos="fade-right">
+                            <Link href={"/plan"} data-aos="fade-right">
                                 <Button title="View Membership Plans" secondary width='fit'>
                                     <MdArrowForward className="ml-1 h-4 w-4" />
                                 </Button>

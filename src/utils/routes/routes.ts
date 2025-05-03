@@ -4,7 +4,7 @@ export const publicRoutes = [
     "/bettingInfo",
     "/plan",
     "/history",
-    "/contactUs",
+    "/contact",
     "/403",
     "/login",
     "/signup",

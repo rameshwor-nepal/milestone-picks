@@ -18,7 +18,7 @@ const MemberShipCard = () => {
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     <Link
                                         // data-aos="fade-right"
-                                        href="/plans"
+                                        href="/plan"
                                         className="btn-primary"
                                     >
                                         View Membership Options
