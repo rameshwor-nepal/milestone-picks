@@ -18,6 +18,8 @@ const HeroSection = () => {
                             src="/landing-page-bg.jpeg"
                             alt="hero image"
                             fill
+                            sizes='100vh'
+                            priority
                             className="object-cover"
                         />
                     </div>

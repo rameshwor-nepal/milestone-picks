@@ -18,7 +18,8 @@ const AuthContainer = ({ children, redirectText, redirectLink }: PropsI) => {
                         fill
                         alt='auth-image'
                         style={{ objectFit: 'cover' }}
-                        onError={() => console.error('Failed to load image')}
+                        sizes='100vh'
+                        onError={(err) => console.error('Failed to load image', err)}
                     />
 
                 </div>

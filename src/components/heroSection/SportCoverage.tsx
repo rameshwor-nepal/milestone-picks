@@ -14,6 +14,7 @@ const SportCoverage = () => {
                         src="/banner-bg.jpg"
                         alt="hero image"
                         fill
+                        sizes='100vh'
                         className="object-cover"
                     />
                 </div>

@@ -4,14 +4,13 @@ import Grid from '@/ui/grid/Grid';
 import { PredictionType } from '@/utils/ConstantValue';
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { MatchInfoI } from './PredictionList';
 import { useCreatePredictionMutation } from '@/redux/features/other/predictionAndMatch/predictionApi';
 import { toast } from 'react-toastify';
 import { ToastError } from '@/utils/toast/ToastError';
 
 interface PropsI {
     closeModal: () => void;
-    matchInfo: MatchInfoI;
+    matchInfo: MatchesI;
 }
 interface FormFields {
     prediction_type: {
@@ -22,6 +21,8 @@ interface FormFields {
     result: string;
     location: string | null;
     match_date: string;
+    our_prediction: string;
+    confidence_level: string;
 }
 const PredictionModalForm = ({ closeModal, matchInfo }: PropsI) => {
     const {
@@ -33,13 +34,14 @@ const PredictionModalForm = ({ closeModal, matchInfo }: PropsI) => {
 
     const [createPredict] = useCreatePredictionMutation();
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-
         const postData = {
             user: '1',
-            match: matchInfo.id,
+            match: matchInfo?.id,
             prediction_type: data?.prediction_type.value,
             predicted_outcome: data?.predicted_outcome,
-            result: data?.result
+            result: data?.result,
+            our_prediction: data.our_prediction,
+            confidence_level: data?.confidence_level
         }
         await createPredict(postData)
             .unwrap()
@@ -56,11 +58,11 @@ const PredictionModalForm = ({ closeModal, matchInfo }: PropsI) => {
             <div className='flex flex-wrap px-3 py-2 items-center justify-between'>
                 <p className='text-slate-200'>
                     Team 1:
-                    <span className='font-semibold text-white'> {matchInfo.team1}</span>
+                    <span className='font-semibold text-white'> {matchInfo.team_1}</span>
                 </p>
                 <p className='text-slate-200'>
                     Team 2:
-                    <span className='font-semibold text-white'> {matchInfo.team2}</span>
+                    <span className='font-semibold text-white'> {matchInfo.team_2}</span>
                 </p>
             </div>
 
@@ -106,6 +108,22 @@ const PredictionModalForm = ({ closeModal, matchInfo }: PropsI) => {
                             />
 
                         </Grid.Col>
+
+                        <Grid.Col size='lg'>
+                            <TextInput
+                                label='Our Prediction'
+                                placeholder='Enter a Prediction'
+                                {...register("our_prediction", {
+                                    required: {
+                                        value: true,
+                                        message: "Prediction is required.",
+                                    },
+                                })}
+                                errorMsg={errors?.our_prediction?.message}
+                            // required
+                            />
+                        </Grid.Col>
+
                         <Grid.Col size='lg'>
                             <TextInput
                                 label='Result'
@@ -119,7 +137,16 @@ const PredictionModalForm = ({ closeModal, matchInfo }: PropsI) => {
                                 errorMsg={errors?.result?.message}
                                 defaultValue={"PENDING"}
                                 disabled
-                            // required
+                            />
+                        </Grid.Col>
+
+                        <Grid.Col size='lg'>
+                            <TextInput
+                                label='Confidence Level'
+                                placeholder='Enter a Confidence Level'
+                                {...register("confidence_level")}
+                                errorMsg={errors?.confidence_level?.message}
+                                defaultValue={"5"}
                             />
                         </Grid.Col>
 

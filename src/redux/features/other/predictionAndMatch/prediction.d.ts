@@ -1,6 +1,18 @@
 interface MatchesI {
     id: string;
-    sport: string;
+    sport: {
+        id: string;
+        name: string;
+        icon: string;
+    };
+    team_1: string;
+    team_2: string;
+    location: string | null;
+    match_date: string;
+}
+
+interface CreateMatchI {
+    sport_id: string;
     team_1: string;
     team_2: string;
     location: string | null;
@@ -30,11 +42,14 @@ interface SportsResponseI {
 interface PredictionI {
     id: number;
     user: number;
-    match: number;
+    match: string;
+    match_detail: MatchesI;
     prediction_type: string;
     predicted_outcome: string;
+    our_prediction: string;
     placed_at: string;
     result: string | null;
+    confidence_level: number | null;
 }
 
 interface PredictionResponseI {
@@ -50,4 +65,6 @@ interface CreatePredictionI {
     prediction_type: string;
     predicted_outcome: string;
     result: string;
+    our_prediction: string;
+    confidence_level: string;
 }

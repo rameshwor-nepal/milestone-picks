@@ -17,6 +17,7 @@ const SubHeader = ({ subTitle, title }: PropI) => {
                 src={`/subheader.jpg`}
                 alt='hero image'
                 fill
+                sizes='100vh'
                 className='object-cover bg-center'
             />
             <div className='absolute z-20 text-white text-center flex items-center justify-center h-full w-full'>

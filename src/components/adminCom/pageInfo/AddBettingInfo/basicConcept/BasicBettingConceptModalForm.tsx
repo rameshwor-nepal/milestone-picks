@@ -16,7 +16,7 @@ interface PropsI {
 interface FormFields {
     title: string;
     slug: string;
-    content_type: {
+    concept_type: {
         label: string;
         value: string;
     };
@@ -41,7 +41,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
         formData.append("title", data?.title);
         formData.append("description", data?.description)
         formData.append("example", data?.example)
-        formData.append("content_type", data?.content_type?.value)
+        formData.append("concept_type", data?.concept_type?.value)
         formData.append("slug", data?.slug);
         formData.append("order", data?.order);
         formData.append("is_active", String(isActive));
@@ -91,12 +91,12 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
                                 rules={{
                                     required: {
                                         value: true,
-                                        message: "Content Type is required.",
+                                        message: "Concept Type is required.",
                                     },
                                 }}
-                                label="Content Type"
-                                name="content_type"
-                                placeholder="Select content type"
+                                label="Concept Type"
+                                name="concept_type"
+                                placeholder="Select concept type"
                                 options={
                                     ContentType ?
                                         ContentType.map((el) => ({
@@ -104,7 +104,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
                                         }))
                                         : []
                                 }
-                                helperText={errors?.content_type?.message}
+                                helperText={errors?.concept_type?.message}
                             // loading={isSportFetching || isSportLoading}
                             />
                         </Grid.Col>

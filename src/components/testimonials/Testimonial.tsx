@@ -15,6 +15,7 @@ const Testimonial = () => {
                     src="/choose-us-bg3.jpg"
                     alt="hero image"
                     fill
+                    sizes='100vh'
                     className="object-cover"
                 />
             </div>
@@ -62,6 +63,7 @@ const Testimonial = () => {
                                         src="/man1.png"
                                         alt="testimonials"
                                         fill
+                                        sizes='100vh'
                                         className=' object-cover'
                                     />
                                 </div>
@@ -108,6 +110,7 @@ const Testimonial = () => {
                                         src="/man1.png"
                                         alt="testimonials"
                                         fill
+                                        sizes='100vh'
                                         className=' object-cover'
                                     />
                                 </div>
@@ -154,6 +157,7 @@ const Testimonial = () => {
                                         src="/man1.png"
                                         alt="testimonials"
                                         fill
+                                        sizes='100vh'
                                         className=' object-cover'
                                     />
                                 </div>

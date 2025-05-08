@@ -97,7 +97,7 @@ const BettingTipsModalForm = ({ closeModal }: PropsI) => {
                         </Grid.Col>
                         <Grid.Col size='sm'>
                             <ImageUploadCard
-                                label='Icon'
+                                label='Image'
                                 name='Image'
                                 onChange={(val) => setMissionImage(val)}
                             />

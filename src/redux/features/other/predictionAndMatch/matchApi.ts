@@ -9,7 +9,7 @@ export const matchApi = rootApi.injectEndpoints({
             }),
             providesTags: ['Matches']
         }),
-        createMatch: builder.mutation<void, Omit<MatchesI, "id">>({
+        createMatch: builder.mutation<void, CreateMatchI>({
             query: (body) => ({
                 url: "/predictions/matches/",
                 method: "POST",
@@ -17,7 +17,7 @@ export const matchApi = rootApi.injectEndpoints({
             }),
             invalidatesTags: ["Matches"]
         }),
-        updateMatch: builder.mutation<void, { body: Omit<MatchesI, "id">, id: string }>({
+        updateMatch: builder.mutation<void, { body: CreateMatchI, id: string }>({
             query: ({ body, id }) => ({
                 url: `/predictions/matches/${id}/`,
                 method: "PUT",

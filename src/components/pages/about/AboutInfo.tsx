@@ -70,6 +70,7 @@ const AboutInfo = () => {
                                         src="/mission.jpg"
                                         alt="Our Team"
                                         fill
+                                        sizes='100vh'
                                         className='object-cover'
                                     />
                                 </div>

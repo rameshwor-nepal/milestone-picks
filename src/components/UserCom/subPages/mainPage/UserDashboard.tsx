@@ -2,6 +2,7 @@
 import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi';
 import PredictionCard from '@/ui/card/PredictionCard';
 import { DateInput, FormSelectInput } from '@/ui/formInput/FormInput';
+import Skeleton from '@/ui/skeleton/Skeleton';
 import React, { useState } from 'react'
 import { FaHistory, FaTrophy } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
@@ -18,7 +19,7 @@ const UserDashboard = () => {
     const [selectedDate, setSelectedDate] = useState(() =>
         new Date().toISOString().split("T")[0]
     );
-    const { data: predictionData } = useFetchPredictionsQuery({
+    const { data: predictionData, isLoading, isFetching } = useFetchPredictionsQuery({
         search: '',
         page: 1,
         page_size: 10
@@ -71,26 +72,30 @@ const UserDashboard = () => {
                         <span className='mr-2'> <MdClose size={20} /></span>   Clear Filter
                     </button>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {
-                        predictionData && predictionData.results?.length > 0 ?
-                            predictionData.results.map((el) => (
-                                <PredictionCard
-                                    key={el.id}
-                                    sport="NBA"
-                                    match={el.match.toString()}
-                                    date={new Date(el.placed_at).toLocaleDateString()}
-                                    time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                    prediction="Boston Celtics -5.5"
-                                    confidenceLevel={4}
-                                    status={getFormatStatus(el.result as string)}
-                                    detail={el.predicted_outcome}
-                                />
-                            ))
-                            :
-                            null
-                    }
-                </div>
+                {isLoading || isFetching ? (
+                    <Skeleton />
+                ) :
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {
+                            predictionData && predictionData.results?.length > 0 ?
+                                predictionData.results.map((el) => (
+                                    <PredictionCard
+                                        key={el.id}
+                                        sport={el.match_detail?.sport?.name || "-"}
+                                        match={`${el.match_detail?.team_1 || "-"} Vs ${el.match_detail?.team_2 || "-"}`}
+                                        date={new Date(el.placed_at).toLocaleDateString()}
+                                        time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                        prediction={el?.our_prediction || "-"}
+                                        confidenceLevel={el?.confidence_level || 4}
+                                        status={getFormatStatus(el.result as string)}
+                                        detail={el.predicted_outcome}
+                                    />
+                                ))
+                                :
+                                null
+                        }
+                    </div>
+                }
             </section>
 
             {/* Recent Picks Section */}
@@ -100,26 +105,30 @@ const UserDashboard = () => {
                     <h2 className="text-2xl font-bold text-white">Recent Picks</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {
-                        predictionData && predictionData.results?.length > 0 ?
-                            predictionData.results.map((el) => (
-                                <PredictionCard
-                                    key={el.id}
-                                    sport="NBA"
-                                    match={el.match.toString()}
-                                    date={new Date(el.placed_at).toLocaleDateString()}
-                                    time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                    prediction="Boston Celtics -5.5"
-                                    confidenceLevel={4}
-                                    status={getFormatStatus(el.result as string)}
-                                    detail={el.predicted_outcome}
-                                />
-                            ))
-                            :
-                            null
-                    }
-                </div>
+                {isLoading || isFetching ? (
+                    <Skeleton />
+                ) :
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {
+                            predictionData && predictionData.results?.length > 0 ?
+                                predictionData.results.map((el) => (
+                                    <PredictionCard
+                                        key={el.id}
+                                        sport={el.match_detail?.sport?.name || "-"}
+                                        match={`${el.match_detail?.team_1 || "-"} Vs ${el.match_detail?.team_2 || "-"}`}
+                                        date={new Date(el.placed_at).toLocaleDateString()}
+                                        time={new Date(el.placed_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                        prediction={el?.our_prediction || "-"}
+                                        confidenceLevel={el?.confidence_level || 4}
+                                        status={getFormatStatus(el.result as string)}
+                                        detail={el.predicted_outcome}
+                                    />
+                                ))
+                                :
+                                null
+                        }
+                    </div>
+                }
             </section>
 
         </section>

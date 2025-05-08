@@ -30,10 +30,10 @@ const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) =
     return (
         <div className="mt-6 flex flex-wrap gap-12">
             <div className="flex items-center gap-4">
-                <span className="text-sm font-normal text-green-3">Show per page:</span>
+                <span className="text-sm font-normal text-gold-dark">Show per page:</span>
                 <div className="relative">
                     <select
-                        className="p-2 min-w-12 bg-green-3 text-sm font-normal text-blue-1  rounded-md outline-none  appearance-none"
+                        className="p-2 min-w-12 bg-gold-dark text-sm font-normal text-navy  rounded-md outline-none  appearance-none"
                         onChange={(e) => handlePageLimitChange(parseInt(e.target.value))}
                         value={pageLimit}
                         disabled={totalRecords === 0}
@@ -48,7 +48,7 @@ const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) =
             <div className="flex-1 min-w-[8rem]"></div>
             <div className="flex items-center justify-start gap-4 flex-wrap">
                 {totalRecords ? (
-                    <span className="text-sm font-normal text-green-3">
+                    <span className="text-sm font-normal text-gold-dark">
                         {((currentPage) - 1) * (pageLimit) + 1} - {" "}
                         {(currentPage) * (pageLimit) > totalRecords
                             ? totalRecords
@@ -56,15 +56,15 @@ const Pagination = ({ onPageChange, onPageLimitChange, totalRecords }: PropsI) =
                         of {totalRecords} items
                     </span>
                 ) : (
-                    <span className="text-sm font-normal text-green-3">No records found</span>
+                    <span className="text-sm font-normal text-gold-dark">No records found</span>
                 )}
                 <div className="flex items-center gap-2 flex-wrap">
                     {Array.from({ length: totalPages }, (_, index) => (
                         <button
                             key={index + 1}
                             className={`min-w-[2rem] p-2 text-sm font-medium text-center rounded-md transition duration-200 cursor-pointer ${currentPage === (index + 1)
-                                ? "bg-green-3 text-blue-1"
-                                : "bg-green-1 text-green-3 hover:brightness-90"
+                                ? "bg-gold-dark text-navy"
+                                : "bg-navy-dark text-gold-dark hover:brightness-90"
                                 }`}
                             onClick={() => handlePageChange((index + 1))}
                         >

@@ -9,6 +9,7 @@ const FAQs = () => {
                     src={'/using-laptop.jpeg'}
                     alt='hero image'
                     fill
+                    sizes='100vh'
                     className='object-cover rounded-t-[50%]'
                 />
             </div>

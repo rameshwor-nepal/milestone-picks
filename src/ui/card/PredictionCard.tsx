@@ -12,7 +12,7 @@ interface PredictionCardProps {
     date: string;
     time: string;
     prediction: string;
-    confidenceLevel: 1 | 2 | 3 | 4 | 5;
+    confidenceLevel: number;
     status: 'win' | 'loss' | 'pending';
     detail: string;
 }

@@ -22,6 +22,7 @@ const ImageViewer = ({ src, alt }: { src: string, alt: string }) => {
                     src={src}
                     alt={alt}
                     fill
+                    sizes='100vh'
                     className='object-cover' />
             </div>
             {isHovered && (

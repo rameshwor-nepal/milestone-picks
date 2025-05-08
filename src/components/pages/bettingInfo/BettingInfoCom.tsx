@@ -1,14 +1,22 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import { FaAward, FaShieldAlt } from 'react-icons/fa'
 import { RiLineChartLine, RiMoneyDollarCircleLine } from 'react-icons/ri'
-import { tipCards } from '@/utils/ConstantValue'
 import { Card, CardContent } from '@/ui/card/Card'
 import { MdArrowForward } from 'react-icons/md'
 import Link from 'next/link'
 import Button from '@/ui/button/Button'
+import { useFetchBettingTipsInfoQuery } from '@/redux/features/other/bettingInfo/bettingTipsInfo/bettingTipsApi'
+import Skeleton from '@/ui/skeleton/Skeleton'
 
 const BettingInfoCom = () => {
+    const { data: bettingTips, isLoading, isFetching } = useFetchBettingTipsInfoQuery({
+        search: '',
+        page: 1,
+        page_size: 10
+    })
+
     return (
         <div className=' text-left'>
             {/* intro */}
@@ -57,6 +65,7 @@ const BettingInfoCom = () => {
                                     src="/photo1.jpg"
                                     alt="Sports Betting Strategy"
                                     fill
+                                    sizes='100vh'
                                     className="rounded-lg shadow-xl object-cover"
                                 />
                             </div>
@@ -65,54 +74,64 @@ const BettingInfoCom = () => {
                 </div>
             </section>
 
-            <div className={`space-y-8 transition-all duration-1000 py-16 px-4 md:px-10 lg:px-20`}>
-                {tipCards.map((card, index) => (
-                    <div key={index} className="group">
-                        <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform `}>
-                            <div className="md:w-1/2">
-                                <div className="relative h-64 md:h-full w-full overflow-hidden">
-                                    <Image
-                                        src={card.image}
-                                        alt={card.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                                        <div className="bg-white/10 backdrop-blur-md p-3 rounded-lg border border-white/20">
-                                            {card.icon}
-                                        </div>
+            {/* Betting Tips Section - Show Skeleton Only When Loading/Fetching */}
+            <div className="space-y-8 transition-all duration-1000 py-16 px-4 md:px-10 lg:px-20">
+                {isLoading || isFetching ? (
+                    <Skeleton />
+                ) : bettingTips && bettingTips.results.length > 0 ? (
+                    bettingTips.results.map((card, index) => (
+                        <div key={index} className="group">
+                            <div
+                                className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform`}
+                            >
+                                <div className="md:w-1/2">
+                                    <div className="relative h-64 md:h-full w-full overflow-hidden">
+                                        <Image
+                                            src={card.image}
+                                            alt={card.title}
+                                            fill
+                                            sizes="100vh"
+                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
                                     </div>
                                 </div>
-                            </div>
-
-                            <div
-                                className={`md:w-1/2 p-8 md:p-10 flex flex-col justify-center`}
-                                data-aos={`${index % 2 === 0 ? 'fade-left' : 'fade-right'}`}
-                            >
-                                <h3 className="text-2xl text-navy font-bold mb-3 group-hover:text-gold transition-colors">{card.title}</h3>
-                                <p className="text-navy">{card.description}</p>
-
-                                {index === 4 && (
-                                    <ul className="list-disc list-inside mt-4 space-y-2 text-navy">
-                                        <li className="flex items-start">
-                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
-                                            <span>Legit handicappers, like us, always share their pick history—win or lose.</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
-                                            <span>We don&apos;t promise &quot;get rich quick&quot; schemes. Sports betting is about strategy and patience, not overnight success.</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
-                                            <span>Watch out for anyone flaunting their lifestyle on social media but not sharing the details of their picks. If it looks too good to be true, it probably is.</span>
-                                        </li>
-                                    </ul>
-                                )}
+                                <div
+                                    className="md:w-1/2 p-8 md:p-10 flex flex-col justify-center"
+                                    data-aos={`${index % 2 === 0 ? 'fade-left' : 'fade-right'}`}
+                                >
+                                    <h3 className="text-2xl text-navy font-bold mb-3 group-hover:text-gold transition-colors">
+                                        {card.title}
+                                    </h3>
+                                    <p className="text-navy">{card.content}</p>
+                                    {index === 4 && (
+                                        <ul className="list-disc list-inside mt-4 space-y-2 text-navy">
+                                            <li className="flex items-start">
+                                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
+                                                <span>Legit handicappers, like us, always share their pick history—win or lose.</span>
+                                            </li>
+                                            <li className="flex items-start">
+                                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
+                                                <span>
+                                                    We don&apos;t promise "get rich quick" schemes. Sports betting is about strategy and patience, not
+                                                    overnight success.
+                                                </span>
+                                            </li>
+                                            <li className="flex items-start">
+                                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold mt-2 mr-2"></span>
+                                                <span>
+                                                    Watch out for anyone flaunting their lifestyle on social media but not sharing the details of
+                                                    their picks. If it looks too good to be true, it probably is.
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-
+                    ))
+                ) : (
+                    <p className="text-navy text-center">No betting tips available.</p>
+                )}
             </div>
 
             <section className="py-20 bg-navy relative overflow-hidden my-4 md:my-10 lg:my-14">

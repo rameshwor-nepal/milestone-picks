@@ -7,16 +7,16 @@ import React, { useState } from 'react'
 import PredictionModalForm from './PredictionModalForm';
 import { useFetchMatchesQuery } from '@/redux/features/other/predictionAndMatch/matchApi';
 import Pagination from '@/ui/pagination/Pagination';
-import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi';
+import { useDeletePredictionMutation, useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi';
+import ConfirmModal from '@/ui/modal/ConfirmModal';
+import { ToastError } from '@/utils/toast/ToastError';
+import { toast } from 'react-toastify';
 
-export interface MatchInfoI {
-    team1: string;
-    team2: string;
-    id: string;
-}
 const PredictionList = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
-    const [MatchInfo, setMatchInfo] = useState<MatchInfoI | null>(null)
+    const [MatchInfo, setMatchInfo] = useState<MatchesI | null>(null)
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+    const [editId, setEditId] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
         search: '',
         page: 1,
@@ -27,19 +27,38 @@ const PredictionList = () => {
 
     const getPredictionForMatch = (matchId: string | number) => {
         if (!predictionData || !predictionData.results) return null;
-        return predictionData.results.find((pred) => pred.match === matchId) || null;
+        return predictionData.results.find((pred) => pred.match_detail.id === matchId) || null;
     };
 
+    const [deletePrediction] = useDeletePredictionMutation()
+
+    const handleDeleteData = (id: string) => {
+        setEditId(id);
+        setConfirmModalOpen(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        if (editId) {
+            await deletePrediction(editId)
+                .unwrap()
+                .then(() => {
+                    setEditId(null);
+                    setConfirmModalOpen(false);
+                    toast.success("Record deleted successfully.");
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+    };
     const handleModalClose = () => {
         setAddModalOpen(false);
+        setConfirmModalOpen(false);
+        setEditId(null);
     };
 
-    const handleAddIconClick = (id: string, team1: string, team2: string) => {
-        setMatchInfo({
-            team1: team1,
-            team2: team2,
-            id: id
-        })
+    const handleAddIconClick = (info: MatchesI) => {
+        setMatchInfo(info)
         setAddModalOpen(true);
     }
 
@@ -70,11 +89,15 @@ const PredictionList = () => {
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
-                                {"Winner?"}
+                                {"Winner"}
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
-                                {"Prediction"}
+                                {"Our Prediction"}
+                            </DataTable.THD>
+
+                            <DataTable.THD align="center">
+                                {"Prediction Detail"}
                             </DataTable.THD>
 
                             <DataTable.THD align="center">
@@ -96,9 +119,13 @@ const PredictionList = () => {
                                         <DataTable.TCD align="center">{el.team_1}</DataTable.TCD>
                                         <DataTable.TCD align="center">{el.team_2}</DataTable.TCD>
 
-                                        <DataTable.TCD align="center">{el.sport}</DataTable.TCD>
+                                        <DataTable.TCD align="center">{el.sport.name}</DataTable.TCD>
                                         <DataTable.TCD align="center">
-                                            {prediction?.prediction_type || "-"} </DataTable.TCD>
+                                            {prediction?.prediction_type || "-"}
+                                        </DataTable.TCD>
+                                        <DataTable.TCD align="center">
+                                            {prediction?.our_prediction || "-"}
+                                        </DataTable.TCD>
                                         <DataTable.TCD align="center">
                                             {prediction?.predicted_outcome || "-"}
                                         </DataTable.TCD>
@@ -111,13 +138,7 @@ const PredictionList = () => {
                                                     {
                                                         prediction == null ?
                                                             <ActionButton.AddIcon
-                                                                onClick={() => handleAddIconClick(el.id, el.team_1, el.team_2)}
-                                                            // disabled={
-                                                            //   !canUpdateRecord({
-                                                            //     status: el.status,
-                                                            //     authRoles: roles,
-                                                            //   })
-                                                            // }
+                                                                onClick={() => handleAddIconClick(el)}
                                                             /> :
                                                             <ActionButton.EditIcon
                                                                 onClick={() => { }}
@@ -125,7 +146,7 @@ const PredictionList = () => {
                                                     }
 
                                                     <ActionButton.DeleteIcon
-                                                    // onClick={() => navigate(`details/${el.id}`)}
+                                                        onClick={() => handleDeleteData(prediction ? prediction.id.toLocaleString() : '')}
                                                     />
 
                                                 </ActionButton>
@@ -156,8 +177,16 @@ const PredictionList = () => {
                 closeModal={handleModalClose}
                 title='Add Prediction'
             >
-                <PredictionModalForm closeModal={handleModalClose} matchInfo={MatchInfo as MatchInfoI} />
+                <PredictionModalForm closeModal={handleModalClose} matchInfo={MatchInfo as MatchesI} />
             </ModalForm>
+            <ConfirmModal
+                title="Delete Prediction Info"
+                info="Are you sure you want to delete this record?"
+                isModalOpen={confirmModalOpen}
+                onConfirm={() => handleDeleteConfirm()}
+                closeModal={handleModalClose}
+                varient='danger'
+            />
         </div>
     )
 }

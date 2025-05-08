@@ -1,8 +1,17 @@
+import PrevHistory from '@/components/adminCom/prevHistory/PrevHistory'
+import { PageLayout } from '@/ui/layout/PageLayout'
 import React from 'react'
 
 const History = () => {
     return (
-        <div>History</div>
+        <>
+            <PageLayout
+                title='Prediction History'
+                subtitle='View previous prediction'
+            >
+                <PrevHistory />
+            </PageLayout>
+        </>
     )
 }
 

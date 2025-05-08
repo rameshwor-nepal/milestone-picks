@@ -7,21 +7,48 @@ import { PageLayoutHeader } from '@/ui/layout/PageLayout';
 import ModalForm from '@/ui/modal/ModalForm';
 import React, { useState } from 'react'
 import MatchModalForm from './MatchModalForm';
-import { useFetchMatchesQuery } from '@/redux/features/other/predictionAndMatch/matchApi';
+import { useDeleteMatchMutation, useFetchMatchesQuery } from '@/redux/features/other/predictionAndMatch/matchApi';
 import Pagination from '@/ui/pagination/Pagination';
 import { formatDate } from '@/utils/dateFormat/dateFormat';
+import { ToastError } from '@/utils/toast/ToastError';
+import { toast } from 'react-toastify';
+import ConfirmModal from '@/ui/modal/ConfirmModal';
 
 const MatchList = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+    const [editId, setEditId] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
         search: '',
         page: 1,
         page_size: 10
     });
     const { data, isLoading, isFetching } = useFetchMatchesQuery(searchQuery);
+    const [deleteMatch] = useDeleteMatchMutation()
 
+    const handleDeleteData = (id: string) => {
+        setEditId(id);
+        setConfirmModalOpen(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        if (editId) {
+            await deleteMatch(editId)
+                .unwrap()
+                .then(() => {
+                    setEditId(null);
+                    setConfirmModalOpen(false);
+                    toast.success("Record deleted successfully.");
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+    };
     const handleModalClose = () => {
         setAddModalOpen(false);
+        setConfirmModalOpen(false);
+        setEditId(null);
     };
     return (
         <div className='text-left'>
@@ -75,7 +102,7 @@ const MatchList = () => {
                             {data.results.map((el, index) => (
                                 <DataTable.TR key={el.id}>
                                     <DataTable.TCD align="center">{index + 1}</DataTable.TCD>
-                                    <DataTable.TCD align="center">{el.sport}</DataTable.TCD>
+                                    <DataTable.TCD align="center">{el.sport.name}</DataTable.TCD>
                                     <DataTable.TCD align="center">{el.team_1}</DataTable.TCD>
                                     <DataTable.TCD align="center">{el.team_2}</DataTable.TCD>
                                     <DataTable.TCD align="center">{el?.location || '-'} </DataTable.TCD>
@@ -93,8 +120,8 @@ const MatchList = () => {
                                                 // }
                                                 />
                                                 <ActionButton.DeleteIcon
-                                                    onClick={() => { }}
-                                                // onClick={() => navigate(`details/${el.id}`)}
+                                                    onClick={() => handleDeleteData(el.id)}
+
                                                 />
 
                                             </ActionButton>
@@ -125,6 +152,15 @@ const MatchList = () => {
             >
                 <MatchModalForm closeModal={handleModalClose} />
             </ModalForm>
+
+            <ConfirmModal
+                title="Delete Match Info"
+                info="Are you sure you want to delete this record?"
+                isModalOpen={confirmModalOpen}
+                onConfirm={() => handleDeleteConfirm()}
+                closeModal={handleModalClose}
+                varient='danger'
+            />
         </div>
     )
 }

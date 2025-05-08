@@ -5,7 +5,9 @@ import { LinksProps } from './NavLinks';
 import { SidenavLink } from './SidenavLink';
 import { SidenavLinkMain } from './SidenavLinkMain';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
+import Link from 'next/link';
+import { logout } from '@/redux/features/auth/authSlice';
+import { useAppDispatch } from '@/redux/features/store';
 
 export const NavContext = createContext({
     sideBarExpanded: false,
@@ -19,6 +21,7 @@ type Props = {
 
 const Sidenav = (props: Props) => {
     const currentPath = usePathname();
+    const dispatch = useAppDispatch()
     const [expandedSidebar, toggleSidebar] = useState(true);
 
     const handleSideBarExpand = () => {
@@ -48,18 +51,18 @@ const Sidenav = (props: Props) => {
             <div className='flex flex-col justify-between h-full items-center'>
 
                 {/* Logo & Expand Button */}
-                <div className="relative w-full flex flex-col items-center gap-4 pt-6 pb-4">
-                    <div className={`${expandedSidebar ? 'w-24' : 'w-12'} transition-all aspect-[3/4] relative`}>
-                        <Image
-                            src={"/man1.png"}
-                            alt='logo image'
-                            fill
-                            className='object-cover'
-                        />
+                <div className="relative w-full flex flex-col items-center gap-4 pt-6 pb-4 md:pb-8">
+                    <div className={`transition-all  relative`}>
+                        <Link href="/" className="">
+                            <span className={`${expandedSidebar ? "text-xl lg:text-2xl" : "text-[12px]"} font-display font-bold  text-white`}>
+                                Milestone
+                                <span className="text-gold">Picks</span>
+                            </span>
+                        </Link>
                     </div>
                     <button
                         onClick={handleSideBarExpand}
-                        className={`absolute top-7 ${expandedSidebar ? 'right-[-1.2rem]' : 'right-5'} h-8 w-8 flex items-center justify-center rounded-full bg-gold border-2 border-gold shadow-lg`}
+                        className={`absolute top-12 right-[-1.2rem] h-8 w-8 flex items-center justify-center rounded-full bg-gold border-2 border-gold shadow-lg`}
                     >
                         <MdKeyboardDoubleArrowRight
                             className={`text-white text-xl transition-transform ${expandedSidebar ? 'rotate-180' : ''}`}
@@ -81,7 +84,10 @@ const Sidenav = (props: Props) => {
                 </div>
 
                 {/* logout section */}
-                <button className='flex items-center gap-2 pb-5 text-lg cursor-pointer'>
+                <button
+                    className='flex items-center gap-2 pb-5 text-lg cursor-pointer hover:text-red-500'
+                    onClick={() => dispatch(logout())}
+                >
                     <span><MdLogout size={25} /></span> {expandedSidebar ? "Logout" : ''}
                 </button>
             </div>

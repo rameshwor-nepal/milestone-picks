@@ -34,7 +34,7 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
 
         const postData = {
-            sport: data?.sport.value,
+            sport_id: data?.sport.value,
             team_1: data?.team_1,
             team_2: data?.team_2,
             location: data?.location,

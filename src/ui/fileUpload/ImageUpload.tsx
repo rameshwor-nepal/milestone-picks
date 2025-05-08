@@ -65,7 +65,7 @@ export const ImageUploadCard = ({ name, label, value, onChange }: ImageInputProp
                             src={val ? returnImgUrl(val) : value ? returnImgUrl(value) : ''}
                             alt="Uploaded"
                             fill
-                            unoptimized
+                            sizes='100vh'
                             className="object-cover group-hover:blur-sm group-hover:brightness-75"
                         />
                     </div>

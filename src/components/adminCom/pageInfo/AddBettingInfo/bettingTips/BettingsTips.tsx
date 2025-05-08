@@ -154,6 +154,7 @@ const BettingsTips = () => {
                 isModalOpen={confirmModalOpen}
                 onConfirm={() => handleDeleteConfirm()}
                 closeModal={handleModalClose}
+                varient='danger'
             />
         </>
     )
