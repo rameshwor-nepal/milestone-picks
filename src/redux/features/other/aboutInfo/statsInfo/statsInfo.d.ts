@@ -11,3 +11,11 @@ interface GetStatsResponseI {
         number: number;
     }[]
 }
+
+interface CreateStatI {
+    section: string;
+    icon: string;
+    number: string;
+    description: string;
+    order: string;
+}

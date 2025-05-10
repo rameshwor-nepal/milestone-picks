@@ -1,7 +1,6 @@
 import { useCreateBettingConceptInfoMutation } from '@/redux/features/other/bettingInfo/bettingConceptInfo/bettingConceptInfoApi';
 import Button from '@/ui/button/Button';
-import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
-import { Form, SelectInput, TextInput } from '@/ui/formInput/FormInput';
+import { Form, SelectInput, TextArea, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import Toggle from '@/ui/toggle/Toggle';
 import { ContentType } from '@/utils/ConstantValue';
@@ -23,10 +22,10 @@ interface FormFields {
     description: string;
     example: string;
     order: string;
+    icon: string;
 }
 
 const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
-    const [missionImage, setMissionImage] = useState<File | null>(null)
     const [isActive, setIsActive] = useState<boolean>(true)
     const {
         register,
@@ -37,19 +36,16 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
     const [createBettingConcept] = useCreateBettingConceptInfoMutation();
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        const formData = new FormData();
-        formData.append("title", data?.title);
-        formData.append("description", data?.description)
-        formData.append("example", data?.example)
-        formData.append("concept_type", data?.concept_type?.value)
-        formData.append("slug", data?.slug);
-        formData.append("order", data?.order);
-        formData.append("is_active", String(isActive));
-
-        if (missionImage) {
-            formData.append("icon", missionImage);
+        const postData = {
+            title: data.concept_type.label,
+            description: data.description,
+            example: data.example,
+            concept_type: data.concept_type.value,
+            icon: data.icon,
+            order: data.order,
+            is_active: isActive
         }
-        await createBettingConcept(formData).unwrap()
+        await createBettingConcept(postData).unwrap()
             .then(() => {
                 toast.success("Betting Concept added successfully");
                 closeModal()
@@ -63,27 +59,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
             <Form>
                 <Grid>
                     <Grid.Row>
-                        <Grid.Col size='lg'>
-                            <TextInput
-                                label='Title'
-                                placeholder='Enter a Title'
-                                {...register("title", {
-                                    required: {
-                                        value: true,
-                                        message: "Title is required.",
-                                    },
-                                })}
-                                errorMsg={errors?.title?.message}
-                            />
-                        </Grid.Col>
-                        <Grid.Col size='lg'>
-                            <TextInput
-                                label='Slug'
-                                placeholder='Enter a Slug'
-                                {...register("slug")}
-                                errorMsg={errors?.slug?.message}
-                            />
-                        </Grid.Col>
+
                         <Grid.Col size='lg'>
                             <SelectInput
                                 required
@@ -109,7 +85,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
                             />
                         </Grid.Col>
                         <Grid.Col size='lg'>
-                            <TextInput
+                            <TextArea
                                 label='Description'
                                 placeholder='Enter a Description'
                                 {...register("description", {
@@ -122,7 +98,7 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
                             />
                         </Grid.Col>
                         <Grid.Col size='lg'>
-                            <TextInput
+                            <TextArea
                                 label='Example'
                                 placeholder='Enter a Example'
                                 {...register("example", {
@@ -140,13 +116,15 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
                                 placeholder='Enter a order'
                                 {...register("order")}
                                 errorMsg={errors?.order?.message}
-
+                                defaultValue={1}
                             />
                         </Grid.Col>
                         <Grid.Col size='sm'>
-                            <ImageUploadCard
-                                name='Image'
-                                onChange={(val) => setMissionImage(val)}
+                            <TextInput
+                                label='Icon'
+                                placeholder='Enter a Icon eg: fa-user'
+                                {...register("icon")}
+                            // errorMsg={errors?.icon?.message}
                             />
                         </Grid.Col>
                         <Grid.Col size='lg'>

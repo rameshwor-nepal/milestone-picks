@@ -9,7 +9,7 @@ export const FeatureInfoApi = rootApi.injectEndpoints({
             }),
             providesTags: ["FeatureInfo"]
         }),
-        createFeatureInfo: builder.mutation<void, FormData>({
+        createFeatureInfo: builder.mutation<void, CreateFeatureI>({
             query: (body) => ({
                 url: "/aboutsection/features/",
                 method: "POST",
@@ -17,7 +17,7 @@ export const FeatureInfoApi = rootApi.injectEndpoints({
             }),
             invalidatesTags: ["FeatureInfo"]
         }),
-        updateFeatureInfo: builder.mutation<void, { body: FormData, id: string }>({
+        updateFeatureInfo: builder.mutation<void, { body: CreateFeatureI, id: string }>({
             query: ({ body, id }) => ({
                 url: `/aboutsection/features/${id}/`,
                 method: "PUT",

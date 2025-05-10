@@ -9,9 +9,15 @@ import Link from 'next/link'
 import Button from '@/ui/button/Button'
 import { useFetchBettingTipsInfoQuery } from '@/redux/features/other/bettingInfo/bettingTipsInfo/bettingTipsApi'
 import Skeleton from '@/ui/skeleton/Skeleton'
+import { useFetchBettingConceptInfoQuery } from '@/redux/features/other/bettingInfo/bettingConceptInfo/bettingConceptInfoApi'
 
 const BettingInfoCom = () => {
     const { data: bettingTips, isLoading, isFetching } = useFetchBettingTipsInfoQuery({
+        search: '',
+        page: 1,
+        page_size: 10
+    })
+    const { data: bettingConcept, isLoading: isBettingConceptLoading, isFetching: isBettingConceptFetching } = useFetchBettingConceptInfoQuery({
         search: '',
         page: 1,
         page_size: 10
@@ -178,108 +184,35 @@ const BettingInfoCom = () => {
                             </p>
                         </div>
 
-                        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 `}>
-                            <Card className="group hover:shadow-lg transition-all overflow-hidden border border-gold">
-                                <div className="bg-navy p-6 relative">
-                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">Point Spreads</h3>
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                </div>
-                                <CardContent className="p-6 text-base text-navy">
-                                    <p className=" mb-3">
-                                        A bet on the margin of victory in a game. The favorite gives points, while the underdog gets points.
-                                    </p>
-                                    <p className='bg-slate-50 p-2 md:p-4'>
-                                        <span className='block font-semibold'>Example:</span>
-                                        Lakers -5.5 means the Lakers need to win by 6 or more points for the bet to win.
-                                    </p>
-                                </CardContent>
-                            </Card>
+                        {isBettingConceptLoading || isBettingConceptFetching ?
+                            <Skeleton /> :
 
-                            <Card className="group hover:shadow-lg  transition-all  overflow-hidden border border-gold">
-                                <div className="bg-navy p-6 relative">
-                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">Moneylines</h3>
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                </div>
-                                <CardContent className="p-6 text-navy">
-                                    <p className=" mb-3">
-                                        A straight-up bet on which team will win the game outright, with no point spread involved.
-                                    </p>
-                                    <p className='bg-slate-50 p-2 md:p-4'>
-                                        <span className='block font-semibold'>Example:</span>
-                                        Celtics +150 means a $100 bet would win $150 if the Celtics win the game outright.
-                                    </p>
-                                </CardContent>
-                            </Card>
+                            <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 `}>
+                                {
+                                    bettingConcept && bettingConcept.results.length > 0 ?
+                                        bettingConcept.results.map((el, index) => (
+                                            <Card className="group hover:shadow-lg transition-all overflow-hidden border border-gold" key={index}>
+                                                <div className="bg-navy p-6 relative">
+                                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">{el.title}</h3>
+                                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                                                </div>
+                                                <CardContent className="p-6 text-base text-navy">
+                                                    <p className=" mb-3">
+                                                        {el.description}
+                                                    </p>
+                                                    <p className='bg-slate-50 p-2 md:p-4'>
+                                                        <span className='block font-semibold'>Example:</span>
+                                                        {el.example}
+                                                    </p>
+                                                </CardContent>
+                                            </Card>
+                                        ))
 
-                            <Card className="group hover:shadow-lg border border-gold transition-all  overflow-hidden">
-                                <div className="bg-navy p-6 relative">
-                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">Totals (Over/Under)</h3>
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                </div>
-                                <CardContent className="p-6 text-navy">
-                                    <p className="mb-3">
-                                        A bet on the combined score of both teams, regardless of which team wins.
-                                    </p>
+                                        : <p>No betting concept found</p>
+                                }
+                            </div>
+                        }
 
-                                    <p className='bg-slate-50 p-2 md:p-4'>
-                                        <span className='block font-semibold'>Example:</span>
-                                        Over 220.5 means the combined score must be 221 or higher for the bet to win.
-                                    </p>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="group hover:shadow-lg border border-gold transition-all  overflow-hidden">
-                                <div className="bg-navy p-6 relative">
-                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">Prop Bets</h3>
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                </div>
-                                <CardContent className="p-6 text-navy">
-                                    <p className="mb-3">
-                                        Bets on specific events or player performances within a game.
-                                    </p>
-
-                                    <p className='bg-slate-50 p-2 md:p-4'>
-                                        <span className='block font-semibold'>Example:</span>
-                                        LeBron James Over 25.5 points means LeBron needs to score 26 or more points for the bet to win.
-                                    </p>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="group hover:shadow-lg border border-gold transition-all  overflow-hidden">
-                                <div className="bg-navy p-6 relative">
-                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">Parlays</h3>
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                </div>
-                                <CardContent className="p-6 text-navy">
-                                    <p className="mb-3">
-                                        Combining multiple bets into one wager for a higher potential payout. All selections must win.
-                                    </p>
-
-                                    <p className='bg-slate-50 p-2 md:p-4'>
-                                        <span className='block font-semibold'>Example:</span>
-                                        Lakers -5.5, Over 220.5, and Celtics ML combined into one bet for a larger payout.
-                                    </p>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="group hover:shadow-lg border border-gold transition-all  overflow-hidden">
-                                <div className="bg-navy p-6 relative">
-                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">Teasers</h3>
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                                </div>
-                                <CardContent className="p-6 text-navy">
-                                    <p className="mb-3">
-                                        Similar to parlays, but allows you to adjust the point spread in your favor for a lower payout.
-                                    </p>
-
-                                    <p className='bg-slate-50 p-2 md:p-4'>
-                                        <span className='block font-semibold'>Example:</span>
-                                        Adjusting Lakers -5.5 to Lakers +0.5 as part of a teaser bet.
-                                    </p>
-                                </CardContent>
-                            </Card>
-
-                        </div>
                     </div>
                 </div>
 

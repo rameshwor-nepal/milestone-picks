@@ -9,7 +9,7 @@ export const BettingConceptInfoApi = rootApi.injectEndpoints({
             }),
             providesTags: ["BettingConceptInfo"]
         }),
-        createBettingConceptInfo: builder.mutation<void, FormData>({
+        createBettingConceptInfo: builder.mutation<void, CreateBettingConceptI>({
             query: (body) => ({
                 url: "/bettinginfo/betting-basic-concepts/",
                 method: "POST",
@@ -17,7 +17,7 @@ export const BettingConceptInfoApi = rootApi.injectEndpoints({
             }),
             invalidatesTags: ["BettingConceptInfo"]
         }),
-        updateBettingConceptInfo: builder.mutation<void, { body: FormData, id: string }>({
+        updateBettingConceptInfo: builder.mutation<void, { body: CreateBettingConceptI, id: string }>({
             query: ({ body, id }) => ({
                 url: `/bettinginfo/betting-basic-concepts/${id}/`,
                 method: "PUT",

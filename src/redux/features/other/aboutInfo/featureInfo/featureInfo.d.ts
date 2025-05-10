@@ -10,3 +10,10 @@ interface GetFeatureResponseI {
         order: number;
     }[]
 }
+
+interface CreateFeatureI {
+    title: string;
+    description: string;
+    icon: string;
+    order: string;
+}

@@ -13,3 +13,13 @@ interface BettingConceptResponseI {
         is_active: boolean;
     }[]
 }
+
+interface CreateBettingConceptI {
+    title: string;
+    description: string;
+    example: string;
+    concept_type: string;
+    icon: string;
+    order: string;
+    is_active: boolean;
+}

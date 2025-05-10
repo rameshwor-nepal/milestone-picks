@@ -1,42 +1,39 @@
+import { useCreateFeatureInfoMutation } from '@/redux/features/other/aboutInfo/featureInfo/featureInfoApi';
 import Button from '@/ui/button/Button';
-import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
 import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
-import React, { useState } from 'react'
+import { ToastError } from '@/utils/toast/ToastError';
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 interface PropsI {
     closeModal: () => void;
 }
 interface FormFields {
     title: string;
     description: string;
+    icon: string;
     order: string;
 }
 const FeatureModalForm = ({ closeModal }: PropsI) => {
-    const [featureIcon, setFeatureIcon] = useState<File | null>(null)
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<FormFields>();
+    const [createFeature] = useCreateFeatureInfoMutation()
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        const formData = new FormData();
-        formData.append("title", data?.title);
-        formData.append("description", data?.description);
-
-        if (featureIcon) {
-            formData.append("icon", featureIcon);
-        }
-        //  await createSportCategory(formData).unwrap()
-        //      .then(() => {
-        //          toast.success("Content for Hero section created successfully");
-        //          closeModal()
-        //      })
-        //      .catch((error) => {
-        //          ToastError.serialize(error);
-        //      })
+        await createFeature(data).unwrap()
+            .then(() => {
+                toast.success("Feature content added successfully");
+                closeModal()
+            })
+            .catch((error) => {
+                ToastError.serialize(error);
+            })
     };
+
     return (
         <div>
             <Form>
@@ -74,13 +71,20 @@ const FeatureModalForm = ({ closeModal }: PropsI) => {
                                 placeholder='Enter a order'
                                 {...register("order")}
                                 errorMsg={errors?.order?.message}
-
+                                defaultValue={0}
                             />
                         </Grid.Col>
-                        <Grid.Col size='sm'>
-                            <ImageUploadCard
-                                name='Icon'
-                                onChange={(val) => setFeatureIcon(val)}
+                        <Grid.Col size='lg'>
+                            <TextInput
+                                label='Icon'
+                                placeholder='Enter a Icon eg: fa-user'
+                                {...register("icon", {
+                                    required: {
+                                        value: true,
+                                        message: "Icon is required.",
+                                    },
+                                })}
+                                errorMsg={errors?.icon?.message}
                             />
                         </Grid.Col>
                     </Grid.Row>

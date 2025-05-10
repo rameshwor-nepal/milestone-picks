@@ -4,6 +4,8 @@ import { Toast } from "@/utils/toast/Toast";
 import ReduxProvider from "./Provider";
 import TokenProvider from "./TokenProvider";
 import { AOSInit } from "./Aos";
+import 'font-awesome/css/font-awesome.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const metadata: Metadata = {
   title: "Milestone Picks",

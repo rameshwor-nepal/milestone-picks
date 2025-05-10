@@ -2,14 +2,14 @@ import { rootApi } from "@/redux/features/root.api";
 
 export const StatsInfoApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
-        fetchStatsInfo: builder.query<GetFeatureResponseI, SearchFieldI>({
+        fetchStatsInfo: builder.query<GetStatsResponseI, SearchFieldI>({
             query: ({ search, page, page_size }) => ({
                 url: `/aboutsection/statistics/?search=${search}&page=${page || 1}&page_size=${page_size || 10}/`,
                 method: "GET",
             }),
             providesTags: ["StatisticsInfo"]
         }),
-        createStatsInfo: builder.mutation<void, FormData>({
+        createStatsInfo: builder.mutation<void, CreateStatI>({
             query: (body) => ({
                 url: "/aboutsection/statistics/",
                 method: "POST",
@@ -17,7 +17,7 @@ export const StatsInfoApi = rootApi.injectEndpoints({
             }),
             invalidatesTags: ["StatisticsInfo"]
         }),
-        updateStatsInfo: builder.mutation<void, { body: FormData, id: string }>({
+        updateStatsInfo: builder.mutation<void, { body: CreateStatI, id: string }>({
             query: ({ body, id }) => ({
                 url: `/aboutsection/statistics/${id}/`,
                 method: "PUT",

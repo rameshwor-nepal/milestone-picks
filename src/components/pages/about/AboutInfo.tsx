@@ -1,13 +1,20 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import { MdArrowForward, MdOutlineTrendingUp } from 'react-icons/md'
 import { FaBookOpen } from 'react-icons/fa'
 import { FiTarget } from 'react-icons/fi'
 import Button from '@/ui/button/Button'
-import { features, stats } from '@/utils/ConstantValue'
 import Link from 'next/link'
+import WhyChooseUs from '@/components/heroSection/WhyChooseUs'
+import { useFetchStatsInfoQuery } from '@/redux/features/other/aboutInfo/statsInfo/statsInfoApi'
 
 const AboutInfo = () => {
+    const { data: statsInfo } = useFetchStatsInfoQuery({
+        search: '',
+        page: 1,
+        page_size: 10
+    })
     return (
         <main className=' text-gray-200'>
 
@@ -15,24 +22,31 @@ const AboutInfo = () => {
             <section id="stats" className="py-8 bg-white relative z-10">
                 <div className="container mx-auto px-4 md:px-10 lg:px-20">
                     <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 -mt-16 transform transition-all duration-1000 translate-y-0 opacity-100`}>
-                        {stats.map((stat, index) => (
-                            <div
-                                data-aos="zoom-in" data-aos-duration="1000"
-                                key={index}
-                                className="border-none rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-slate-50 group"
-                            >
-                                <div className="p-6 text-center">
-                                    <div className="flex justify-center mb-4">
-                                        <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                                            {stat.icon}
+                        {statsInfo && statsInfo.results.length > 0 ?
+                            statsInfo.results.map((stat, index) => (
+                                <div
+                                    data-aos="zoom-in" data-aos-duration="1000"
+                                    key={index}
+                                    className="border-none rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden bg-slate-50 group"
+                                >
+                                    <div className="p-6 text-center">
+                                        <div className="flex justify-center mb-4">
+                                            <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                                                <span className='text-3xl text-gold'>
+                                                    <i className={`fa ${stat.icon}`}></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="font-bold text-4xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">
+                                            {stat.number}
+                                        </div>
+                                        <div className="text-sm text-gray-600">
+                                            {stat.description}
                                         </div>
                                     </div>
-                                    <div className="font-bold text-4xl text-navy mb-2 group-hover:text-gold transition-colors duration-300">{stat.value}</div>
-                                    <div className="text-sm text-gray-600">{stat.label}</div>
+                                    <div className="h-1.5 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform origin-left group-hover:scale-x-100 scale-x-0 transition-transform duration-300"></div>
                                 </div>
-                                <div className="h-1.5 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform origin-left group-hover:scale-x-100 scale-x-0 transition-transform duration-300"></div>
-                            </div>
-                        ))}
+                            )) : null}
                     </div>
                 </div>
             </section>
@@ -86,36 +100,8 @@ const AboutInfo = () => {
             </section>
 
             {/* Features Section with Hover Cards */}
-            <section id="features" className="py-16 bg-[#e6effc] relative overflow-hidden text-left">
-
-                <div className="container mx-auto px-4 relative z-10 md:px-10 lg:px-20">
-                    <div className="max-w-4xl mx-auto text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Why Choose Milestone Picks</h2>
-                        <div className="w-20 h-1 bg-gold mx-auto  mb-6"></div>
-                        <p className="text-gray-700 text-lg">
-                            What makes us different is our transparency and educational approach to sports betting.
-                        </p>
-                    </div>
-                    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 `}>
-                        {features.map((feature, index) => (
-                            <div
-                                data-aos="zoom-in" data-aos-duration="1000"
-                                key={index}
-                                className="bg-white rounded-xl flex flex-col justify-between shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden border border-transparent hover:border-gold/20"
-
-                            >
-                                <div className="p-8 text-center">
-                                    <div className="w-16 h-16 bg-navy/5 text-gold rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-navy/10 transition-colors duration-300 transform group-hover:scale-110">
-                                        {feature.icon}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold transition-colors">{feature.title}</h3>
-                                    <p className="text-gray-600 text-sm">{feature.description}</p>
-                                </div>
-                                <div className="h-1 w-full bg-gradient-to-r from-gold-dark via-gold to-gold-light transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            <section id="features" className=" bg-[#e6effc] relative overflow-hidden text-left">
+                <WhyChooseUs />
             </section>
 
             {/* Philosophy Section with Image */}
