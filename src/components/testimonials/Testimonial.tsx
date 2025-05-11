@@ -7,7 +7,7 @@ import Carousel from '@/ui/carousel/Carousel'
 const Testimonial = () => {
     return (
         <section className="text-gray-200 text-left relative rounded-md min-h-[90vh] w-full">
-            <div className="absolute h-full w-full z-10 bg-[linear-gradient(to_bottom,rgba(245,240,225,0.2),rgba(245,240,225,0.4))]"></div>
+            <div className="absolute h-full w-full z-10 bg-[linear-gradient(to_bottom,rgba(245,240,225,0.3),rgba(245,240,225,0.5))]"></div>
 
             {/* Background Image */}
             <div className="absolute z-0 h-full w-full">

@@ -43,16 +43,30 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
 }
 
-// Configure matcher to apply middleware to all routes
 export const config = {
     matcher: [
         /*
-         * Match all request paths except for the ones starting with:
-         * - api (API routes)
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+         * Match all request paths except for:
+         * - API routes (/api/*)
+         * - Static files in _next/static (/_next/static/*)
+         * - Image optimization files (/_next/image/*)
+         * - Specific metadata files (favicon.ico, sitemap.xml, robots.txt)
+         * - Files with specific extensions (jpg, jpeg, png, gif, svg, ico, webp, pdf)
          */
-        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+        "/((?!api/|_next/static/|_next/image/|favicon.ico|.*\\.jpg|.*\\.jpeg|.*\\.png|.*\\.gif|.*\\.svg|.*\\.ico|.*\\.webp|.*\\.pdf).*)",
     ],
-}
+};
+
+// Configure matcher to apply middleware to all routes
+// export const config = {
+//     matcher: [
+//         /*
+//          * Match all request paths except for the ones starting with:
+//          * - api (API routes)
+//          * - _next/static (static files)
+//          * - _next/image (image optimization files)
+//          * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+//          */
+//         '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+//     ],
+// }
