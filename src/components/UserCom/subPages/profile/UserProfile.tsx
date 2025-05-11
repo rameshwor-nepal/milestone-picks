@@ -6,7 +6,6 @@ import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RiKey2Line } from 'react-icons/ri';
 import UserPasswordChange from './UserPasswordChange';
-import { useFetchMatchesQuery } from '@/redux/features/other/predictionAndMatch/matchApi';
 
 interface FormFields {
     full_name: string;
@@ -22,12 +21,6 @@ const UserProfile = () => {
         formState: { errors },
     } = useForm<FormFields>();
 
-    const { data } = useFetchMatchesQuery({
-        search: '',
-        page: 1,
-        page_size: 10
-    });
-    console.log("match in user profile", data)
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
 
         // const postData = {

@@ -13,7 +13,6 @@ import ImageViewer from '@/ui/ImageViewer/ImageViewer'
 const HerosectionAdditon = () => {
   const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
   const { data, isLoading, isFetching } = useFetchHeroSectionQuery({ search: '', page: 1, page_size: 10 });
-  console.log("data in hero section", data)
 
   const handleModalClose = () => {
     setAddModalOpen(false);

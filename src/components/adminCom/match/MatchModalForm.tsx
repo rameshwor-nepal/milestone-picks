@@ -48,7 +48,6 @@ const MatchModalForm = ({ closeModal }: PropsI) => {
             .catch((error) => {
                 ToastError.serialize(error);
             })
-        console.log("data from form", data)
     };
     return (
         <div>

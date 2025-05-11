@@ -10,6 +10,8 @@ export const publicRoutes = [
     "/signup",
     "/forgetPassword",
     "/resetPassword",
+    "/_next/static",
+    "/_next/image"
 ];
 export const userProtectedRoutes = [
     "/user",

@@ -45,7 +45,6 @@ const HeroSectionAdditionModalForm = ({ closeModal }: PropsI) => {
             .catch((error) => {
                 ToastError.serialize(error);
             })
-        console.log("data from form", formData)
     };
 
     return (
