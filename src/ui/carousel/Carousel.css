@@ -1,0 +1,33 @@
+.slick-dots {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Style individual dots */
+.slick-dots li {
+    margin: 0;
+}
+
+.slick-dots li button {
+    width: 12px;
+    /* Dot size */
+    height: 12px;
+    background: #d1d5db;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.slick-dots li.slick-active button {
+    background: #f4c430;
+    opacity: 1;
+}
+
+.slick-dots li button:before {
+    content: none !important;
+}

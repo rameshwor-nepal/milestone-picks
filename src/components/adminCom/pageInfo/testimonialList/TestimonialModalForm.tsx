@@ -39,7 +39,7 @@ const TestimonialModalForm = ({ closeModal }: PropsI) => {
         }
         await createTestimonial(formData).unwrap()
             .then(() => {
-                toast.success("Content for Hero section created successfully");
+                toast.success("Testinomials added successfully");
                 closeModal()
             })
             .catch((error) => {

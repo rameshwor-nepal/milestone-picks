@@ -221,13 +221,14 @@ interface SelectPropsI {
     control: Control<any>;
     rules?: any;
     isClearable?: boolean;
+    theme?: "light" | "dark";
 }
 
 export const SelectInput = (props: SelectPropsI) => {
     return (
         <div className="flex flex-col w-full">
             {props.label && (
-                <label className=" text-gray-100 mb-2 font-medium">
+                <label className={`${props.theme == 'light' ? "text-navy" : "text-gray-100 "} mb-2 font-medium`}>
                     {props.label}{" "}
                     {props.required && <span className="text-red-500">*</span>}
                 </label>

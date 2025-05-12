@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import './Carousel.css'
 import { MdArrowForwardIos, MdArrowBackIosNew } from 'react-icons/md';
 
 const CustomNextArrow = (props: any) => {

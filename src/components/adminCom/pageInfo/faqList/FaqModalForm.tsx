@@ -34,9 +34,9 @@ const FaqModalForm = ({ closeModal }: PropsI) => {
         if (data) {
             await createFaq({
                 ...data,
-                is_active: isActive,
-                order: data.order === "" ? null : data.order,
-                category: data.category === "" ? null : data.category,
+                is_active: isActive
+                // order: data.order === "" ? null : data.order,
+                // category: data.category === "" ? null : data.category,
             }).unwrap()
                 .then(() => {
                     toast.success("FAQ created successfully");
@@ -69,12 +69,8 @@ const FaqModalForm = ({ closeModal }: PropsI) => {
                             <TextInput
                                 label='Main Heading'
                                 placeholder='Enter a Main heading'
-                                {...register("main_heading", {
-                                    required: {
-                                        value: true,
-                                        message: "main_heading is required.",
-                                    },
-                                })}
+                                {...register("main_heading")}
+                                defaultValue={"Prediction"}
                                 errorMsg={errors?.main_heading?.message}
                             />
                         </Grid.Col>
@@ -98,6 +94,7 @@ const FaqModalForm = ({ closeModal }: PropsI) => {
                                 {...register("order")}
                                 errorMsg={errors?.order?.message}
                                 disabled={true}
+                                defaultValue={1}
                             />
                         </Grid.Col>
                         <Grid.Col size='lg'>

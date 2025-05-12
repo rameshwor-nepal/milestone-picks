@@ -4,7 +4,7 @@ interface TestimonialI {
     role: string;
     description: string;
     image: string;
-    star_rating: string;
+    star_rating: number;
 }
 
 interface TestimonialResponseI {

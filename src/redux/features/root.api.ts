@@ -89,6 +89,7 @@ export const rootApi = createApi({
     "StatisticsInfo",
     "FeatureInfo",
     "BettingTipsInfo",
-    "BettingConceptInfo"
+    "BettingConceptInfo",
+    "Contactus",
   ],
 });

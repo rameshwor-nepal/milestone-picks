@@ -14,7 +14,7 @@ interface GetFaqI {
     title_description: string;
     category: string;
     order: string;
-    is_active: string;
+    is_active: boolean;
 }
 
 interface FaqResponseI {

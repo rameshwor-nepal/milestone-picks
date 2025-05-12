@@ -36,11 +36,11 @@ export const SelectStyles: StylesConfig = {
         padding: "0.5rem",
         marginBottom: "2px",
         fontSize: "0.875rem",
-        backgroundColor: isSelected ? "#7ADEA2" : "#cffae0",
+        backgroundColor: isSelected ? "#d4af37" : "#e8d697",
         color: "#10141a",
         cursor: "pointer",
         "&:hover": {
-            backgroundColor: "#7ADEA2",
+            backgroundColor: "#d4af37",
             color: "#000",
         },
     }),
