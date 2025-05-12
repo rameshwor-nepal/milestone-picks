@@ -1,28 +1,54 @@
-import { useCreateSportMutation } from '@/redux/features/other/predictionAndMatch/sportApi';
+import { useCreateSportMutation, useLazyFetchSingleSportsQuery, useUpdateSportMutation } from '@/redux/features/other/predictionAndMatch/sportApi';
 import Button from '@/ui/button/Button';
 import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
 import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
+import { convertUrlToImageData } from '@/utils/fileUpload/UploadFile';
 import { ToastError } from '@/utils/toast/ToastError';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 interface FormFields {
     name: string;
 }
 
-const SportModalForm = ({ closeModal }: PropsI) => {
+const SportModalForm = ({ closeModal, editId }: PropsI) => {
     const [iconImage, setIconImage] = useState<File | null>(null)
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue
     } = useForm<FormFields>();
     const [createSport] = useCreateSportMutation();
+    const [trigger, { data }] = useLazyFetchSingleSportsQuery();
+    const [updateSport] = useUpdateSportMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+        const getFile = async (url: string) => {
+            const myFile = await convertUrlToImageData(url);
+
+            return myFile;
+        };
+        if (data) {
+            setValue("name", data.name)
+
+            getFile(data.icon).then((val) => {
+                setIconImage(val);
+            });
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const formData = new FormData();
@@ -31,14 +57,26 @@ const SportModalForm = ({ closeModal }: PropsI) => {
         if (iconImage) {
             formData.append("icon", iconImage);
         }
-        await createSport(formData).unwrap()
-            .then(() => {
-                toast.success("Sport created successfully");
-                closeModal()
-            })
-            .catch((error) => {
-                ToastError.serialize(error);
-            })
+        if (editId) {
+            await updateSport({ body: formData, id: editId as string }).unwrap()
+                .then(() => {
+                    toast.success("Sport updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
+            await createSport(formData).unwrap()
+                .then(() => {
+                    toast.success("Sport created successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
     };
 
     return (

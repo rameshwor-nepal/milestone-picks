@@ -8,11 +8,16 @@ import DataTableSearchContainer from '@/ui/DataTable/DataTableSearch';
 import ImageViewer from '@/ui/ImageViewer/ImageViewer';
 import { PageLayoutHeader } from '@/ui/layout/PageLayout';
 import ModalForm from '@/ui/modal/ModalForm';
-import { useFetchSportsQuery } from '@/redux/features/other/predictionAndMatch/sportApi';
+import { useDeleteSportMutation, useFetchSportsQuery } from '@/redux/features/other/predictionAndMatch/sportApi';
 import Pagination from '@/ui/pagination/Pagination';
+import { ToastError } from '@/utils/toast/ToastError';
+import { toast } from 'react-toastify';
+import ConfirmModal from '@/ui/modal/ConfirmModal';
 
 const SportList = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+    const [editId, setEditId] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
         search: '',
         page: 1,
@@ -20,8 +25,37 @@ const SportList = () => {
     });
     const { data, isLoading, isFetching } = useFetchSportsQuery(searchQuery);
 
+    const [deleteFaq] = useDeleteSportMutation()
+
+    const handleDeleteData = (id: string) => {
+        setEditId(id);
+        setConfirmModalOpen(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        if (editId) {
+            await deleteFaq(editId)
+                .unwrap()
+                .then(() => {
+                    setEditId(null);
+                    setConfirmModalOpen(false);
+                    toast.success("Record deleted successfully.");
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+    };
+
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
+
     const handleModalClose = () => {
         setAddModalOpen(false);
+        setConfirmModalOpen(false);
+        setEditId(null);
     };
     return (
         <div>
@@ -68,17 +102,10 @@ const SportList = () => {
                                         <>
                                             <ActionButton>
                                                 <ActionButton.EditIcon
-                                                // onClick={() => navigate(`update/${el.id}`)}
-                                                // disabled={
-                                                //   !canUpdateRecord({
-                                                //     status: el.status,
-                                                //     authRoles: roles,
-                                                //   })
-                                                // }
+                                                    onClick={() => handleModalOpen(el.id)}
                                                 />
-
                                                 <ActionButton.DeleteIcon
-                                                // onClick={() => navigate(`details/${el.id}`)}
+                                                    onClick={() => handleDeleteData(el.id.toLocaleString())}
                                                 />
 
                                             </ActionButton>
@@ -107,8 +134,16 @@ const SportList = () => {
                 closeModal={handleModalClose}
                 title='Add Sport Category'
             >
-                <SportModalForm closeModal={handleModalClose} />
+                <SportModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
+            <ConfirmModal
+                title="Delete Sport"
+                info="Are you sure you want to delete this record?"
+                isModalOpen={confirmModalOpen}
+                onConfirm={() => handleDeleteConfirm()}
+                closeModal={handleModalClose}
+                varient='danger'
+            />
         </div>
     )
 }

@@ -9,6 +9,13 @@ export const matchApi = rootApi.injectEndpoints({
             }),
             providesTags: ['Matches']
         }),
+        fetchSingleMatch: builder.query<MatchesI, string>({
+            query: (id) => ({
+                url: `/predictions/matches/${id}`,
+                method: "GET",
+            }),
+            providesTags: ['Matches']
+        }),
         createMatch: builder.mutation<void, CreateMatchI>({
             query: (body) => ({
                 url: "/predictions/matches/",
@@ -39,7 +46,7 @@ export const matchApi = rootApi.injectEndpoints({
 
 export const {
     useFetchMatchesQuery,
-    useLazyFetchMatchesQuery,
+    useLazyFetchSingleMatchQuery,
     useCreateMatchMutation,
     useUpdateMatchMutation,
     useDeleteMatchMutation,

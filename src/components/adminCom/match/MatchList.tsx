@@ -45,6 +45,11 @@ const MatchList = () => {
                 })
         }
     };
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
+
     const handleModalClose = () => {
         setAddModalOpen(false);
         setConfirmModalOpen(false);
@@ -111,13 +116,7 @@ const MatchList = () => {
                                         <>
                                             <ActionButton>
                                                 <ActionButton.EditIcon
-                                                    onClick={() => { }}
-                                                // disabled={
-                                                //   !canUpdateRecord({
-                                                //     status: el.status,
-                                                //     authRoles: roles,
-                                                //   })
-                                                // }
+                                                    onClick={() => handleModalOpen(el.id)}
                                                 />
                                                 <ActionButton.DeleteIcon
                                                     onClick={() => handleDeleteData(el.id)}
@@ -150,7 +149,7 @@ const MatchList = () => {
                 closeModal={handleModalClose}
                 title='Add Match'
             >
-                <MatchModalForm closeModal={handleModalClose} />
+                <MatchModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
 
             <ConfirmModal

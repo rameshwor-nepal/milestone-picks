@@ -1,14 +1,16 @@
-import { useCreateTestimonialsContentMutation } from '@/redux/features/other/testimonials/testimonialsApi';
+import { useCreateTestimonialsContentMutation, useLazyFetchSingleTestimonialsContentQuery, useUpdateTestimonialsContentMutation } from '@/redux/features/other/testimonials/testimonialsApi';
 import Button from '@/ui/button/Button';
 import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
 import { TextInput, TextArea, Form } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
+import { convertUrlToImageData } from '@/utils/fileUpload/UploadFile';
 import { ToastError } from '@/utils/toast/ToastError';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 interface FormFields {
     name: string;
@@ -17,15 +19,42 @@ interface FormFields {
     rating: string;
 
 }
-const TestimonialModalForm = ({ closeModal }: PropsI) => {
+const TestimonialModalForm = ({ closeModal, editId }: PropsI) => {
     const [testimonialImage, setTestimonialImage] = useState<File | null>(null)
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue
     } = useForm<FormFields>();
 
     const [createTestimonial] = useCreateTestimonialsContentMutation();
+    const [trigger, { data }] = useLazyFetchSingleTestimonialsContentQuery();
+    const [updateTestimonial] = useUpdateTestimonialsContentMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+        const getFile = async (url: string) => {
+            const myFile = await convertUrlToImageData(url);
+
+            return myFile;
+        };
+        if (data) {
+            setValue("name", data.name)
+            setValue("role", data.role)
+            setValue("description", data.description)
+            setValue("rating", data.star_rating.toLocaleString())
+
+            getFile(data.image).then((val) => {
+                setTestimonialImage(val);
+            });
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const formData = new FormData();
@@ -37,15 +66,29 @@ const TestimonialModalForm = ({ closeModal }: PropsI) => {
         if (testimonialImage) {
             formData.append("image", testimonialImage);
         }
-        await createTestimonial(formData).unwrap()
-            .then(() => {
-                toast.success("Testinomials added successfully");
-                closeModal()
-            })
-            .catch((error) => {
-                ToastError.serialize(error);
-            })
+        if (editId) {
+            await updateTestimonial({ body: formData, id: editId as string }).unwrap()
+                .then(() => {
+                    toast.success("Testinomials updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
+            await createTestimonial(formData).unwrap()
+                .then(() => {
+                    toast.success("Testinomials added successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+
     };
+    console.log("data", data)
     return (
         <>
             <Form>

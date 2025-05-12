@@ -1,10 +1,10 @@
-import { useCreateFaqContentMutation } from '@/redux/features/other/faq/faqContentApi';
+import { useCreateFaqContentMutation, useLazyFetchSingleFaqContentQuery, useUpdateFaqContentMutation } from '@/redux/features/other/faq/faqContentApi';
 import Button from '@/ui/button/Button';
 import { Form, TextArea, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import Toggle from '@/ui/toggle/Toggle';
 import { ToastError } from '@/utils/toast/ToastError';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -19,24 +19,58 @@ interface FormFields {
 }
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 
-const FaqModalForm = ({ closeModal }: PropsI) => {
+const FaqModalForm = ({ closeModal, editId }: PropsI) => {
     const [isActive, setIsActive] = useState<boolean>(true)
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue
     } = useForm<FormFields>();
     const [createFaq] = useCreateFaqContentMutation();
+    const [trigger, { data }] = useLazyFetchSingleFaqContentQuery();
+    const [updateFaq] = useUpdateFaqContentMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+        if (data) {
+            setValue("title", data.title)
+            setValue("title_description", data.title_description)
+            setValue("main_heading", data.main_heading)
+            setValue("order", data.order)
+            setValue("category", data.category)
+            setIsActive(data.is_active)
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        if (data) {
+        if (editId) {
+            await updateFaq({
+                body: {
+                    ...data,
+                    is_active: isActive
+                }, id: editId as string
+            }).unwrap()
+                .then(() => {
+                    toast.success("FAQ updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
             await createFaq({
                 ...data,
                 is_active: isActive
-                // order: data.order === "" ? null : data.order,
-                // category: data.category === "" ? null : data.category,
             }).unwrap()
                 .then(() => {
                     toast.success("FAQ created successfully");
@@ -47,6 +81,7 @@ const FaqModalForm = ({ closeModal }: PropsI) => {
                 })
         }
     };
+
     return (
         <>
             <Form>

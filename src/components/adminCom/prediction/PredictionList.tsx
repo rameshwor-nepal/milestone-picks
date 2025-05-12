@@ -57,9 +57,10 @@ const PredictionList = () => {
         setEditId(null);
     };
 
-    const handleAddIconClick = (info: MatchesI) => {
+    const handleAddIconClick = (info: MatchesI, id: string | null) => {
         setMatchInfo(info)
         setAddModalOpen(true);
+        setEditId(id)
     }
 
     return (
@@ -138,10 +139,10 @@ const PredictionList = () => {
                                                     {
                                                         prediction == null ?
                                                             <ActionButton.AddIcon
-                                                                onClick={() => handleAddIconClick(el)}
+                                                                onClick={() => handleAddIconClick(el, null)}
                                                             /> :
                                                             <ActionButton.EditIcon
-                                                                onClick={() => { }}
+                                                                onClick={() => handleAddIconClick(el, prediction && prediction ? prediction.id.toLocaleString() : null)}
                                                             />
                                                     }
 
@@ -177,7 +178,7 @@ const PredictionList = () => {
                 closeModal={handleModalClose}
                 title='Add Prediction'
             >
-                <PredictionModalForm closeModal={handleModalClose} matchInfo={MatchInfo as MatchesI} />
+                <PredictionModalForm closeModal={handleModalClose} matchInfo={MatchInfo as MatchesI} editId={editId} />
             </ModalForm>
             <ConfirmModal
                 title="Delete Prediction Info"

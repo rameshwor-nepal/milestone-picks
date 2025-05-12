@@ -48,7 +48,7 @@ interface PredictionI {
     predicted_outcome: string;
     our_prediction: string;
     placed_at: string;
-    result: string | null;
+    result: string;
     confidence_level: number | null;
 }
 

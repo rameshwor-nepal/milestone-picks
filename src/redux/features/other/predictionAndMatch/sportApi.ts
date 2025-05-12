@@ -9,6 +9,13 @@ export const sportApi = rootApi.injectEndpoints({
             }),
             providesTags: ['Sports']
         }),
+        fetchSingleSports: builder.query<SportI, string>({
+            query: (id) => ({
+                url: `/predictions/sports/${id}`,
+                method: "GET",
+            }),
+            providesTags: ['Sports']
+        }),
         createSport: builder.mutation<void, FormData>({
             query: (body) => ({
                 url: "/predictions/sports/",
@@ -39,7 +46,7 @@ export const sportApi = rootApi.injectEndpoints({
 
 export const {
     useFetchSportsQuery,
-    useLazyFetchSportsQuery,
+    useLazyFetchSingleSportsQuery,
     useCreateSportMutation,
     useUpdateSportMutation,
     useDeleteSportMutation,

@@ -46,6 +46,12 @@ const FaqList = () => {
                 })
         }
     };
+
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
+
     const handleModalClose = () => {
         setAddModalOpen(false);
         setConfirmModalOpen(false);
@@ -112,13 +118,7 @@ const FaqList = () => {
                                         <>
                                             <ActionButton>
                                                 <ActionButton.EditIcon
-                                                // onClick={() => navigate(`update/${el.id}`)}
-                                                // disabled={
-                                                //   !canUpdateRecord({
-                                                //     status: el.status,
-                                                //     authRoles: roles,
-                                                //   })
-                                                // }
+                                                    onClick={() => handleModalOpen(el.id)}
                                                 />
                                                 <ActionButton.DeleteIcon
                                                     onClick={() => handleDeleteData(el.id.toLocaleString())}
@@ -150,7 +150,7 @@ const FaqList = () => {
                 closeModal={handleModalClose}
                 title='Add Faq'
             >
-                <FaqModalForm closeModal={handleModalClose} />
+                <FaqModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
 
             <ConfirmModal

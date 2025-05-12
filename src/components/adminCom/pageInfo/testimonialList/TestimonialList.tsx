@@ -46,6 +46,11 @@ const TestimonialList = () => {
         }
     };
 
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
+
     const handleModalClose = () => {
         setAddModalOpen(false);
         setConfirmModalOpen(false);
@@ -108,13 +113,7 @@ const TestimonialList = () => {
                                         <>
                                             <ActionButton>
                                                 <ActionButton.EditIcon
-                                                // onClick={() => navigate(`update/${el.id}`)}
-                                                // disabled={
-                                                //   !canUpdateRecord({
-                                                //     status: el.status,
-                                                //     authRoles: roles,
-                                                //   })
-                                                // }
+                                                    onClick={() => handleModalOpen(el.id)}
                                                 />
                                                 <ActionButton.DeleteIcon
                                                     onClick={() => handleDeleteData(el.id.toLocaleString())}
@@ -146,7 +145,7 @@ const TestimonialList = () => {
                 closeModal={handleModalClose}
                 title='Add Testimonial'
             >
-                <TestimonialModalForm closeModal={handleModalClose} />
+                <TestimonialModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
             <ConfirmModal
                 title="Delete Testimonials"

@@ -9,6 +9,13 @@ export const predictionApi = rootApi.injectEndpoints({
             }),
             providesTags: ['Predictions']
         }),
+        fetchSinglePredictions: builder.query<PredictionI, string>({
+            query: (id) => ({
+                url: `/predictions/${id}`,
+                method: "GET",
+            }),
+            providesTags: ['Predictions']
+        }),
         createPrediction: builder.mutation<void, CreatePredictionI>({
             query: (body) => ({
                 url: "/predictions/",
@@ -39,7 +46,7 @@ export const predictionApi = rootApi.injectEndpoints({
 
 export const {
     useFetchPredictionsQuery,
-    useLazyFetchPredictionsQuery,
+    useLazyFetchSinglePredictionsQuery,
     useCreatePredictionMutation,
     useUpdatePredictionMutation,
     useDeletePredictionMutation

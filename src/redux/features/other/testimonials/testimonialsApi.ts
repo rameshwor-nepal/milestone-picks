@@ -4,7 +4,14 @@ export const faqContentApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         fetchTestimonialsContent: builder.query<TestimonialResponseI, SearchFieldI>({
             query: ({ search, page, page_size }) => ({
-                url: `/core/testimonials/?search=${search}&page=${page || 1}&page_size=${page_size || 10}/`,
+                url: `/core/testimonials/?search=${search}&page=${page || 1}&page_size=${page_size || 10}`,
+                method: "GET",
+            }),
+            providesTags: ["Testimonials"]
+        }),
+        fetchSingleTestimonialsContent: builder.query<TestimonialI, string>({
+            query: (id) => ({
+                url: `/core/testimonials/${id}`,
                 method: "GET",
             }),
             providesTags: ["Testimonials"]
@@ -42,5 +49,5 @@ export const {
     useCreateTestimonialsContentMutation,
     useUpdateTestimonialsContentMutation,
     useDeleteTestimonialsContentMutation,
-    useLazyFetchTestimonialsContentQuery
+    useLazyFetchSingleTestimonialsContentQuery
 } = faqContentApi

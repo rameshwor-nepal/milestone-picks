@@ -40,15 +40,7 @@ export const PredictionResultType = [
   {
     label: "Incorrect",
     value: "INCORRECT"
-  },
-  {
-    label: "Handicap",
-    value: "HANDICAP"
-  },
-  {
-    label: "Other",
-    value: "OTHER"
-  },
+  }
 
 ]
 
