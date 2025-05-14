@@ -4,7 +4,14 @@ export const BettingConceptInfoApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         fetchBettingConceptInfo: builder.query<BettingConceptResponseI, SearchFieldI>({
             query: ({ search, page, page_size }) => ({
-                url: `/bettinginfo/betting-basic-concepts/?search=${search}&page=${page || 1}&page_size=${page_size || 10}/`,
+                url: `/bettinginfo/betting-basic-concepts/?search=${search}&page=${page || 1}&page_size=${page_size || 10}`,
+                method: "GET",
+            }),
+            providesTags: ["BettingConceptInfo"]
+        }),
+        fetchSingleBettingConceptInfo: builder.query<BettingConceptI, string>({
+            query: (id) => ({
+                url: `/bettinginfo/betting-basic-concepts/${id}/`,
                 method: "GET",
             }),
             providesTags: ["BettingConceptInfo"]
@@ -42,5 +49,5 @@ export const {
     useCreateBettingConceptInfoMutation,
     useUpdateBettingConceptInfoMutation,
     useDeleteBettingConceptInfoMutation,
-    useLazyFetchBettingConceptInfoQuery
+    useLazyFetchSingleBettingConceptInfoQuery
 } = BettingConceptInfoApi

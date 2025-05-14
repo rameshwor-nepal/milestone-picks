@@ -46,6 +46,11 @@ const MissionList = () => {
         setConfirmModalOpen(false);
         setEditId(null);
     };
+
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
     return (
         <>
             <PageLayout
@@ -95,13 +100,7 @@ const MissionList = () => {
                                             <>
                                                 <ActionButton>
                                                     <ActionButton.EditIcon
-                                                    // onClick={() => navigate(`update/${el.id}`)}
-                                                    // disabled={
-                                                    //   !canUpdateRecord({
-                                                    //     status: el.status,
-                                                    //     authRoles: roles,
-                                                    //   })
-                                                    // }
+                                                        onClick={() => handleModalOpen(el.id.toLocaleString())}
                                                     />
                                                     <ActionButton.DeleteIcon
                                                         onClick={() => handleDeleteData(el.id.toLocaleString())}
@@ -131,7 +130,7 @@ const MissionList = () => {
                 closeModal={handleModalClose}
                 title='Add Faq'
             >
-                <MissionModalForm closeModal={handleModalClose} />
+                <MissionModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
 
             <ConfirmModal

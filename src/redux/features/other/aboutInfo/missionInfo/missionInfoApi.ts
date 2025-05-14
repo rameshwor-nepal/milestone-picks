@@ -9,6 +9,13 @@ export const MissionInfoApi = rootApi.injectEndpoints({
             }),
             providesTags: ["MissionInfo"]
         }),
+        fetchSingleMissionInfo: builder.query<MissionI, string>({
+            query: (id) => ({
+                url: `/aboutsection/mission-sections/${id}/`,
+                method: "GET",
+            }),
+            providesTags: ["MissionInfo"]
+        }),
         createMissionInfo: builder.mutation<void, FormData>({
             query: (body) => ({
                 url: "/aboutsection/mission-sections/",
@@ -42,5 +49,5 @@ export const {
     useCreateMissionInfoMutation,
     useUpdateMissionInfoMutation,
     useDeleteMissionInfoMutation,
-    useLazyFetchMissionInfoQuery
+    useLazyFetchSingleMissionInfoQuery
 } = MissionInfoApi

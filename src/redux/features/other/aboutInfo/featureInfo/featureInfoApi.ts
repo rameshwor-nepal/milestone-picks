@@ -9,6 +9,13 @@ export const FeatureInfoApi = rootApi.injectEndpoints({
             }),
             providesTags: ["FeatureInfo"]
         }),
+        fetchSingleFeatureInfo: builder.query<FeatureI, string>({
+            query: (id) => ({
+                url: `/aboutsection/features/${id}/`,
+                method: "GET",
+            }),
+            providesTags: ["FeatureInfo"]
+        }),
         createFeatureInfo: builder.mutation<void, CreateFeatureI>({
             query: (body) => ({
                 url: "/aboutsection/features/",
@@ -42,5 +49,5 @@ export const {
     useCreateFeatureInfoMutation,
     useUpdateFeatureInfoMutation,
     useDeleteFeatureInfoMutation,
-    useLazyFetchFeatureInfoQuery
+    useLazyFetchSingleFeatureInfoQuery
 } = FeatureInfoApi

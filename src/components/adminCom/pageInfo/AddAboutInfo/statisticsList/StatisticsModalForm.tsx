@@ -1,13 +1,14 @@
-import { useCreateStatsInfoMutation } from '@/redux/features/other/aboutInfo/statsInfo/statsInfoApi';
+import { useCreateStatsInfoMutation, useLazyFetchSingleStatsInfoQuery, useUpdateStatsInfoMutation } from '@/redux/features/other/aboutInfo/statsInfo/statsInfoApi';
 import Button from '@/ui/button/Button';
 import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import { ToastError } from '@/utils/toast/ToastError';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 interface FormFields {
     section: string;
@@ -16,23 +17,55 @@ interface FormFields {
     order: string;
     icon: string;
 }
-const StatisticsModalForm = ({ closeModal }: PropsI) => {
+const StatisticsModalForm = ({ closeModal, editId }: PropsI) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue
     } = useForm<FormFields>();
     const [createStat] = useCreateStatsInfoMutation();
+    const [trigger, { data }] = useLazyFetchSingleStatsInfoQuery();
+    const [updateFaq] = useUpdateStatsInfoMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+        if (data) {
+            setValue("section", data.section)
+            setValue("number", data.number.toLocaleString())
+            setValue("description", data.description)
+            setValue("order", data.order.toLocaleString())
+            setValue("icon", data.icon)
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        await createStat(data).unwrap()
-            .then(() => {
-                toast.success("Content for Hero section created successfully");
-                closeModal()
-            })
-            .catch((error) => {
-                ToastError.serialize(error);
-            })
+        if (editId) {
+            await updateFaq({ body: data, id: editId }).unwrap()
+                .then(() => {
+                    toast.success("Statistics updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
+            await createStat(data).unwrap()
+                .then(() => {
+                    toast.success("Statistics created successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+
     };
 
     return (

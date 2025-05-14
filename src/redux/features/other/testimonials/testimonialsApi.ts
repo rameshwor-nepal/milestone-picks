@@ -1,6 +1,6 @@
 import { rootApi } from "../../root.api";
 
-export const faqContentApi = rootApi.injectEndpoints({
+export const testimonialsApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         fetchTestimonialsContent: builder.query<TestimonialResponseI, SearchFieldI>({
             query: ({ search, page, page_size }) => ({
@@ -50,4 +50,4 @@ export const {
     useUpdateTestimonialsContentMutation,
     useDeleteTestimonialsContentMutation,
     useLazyFetchSingleTestimonialsContentQuery
-} = faqContentApi
+} = testimonialsApi

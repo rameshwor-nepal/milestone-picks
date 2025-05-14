@@ -9,6 +9,13 @@ export const StatsInfoApi = rootApi.injectEndpoints({
             }),
             providesTags: ["StatisticsInfo"]
         }),
+        fetchSingleStatsInfo: builder.query<StatI, string>({
+            query: (id) => ({
+                url: `/aboutsection/statistics/${id}/`,
+                method: "GET",
+            }),
+            providesTags: ["StatisticsInfo"]
+        }),
         createStatsInfo: builder.mutation<void, CreateStatI>({
             query: (body) => ({
                 url: "/aboutsection/statistics/",
@@ -42,5 +49,5 @@ export const {
     useCreateStatsInfoMutation,
     useUpdateStatsInfoMutation,
     useDeleteStatsInfoMutation,
-    useLazyFetchStatsInfoQuery
+    useLazyFetchSingleStatsInfoQuery
 } = StatsInfoApi

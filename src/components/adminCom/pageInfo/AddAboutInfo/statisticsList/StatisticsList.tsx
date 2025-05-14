@@ -9,16 +9,19 @@ import { useDeleteStatsInfoMutation, useFetchStatsInfoQuery } from '@/redux/feat
 import { ToastError } from '@/utils/toast/ToastError';
 import { toast } from 'react-toastify';
 import ConfirmModal from '@/ui/modal/ConfirmModal';
+import Pagination from '@/ui/pagination/Pagination';
 
 const StatisticsList = () => {
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [confirmModalOpen, setConfirmModalOpen] = useState(false);
-    const [editId, setEditId] = useState<string | null>(null)
-    const { data: statData, isFetching, isLoading } = useFetchStatsInfoQuery({
+    const [editId, setEditId] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
         search: '',
         page: 1,
         page_size: 10
-    })
+    });
+
+    const { data: statData, isFetching, isLoading } = useFetchStatsInfoQuery(searchQuery)
     const [deleteFeature] = useDeleteStatsInfoMutation()
 
     const handleDeleteData = (id: string) => {
@@ -40,6 +43,12 @@ const StatisticsList = () => {
                 })
         }
     };
+
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
+
     const handleModalClose = () => {
         setAddModalOpen(false);
         setConfirmModalOpen(false);
@@ -51,7 +60,6 @@ const StatisticsList = () => {
                 title='Statistics Section'
                 subtitle='Add/Edit Statistics'
             >
-
                 <PageLayoutHeader>
                     <Button title='Add Stats' secondary={true} onClick={() => setAddModalOpen(true)} width='fit' />
                 </PageLayoutHeader>
@@ -96,13 +104,7 @@ const StatisticsList = () => {
                                             <>
                                                 <ActionButton>
                                                     <ActionButton.EditIcon
-                                                    // onClick={() => navigate(`update/${el.id}`)}
-                                                    // disabled={
-                                                    //   !canUpdateRecord({
-                                                    //     status: el.status,
-                                                    //     authRoles: roles,
-                                                    //   })
-                                                    // }
+                                                        onClick={() => handleModalOpen(el.id.toLocaleString())}
                                                     />
                                                     <ActionButton.DeleteIcon
                                                         onClick={() => handleDeleteData(el.id.toLocaleString())}
@@ -118,12 +120,16 @@ const StatisticsList = () => {
                             <DataTable.EmptyBody span={11} />
                         )}
                     </DataTable>
-                    {/* <Pagination
-                  loading={false}
-                  onPageLimitChange={() => { }}
-                  onPageChange={() => { }}
-                  totalRecords={0}
-                /> */}
+                    <Pagination
+                        loading={false}
+                        totalRecords={statData ? statData.count : 0}
+                        onPageChange={(val) =>
+                            setSearchQuery({ ...searchQuery, page: val })
+                        }
+                        onPageLimitChange={(val) =>
+                            setSearchQuery({ ...searchQuery, page_size: val, page: 1 })
+                        }
+                    />
                 </DataTableContainer>
 
             </PageLayout>
@@ -132,7 +138,7 @@ const StatisticsList = () => {
                 closeModal={handleModalClose}
                 title='Add Statistics'
             >
-                <StatisticsModalForm closeModal={handleModalClose} />
+                <StatisticsModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
             <ConfirmModal
                 title="Delete Stat info"

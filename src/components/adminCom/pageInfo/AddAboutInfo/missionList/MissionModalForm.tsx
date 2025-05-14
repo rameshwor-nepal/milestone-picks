@@ -1,28 +1,57 @@
-import { useCreateMissionInfoMutation } from '@/redux/features/other/aboutInfo/missionInfo/missionInfoApi';
+import { useCreateMissionInfoMutation, useLazyFetchSingleMissionInfoQuery, useUpdateMissionInfoMutation } from '@/redux/features/other/aboutInfo/missionInfo/missionInfoApi';
 import Button from '@/ui/button/Button';
 import { ImageUploadCard } from '@/ui/fileUpload/ImageUpload';
 import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
+import { convertUrlToImageData } from '@/utils/fileUpload/UploadFile';
 import { ToastError } from '@/utils/toast/ToastError';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 interface FormFields {
     title: string;
     description: string;
     order: string;
 }
-const MissionModalForm = ({ closeModal }: PropsI) => {
+const MissionModalForm = ({ closeModal, editId }: PropsI) => {
     const [missionImage, setMissionImage] = useState<File | null>(null)
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue
     } = useForm<FormFields>();
     const [addMission] = useCreateMissionInfoMutation();
+    const [trigger, { data }] = useLazyFetchSingleMissionInfoQuery();
+    const [updateMission] = useUpdateMissionInfoMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+        const getFile = async (url: string) => {
+            const myFile = await convertUrlToImageData(url);
+
+            return myFile;
+        };
+        if (data) {
+            setValue("title", data.title)
+            setValue("description", data.description)
+            setValue("order", data.order.toLocaleString())
+
+            getFile(data.image).then((val) => {
+                setMissionImage(val);
+            });
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const formData = new FormData();
@@ -32,14 +61,28 @@ const MissionModalForm = ({ closeModal }: PropsI) => {
         if (missionImage) {
             formData.append("image", missionImage);
         }
-        await addMission(formData).unwrap()
-            .then(() => {
-                toast.success("Mission content added successfully");
-                closeModal()
-            })
-            .catch((error) => {
-                ToastError.serialize(error);
-            })
+
+        if (editId) {
+            await updateMission({ body: formData, id: editId }).unwrap()
+                .then(() => {
+                    toast.success("Mission content updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
+            await addMission(formData).unwrap()
+                .then(() => {
+                    toast.success("Mission content added successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+
     };
     return (
         <div>

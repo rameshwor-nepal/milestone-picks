@@ -1,13 +1,14 @@
-import { useCreateFeatureInfoMutation } from '@/redux/features/other/aboutInfo/featureInfo/featureInfoApi';
+import { useCreateFeatureInfoMutation, useLazyFetchSingleFeatureInfoQuery, useUpdateFeatureInfoMutation } from '@/redux/features/other/aboutInfo/featureInfo/featureInfoApi';
 import Button from '@/ui/button/Button';
 import { Form, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import { ToastError } from '@/utils/toast/ToastError';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 interface FormFields {
     title: string;
@@ -15,23 +16,54 @@ interface FormFields {
     icon: string;
     order: string;
 }
-const FeatureModalForm = ({ closeModal }: PropsI) => {
+const FeatureModalForm = ({ closeModal, editId }: PropsI) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
+        setValue
     } = useForm<FormFields>();
     const [createFeature] = useCreateFeatureInfoMutation()
+    const [trigger, { data }] = useLazyFetchSingleFeatureInfoQuery();
+    const [updateFeature] = useUpdateFeatureInfoMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+
+        if (data) {
+            setValue("title", data.title)
+            setValue("description", data.description)
+            setValue("icon", data.icon)
+            setValue("order", data.order.toLocaleString())
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        await createFeature(data).unwrap()
-            .then(() => {
-                toast.success("Feature content added successfully");
-                closeModal()
-            })
-            .catch((error) => {
-                ToastError.serialize(error);
-            })
+        if (editId) {
+            await updateFeature({ body: data, id: editId }).unwrap()
+                .then(() => {
+                    toast.success("Feature content updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
+            await createFeature(data).unwrap()
+                .then(() => {
+                    toast.success("Feature content added successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
     };
 
     return (

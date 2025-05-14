@@ -10,6 +10,7 @@ import Button from '@/ui/button/Button'
 import { useFetchBettingTipsInfoQuery } from '@/redux/features/other/bettingInfo/bettingTipsInfo/bettingTipsApi'
 import Skeleton from '@/ui/skeleton/Skeleton'
 import { useFetchBettingConceptInfoQuery } from '@/redux/features/other/bettingInfo/bettingConceptInfo/bettingConceptInfoApi'
+import { ContentType } from '@/utils/ConstantValue'
 
 const BettingInfoCom = () => {
     const { data: bettingTips, isLoading, isFetching } = useFetchBettingTipsInfoQuery({
@@ -193,7 +194,7 @@ const BettingInfoCom = () => {
                                         bettingConcept.results.map((el, index) => (
                                             <Card className="group hover:shadow-lg transition-all overflow-hidden border border-gold" key={index}>
                                                 <div className="bg-navy p-6 relative">
-                                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">{el.title}</h3>
+                                                    <h3 className="text-xl font-bold text-white mb-2 relative z-10">{ContentType.find((content) => content.value === el.concept_type)?.label}</h3>
                                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
                                                 </div>
                                                 <CardContent className="p-6 text-base text-navy">

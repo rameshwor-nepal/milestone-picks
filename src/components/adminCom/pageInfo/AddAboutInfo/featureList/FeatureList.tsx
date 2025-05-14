@@ -40,6 +40,12 @@ const FeatureList = () => {
                 })
         }
     };
+
+    const handleModalOpen = (id: string) => {
+        setAddModalOpen(true)
+        setEditId(id)
+    }
+
     const handleModalClose = () => {
         setAddModalOpen(false);
         setConfirmModalOpen(false);
@@ -97,13 +103,7 @@ const FeatureList = () => {
                                             <>
                                                 <ActionButton>
                                                     <ActionButton.EditIcon
-                                                    // onClick={() => navigate(`update/${el.id}`)}
-                                                    // disabled={
-                                                    //   !canUpdateRecord({
-                                                    //     status: el.status,
-                                                    //     authRoles: roles,
-                                                    //   })
-                                                    // }
+                                                        onClick={() => handleModalOpen(el.id.toLocaleString())}
                                                     />
                                                     <ActionButton.DeleteIcon
                                                         onClick={() => handleDeleteData(el.id.toLocaleString())}
@@ -133,7 +133,7 @@ const FeatureList = () => {
                 closeModal={handleModalClose}
                 title='Add Feature'
             >
-                <FeatureModalForm closeModal={handleModalClose} />
+                <FeatureModalForm closeModal={handleModalClose} editId={editId} />
             </ModalForm>
 
             <ConfirmModal

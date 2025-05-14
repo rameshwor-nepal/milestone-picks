@@ -1,16 +1,17 @@
-import { useCreateBettingConceptInfoMutation } from '@/redux/features/other/bettingInfo/bettingConceptInfo/bettingConceptInfoApi';
+import { useCreateBettingConceptInfoMutation, useLazyFetchSingleBettingConceptInfoQuery, useUpdateBettingConceptInfoMutation } from '@/redux/features/other/bettingInfo/bettingConceptInfo/bettingConceptInfoApi';
 import Button from '@/ui/button/Button';
 import { Form, SelectInput, TextArea, TextInput } from '@/ui/formInput/FormInput';
 import Grid from '@/ui/grid/Grid';
 import Toggle from '@/ui/toggle/Toggle';
 import { ContentType } from '@/utils/ConstantValue';
 import { ToastError } from '@/utils/toast/ToastError';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 interface PropsI {
     closeModal: () => void;
+    editId: string | null;
 }
 interface FormFields {
     title: string;
@@ -25,15 +26,38 @@ interface FormFields {
     icon: string;
 }
 
-const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
+const BasicBettingConceptModalForm = ({ closeModal, editId }: PropsI) => {
     const [isActive, setIsActive] = useState<boolean>(true)
     const {
         register,
         handleSubmit,
         formState: { errors },
-        control
+        control,
+        setValue
     } = useForm<FormFields>();
     const [createBettingConcept] = useCreateBettingConceptInfoMutation();
+    const [trigger, { data }] = useLazyFetchSingleBettingConceptInfoQuery();
+    const [updateConcept] = useUpdateBettingConceptInfoMutation()
+
+    useEffect(() => {
+        if (editId) {
+            trigger(editId);
+        }
+    }, [editId, trigger])
+
+    useEffect(() => {
+        if (data) {
+            const contentTy = ContentType.find((content) => content.value === data.concept_type)
+
+            setValue("title", data.title)
+            setValue("example", data.example)
+            setValue("description", data.description)
+            setValue("icon", data.icon)
+            setValue("order", data.order.toLocaleString())
+            setValue("concept_type", { value: contentTy?.value as string, label: contentTy?.label as string })
+            setIsActive(data.is_active)
+        }
+    }, [data, setValue])
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         const postData = {
@@ -45,15 +69,29 @@ const BasicBettingConceptModalForm = ({ closeModal }: PropsI) => {
             order: data.order,
             is_active: isActive
         }
-        await createBettingConcept(postData).unwrap()
-            .then(() => {
-                toast.success("Betting Concept added successfully");
-                closeModal()
-            })
-            .catch((error) => {
-                ToastError.serialize(error);
-            })
+        if (editId) {
+            await updateConcept({ body: postData, id: editId }).unwrap()
+                .then(() => {
+                    toast.success("Betting Concept updated successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+        else {
+            await createBettingConcept(postData).unwrap()
+                .then(() => {
+                    toast.success("Betting Concept added successfully");
+                    closeModal()
+                })
+                .catch((error) => {
+                    ToastError.serialize(error);
+                })
+        }
+
     };
+
     return (
         <div className='text-left'>
             <Form>
