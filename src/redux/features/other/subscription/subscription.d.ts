@@ -3,6 +3,10 @@ interface CreateSubscriptionCheckoutI {
     user_email: string;
 }
 
+interface CheckoutResponseI {
+    payment_url: string;
+}
+
 interface SubscriptionPlanI {
     id: number;
     name: string;

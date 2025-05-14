@@ -1,5 +1,4 @@
 
-import Link from 'next/link';
 import React from 'react';
 
 
@@ -15,6 +14,7 @@ interface SubscriptionCardProps {
     description: string;
     features: PlanFeature[];
     popular?: boolean;
+    onClick: () => void;
 }
 
 const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
@@ -24,6 +24,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
     description,
     features,
     popular = false,
+    onClick
 }) => {
     return (
         <div className={`rounded-xl overflow-hidden ${popular ? 'border-2 border-gold shadow-lg transform scale-105' : 'border border-gray-200'
@@ -63,8 +64,8 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                     ))}
                 </div>
 
-                <Link
-                    href="/contactUs"
+                <button
+                    onClick={() => onClick()}
                     className={`mt-8 block w-full text-center py-3 rounded-md font-bold transition-colors ${popular
                         ? 'bg-gold hover:bg-gold-light text-navy'
                         : 'bg-navy hover:bg-navy-light text-white'
@@ -72,7 +73,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                     data-aos="zoom-in" data-aos-duration="1000"
                 >
                     Get Started
-                </Link>
+                </button>
             </div>
         </div>
     );

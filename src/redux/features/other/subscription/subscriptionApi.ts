@@ -2,14 +2,14 @@ import { rootApi } from "../../root.api";
 
 export const subscriptionApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
-        createSubscriptionCheckout: builder.mutation<void, CreateSubscriptionCheckoutI>({
+        createSubscriptionCheckout: builder.mutation<CheckoutResponseI, CreateSubscriptionCheckoutI>({
             query: (body) => ({
                 url: "/subscriptions/create-checkout-session/",
                 method: "POST",
                 body
             }),
         }),
-        fetchSubscriptionPlan: builder.query<SubscriptionPlanI, void>({
+        fetchSubscriptionPlan: builder.query<SubscriptionPlanI[], void>({
             query: () => ({
                 url: `/subscriptions/plans/`,
                 method: "GET",

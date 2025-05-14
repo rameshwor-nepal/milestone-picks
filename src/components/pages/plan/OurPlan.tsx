@@ -1,10 +1,18 @@
+"use client"
+
 import FAQs from '@/components/testimonials/FAQs';
 import Testimonial from '@/components/testimonials/Testimonial';
+import { useCreateSubscriptionCheckoutMutation, useFetchSubscriptionPlanQuery } from '@/redux/features/other/subscription/subscriptionApi';
+import { useAppSelector } from '@/redux/features/store';
 import Button from '@/ui/button/Button';
 import SubscriptionCard from '@/ui/card/SubcriptionCard';
+import ConfirmModal from '@/ui/modal/ConfirmModal';
+import Skeleton from '@/ui/skeleton/Skeleton';
+import { ToastError } from '@/utils/toast/ToastError';
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { MdArrowForward } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 const OurPlanCom = () => {
     const commonFeatures = [
@@ -12,6 +20,41 @@ const OurPlanCom = () => {
         { name: 'Detailed Analysis', included: true },
         { name: 'All Sports Coverage', included: true }
     ];
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+    const [editId, setEditId] = useState<number | null>(null)
+    const { email } = useAppSelector((state) => state.auth)
+    const { data: subscriptionPlan, isLoading, isFetching } = useFetchSubscriptionPlanQuery();
+    const [createCheckout] = useCreateSubscriptionCheckoutMutation();
+
+    const handleModalOpen = (id: number) => {
+        setEditId(id)
+        setConfirmModalOpen(true)
+    }
+
+    const handleOnClick = async () => {
+        if (email && editId) {
+            const postData = {
+                plan_id: editId,
+                user_email: email
+            }
+            await createCheckout(postData)
+                .unwrap()
+                .then((data) => {
+                    toast.success("Please, provide your card info to proceed")
+                    window.location.href = data && data.payment_url;
+                    // window.open(data && data.payment_url, '_blank');
+                })
+                .catch((error) => {
+                    ToastError.serialize(error)
+                })
+        }
+
+    }
+
+    const handleModalClose = () => {
+        setConfirmModalOpen(false);
+    };
+
     return (
         <main>
 
@@ -25,36 +68,72 @@ const OurPlanCom = () => {
                             Our flexible plans are designed to fit your betting style and budget.
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 mt-12 lg:mt-16 px-4">
-                            <SubscriptionCard
-                                name="Weekly All-in-One Pass"
-                                price="$99"
-                                duration="week"
-                                description="Perfect for those who want to test our service or prefer weekly commitments."
-                                features={[
-                                    ...commonFeatures,
-                                    { name: 'Email Support', included: true },
-                                    { name: 'Priority Picks Access', included: false },
-                                    { name: 'VIP Discord Access', included: false },
-                                    { name: 'Phone Consultation', included: false }
-                                ]}
-                            />
+                        {subscriptionPlan &&
+                            <div className='max-w-3xl mt-12 lg:mt-16 px-4'>
+                                <SubscriptionCard
+                                    name="Weekly All-in-One Pass"
+                                    price={`$${parseInt(subscriptionPlan[0].price)}`}
+                                    duration={`${subscriptionPlan[0].duration} days`}
+                                    description="Perfect for those who want to test our service or prefer weekly commitments."
+                                    features={[
+                                        ...commonFeatures,
+                                        { name: 'Email Support', included: true },
+                                        { name: 'Priority Picks Access', included: false },
+                                        { name: 'VIP Discord Access', included: false },
+                                        { name: 'Phone Consultation', included: false }
+                                    ]}
+                                    onClick={() => handleModalOpen(subscriptionPlan[0].id)}
+                                />
+                                <div>
 
-                            <SubscriptionCard
-                                name="Monthly All-in-One Pass"
-                                price="$299"
-                                duration="month"
-                                description="Our most popular plan with the best value and complete access to all features."
-                                features={[
-                                    ...commonFeatures,
-                                    { name: 'Email Support', included: true },
-                                    { name: 'Priority Picks Access', included: true },
-                                    { name: 'VIP Discord Access', included: true },
-                                    { name: 'Phone Consultation', included: true }
-                                ]}
-                                popular={true}
-                            />
-                        </div>
+                                </div>
+                            </div>
+
+                        }
+
+
+                        {
+                            isLoading || isFetching ?
+                                <Skeleton />
+                                :
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 mt-12 lg:mt-16 px-4">
+                                    {
+                                        subscriptionPlan &&
+                                        <>
+                                            <SubscriptionCard
+                                                name="Weekly All-in-One Pass"
+                                                price={`$${parseInt(subscriptionPlan[2].price)}`}
+                                                duration={`${subscriptionPlan[2].duration} days`}
+                                                description="Perfect for those who want to test our service or prefer weekly commitments."
+                                                features={[
+                                                    ...commonFeatures,
+                                                    { name: 'Email Support', included: true },
+                                                    { name: 'Priority Picks Access', included: false },
+                                                    { name: 'VIP Discord Access', included: false },
+                                                    { name: 'Phone Consultation', included: false }
+                                                ]}
+                                                onClick={() => handleModalOpen(subscriptionPlan[2].id)}
+                                            />
+                                            <SubscriptionCard
+                                                name="Monthly All-in-One Pass"
+                                                price={`$${parseInt(subscriptionPlan[1].price)}`}
+                                                duration={`${subscriptionPlan[1].duration} days`}
+                                                description="Our most popular plan with the best value and complete access to all features."
+                                                features={[
+                                                    ...commonFeatures,
+                                                    { name: 'Email Support', included: true },
+                                                    { name: 'Priority Picks Access', included: true },
+                                                    { name: 'VIP Discord Access', included: true },
+                                                    { name: 'Phone Consultation', included: true }
+                                                ]}
+                                                popular={true}
+                                                onClick={() => handleModalOpen(subscriptionPlan[1].id)}
+                                            />
+                                        </>
+                                    }
+
+                                </div>
+                        }
                     </div>
                 </div>
             </section>
@@ -98,7 +177,13 @@ const OurPlanCom = () => {
                     </div>
                 </div>
             </section>
-
+            <ConfirmModal
+                title="Proceed for payment"
+                info="Are you sure you want to proceed?"
+                isModalOpen={confirmModalOpen}
+                onConfirm={() => handleOnClick()}
+                closeModal={handleModalClose}
+            />
         </main>
     )
 }
