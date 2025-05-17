@@ -59,8 +59,6 @@ const SubscribedUser = () => {
     }
     return (
         <div>
-            {/* <PageLayoutHeader>
-            </PageLayoutHeader> */}
             <DataTableContainer>
                 <DataTableSearchContainer
                     onTableSearch={(val) => setSearchQuery({ ...searchQuery, search: val })}
