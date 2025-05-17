@@ -10,6 +10,7 @@ import ConfirmModal from '@/ui/modal/ConfirmModal';
 import Skeleton from '@/ui/skeleton/Skeleton';
 import { ToastError } from '@/utils/toast/ToastError';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { MdArrowForward } from 'react-icons/md';
 import { toast } from 'react-toastify';
@@ -17,9 +18,11 @@ import { toast } from 'react-toastify';
 const OurPlanCom = () => {
     const commonFeatures = [
         { name: 'Daily Expert Picks', included: true },
-        { name: 'Detailed Analysis', included: true },
-        { name: 'All Sports Coverage', included: true }
+        { name: 'Priority Picks Access', included: true },
+        { name: 'All Sports Coverage', included: true },
+        { name: 'VIP Discord Access', included: true },
     ];
+    const router = useRouter();
     const [confirmModalOpen, setConfirmModalOpen] = useState(false);
     const [editId, setEditId] = useState<number | null>(null)
     const { email } = useAppSelector((state) => state.auth)
@@ -32,6 +35,10 @@ const OurPlanCom = () => {
     }
 
     const handleOnClick = async () => {
+        if (!email) {
+            toast.warning("Please, Signin to continue")
+            router.push('/login')
+        }
         if (email && editId) {
             const postData = {
                 plan_id: editId,
@@ -104,13 +111,10 @@ const OurPlanCom = () => {
                                                 name="Weekly All-in-One Pass"
                                                 price={`$${parseInt(subscriptionPlan[2].price)}`}
                                                 duration={`${subscriptionPlan[2].duration} days`}
-                                                description="Perfect for those who want to test our service or prefer weekly commitments."
+                                                description="Perfect for those who want to test the waters and get short-term access, Best for quick bettors or casual testing."
                                                 features={[
                                                     ...commonFeatures,
-                                                    { name: 'Email Support', included: true },
-                                                    { name: 'Priority Picks Access', included: false },
-                                                    { name: 'VIP Discord Access', included: false },
-                                                    { name: 'Phone Consultation', included: false }
+
                                                 ]}
                                                 onClick={() => handleModalOpen(subscriptionPlan[2].id)}
                                             />
@@ -118,13 +122,10 @@ const OurPlanCom = () => {
                                                 name="Monthly All-in-One Pass"
                                                 price={`$${parseInt(subscriptionPlan[1].price)}`}
                                                 duration={`${subscriptionPlan[1].duration} days`}
-                                                description="Our most popular plan with the best value and complete access to all features."
+                                                description="Our most popular plan — ideal for those who want full value and time to analyze results over time."
                                                 features={[
                                                     ...commonFeatures,
-                                                    { name: 'Email Support', included: true },
-                                                    { name: 'Priority Picks Access', included: true },
-                                                    { name: 'VIP Discord Access', included: true },
-                                                    { name: 'Phone Consultation', included: true }
+                                                    { name: ' 30 Days Access to Track & Analyze Results', included: true },
                                                 ]}
                                                 popular={true}
                                                 onClick={() => handleModalOpen(subscriptionPlan[1].id)}

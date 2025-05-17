@@ -1,5 +1,5 @@
 'use client'
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaUserFriends } from "react-icons/fa";
 import { IconType } from "react-icons";
 import { MdDashboard, MdInfo, MdOutlineSettings, MdOutlineSportsVolleyball, MdPerson } from "react-icons/md";
 import { MdBatchPrediction } from "react-icons/md";
@@ -69,6 +69,13 @@ export const AdminNavLinks = (
                 icon: MdOutlineSportsVolleyball as IconType,
                 to: "/admin/sport",
                 active: currentPath.startsWith("/admin/sport"),
+            },
+            {
+                extended: false,
+                text: "Subscription",
+                icon: FaUserFriends as IconType,
+                to: "/admin/subscription",
+                active: currentPath.startsWith("/admin/subscription"),
             },
             {
                 extended: true,

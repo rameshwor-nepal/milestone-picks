@@ -24,17 +24,16 @@ const Testimonial = () => {
     };
 
     return (
-        <section className="text-gray-200 text-left relative rounded-md min-h-[90vh] w-full">
-            <div className="absolute h-full w-full z-10 bg-[linear-gradient(to_bottom,rgba(245,240,225,0.3),rgba(245,240,225,0.5))]"></div>
+        <section className="text-gray-200 text-left relative shadow-[0px -8px 20px rgba(0, 0, 0, 0.3), 0px 8px 20px rgba(0, 0, 0, 0.3)]  rounded-md min-h-[90vh] w-full">
+            <div className="absolute h-full w-full z-10 bg-[linear-gradient(to_top,rgba(245,240,225,0.3),rgba(245,240,225,0.5))]"></div>
 
             {/* Background Image */}
             <div className="absolute z-0 h-full w-full">
                 <Image
-                    src="/choose-us-bg3.jpg"
+                    src="/centerfocus.jpg"
                     alt="hero image"
                     fill
                     sizes='100vh'
-                    className="object-cover"
                 />
             </div>
             <div className="relative z-20 w-full min-h-screen h-auto mx-auto px-4 md:px-8 py-12  lg:py-16">

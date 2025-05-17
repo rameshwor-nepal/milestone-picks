@@ -27,7 +27,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
     onClick
 }) => {
     return (
-        <div className={`rounded-xl overflow-hidden ${popular ? 'border-2 border-gold shadow-lg transform scale-105' : 'border border-gray-200'
+        <div className={`rounded-xl overflow-hidden shadow-lg ${popular ? 'border-2 border-gold shadow-xl transform scale-105' : 'border border-gray-200'
             }`}
         >
             {popular && (
@@ -43,7 +43,7 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({
                     <span className="ml-2 text-gray-500">/{duration}</span>
                 </div>
 
-                <p className="mt-4 text-gray-600">{description}</p>
+                <p className="mt-4 text-gray-600 text-left">{description}</p>
 
                 <div className="mt-6 space-y-4">
                     {features.map((feature, index) => (
