@@ -1,6 +1,8 @@
 'use client'
 import { UserNavLinks } from '@/components/adminCom/sidenavbar/NavLinks';
 import Sidenav from '@/components/adminCom/sidenavbar/SideNav';
+import { useLazyFetchUserSubscriptionByEmailQuery } from '@/redux/features/other/subscription/subscriptionApi';
+import { useAppSelector } from '@/redux/features/store';
 import { Badge } from '@/ui/badge/Badge';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/ui/card/Card';
 import React, { useEffect, useState } from 'react'
@@ -14,7 +16,13 @@ const userData = {
 
 const UserLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     const [sideNavExpanded, setSideNavExpanded] = useState(true);
-
+    const [trigger, { data }] = useLazyFetchUserSubscriptionByEmailQuery();
+    const { email, username } = useAppSelector((state) => state.auth)
+    useEffect(() => {
+        if (email) {
+            trigger(email);
+        }
+    }, [email, trigger])
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 800) {
@@ -29,6 +37,7 @@ const UserLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    console.log("data by email in user dashboard", data)
     return (
         <div className="relative flex min-h-screen bg-[#e6effc]">
             {/* Sidebar */}
@@ -47,7 +56,7 @@ const UserLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                         {/* Welcome Section */}
                         <Card className='text-navy border-[1px] border-gold'>
                             <CardHeader>
-                                <CardTitle className="text-2xl font-bold">Welcome, {userData.name}</CardTitle>
+                                <CardTitle className="text-2xl font-bold">Welcome, {username}</CardTitle>
                                 <CardDescription>
                                     <div className="flex flex-col md:flex-row md:items-center gap-2 mt-2">
                                         <Badge variant="secondary" className="w-fit">

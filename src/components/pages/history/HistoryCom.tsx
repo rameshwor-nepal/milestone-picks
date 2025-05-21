@@ -1,6 +1,8 @@
 'use client'
+import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi'
 import Button from '@/ui/button/Button'
 import DataTable, { DataTableContainer } from '@/ui/DataTable/DataTable'
+import Pagination from '@/ui/pagination/Pagination'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { MdArrowDownward, MdArrowForward, MdArrowUpward, MdFilter } from 'react-icons/md'
@@ -65,6 +67,28 @@ const HistoryCom = () => {
             setExpandedMonth(monthId);
         }
     };
+    const [searchQuery, setSearchQuery] = useState<SearchFieldI>({
+        search: '',
+        page: 1,
+        page_size: 10
+    });
+    const { data: predictionData, isLoading, isFetching } = useFetchPredictionsQuery(searchQuery);
+
+    const getStatus = (status: string) => {
+        if (status === 'CORRECT') {
+            return (
+                <span className='bg-green-600 px-2 py-1 rounded-sm'>Win</span>
+            )
+        }
+        else if (status === 'INCORRECT') {
+            return (
+                <span className='bg-red-600 px-2 py-1 rounded-sm'>Lose</span>
+            )
+        }
+        else {
+            <span className='bg-gray-600 px-2 py-1 rounded-sm'>Lose</span>
+        }
+    }
     return (
         <section className='bg-white '>
             {/* monthly Picks */}
@@ -165,6 +189,7 @@ const HistoryCom = () => {
                                             ? 'bg-navy text-white'
                                             : 'text-gray-600 hover:bg-gray-100'
                                             }`}
+                                        disabled
                                     >
                                         {tab.label}
                                     </button>
@@ -174,15 +199,11 @@ const HistoryCom = () => {
                     </div>
                     <div className='w-full'>
                         <DataTableContainer>
-                            <DataTable loading={false}>
+                            <DataTable loading={isLoading || isFetching}>
                                 <DataTable.TH>
                                     <DataTable.TR>
                                         <DataTable.THD align="center">
                                             {("S.No")}
-                                        </DataTable.THD>
-
-                                        <DataTable.THD align="center">
-                                            {"Sport"}
                                         </DataTable.THD>
 
                                         <DataTable.THD align="center">
@@ -194,44 +215,64 @@ const HistoryCom = () => {
                                         </DataTable.THD>
 
                                         <DataTable.THD align="center">
-                                            {"Match Date"}
+                                            {"Sport"}
                                         </DataTable.THD>
 
-                                        <DataTable.ActionCol align="center">
-                                            {("Result")}
-                                        </DataTable.ActionCol>
+                                        <DataTable.THD align="center">
+                                            {"Prediction Outcome"}
+                                        </DataTable.THD>
+
+                                        <DataTable.THD align="center">
+                                            {"Our Prediction"}
+                                        </DataTable.THD>
+
+                                        <DataTable.THD align="center">
+                                            {"Result"}
+                                        </DataTable.THD>
+
                                     </DataTable.TR>
                                 </DataTable.TH>
-                                {/* {records.results.length ? ( */}
-                                <DataTable.TB>
-                                    {/* {records.results.map((el, index) => ( */}
-                                    <DataTable.TR >
-                                        <DataTable.TCD align="center">{1}</DataTable.TCD>
-                                        <DataTable.TCD align="center">{"Sport"}</DataTable.TCD>
-                                        <DataTable.TCD align="center">{"Team 1"}</DataTable.TCD>
-                                        <DataTable.TCD align="center">
-                                            {"Team 2"}
-                                        </DataTable.TCD>
-                                        <DataTable.TCD align="center">{"Match Date"}</DataTable.TCD>
-                                        {/* <DataTable.TCD align="center">{"Location"}</DataTable.TCD> */}
-                                        <DataTable.TCD align='center'>
-                                            {"Win"}
-                                        </DataTable.TCD>
-                                    </DataTable.TR>
-                                    {/* // ))} */}
-                                </DataTable.TB>
-                                {/*  ) : ( 
-                                <DataTable.EmptyBody span={11} />
-                            {/*  )} */}
+                                {predictionData && predictionData.results.length ? (
+                                    <DataTable.TB>
+                                        {predictionData.results.map((el, index) => {
+                                            return (
+                                                <DataTable.TR key={el.id}>
+                                                    <DataTable.TCD align="center">{index + 1}</DataTable.TCD>
+                                                    <DataTable.TCD align="center">{el.match_detail?.team_1 || '-'}</DataTable.TCD>
+                                                    <DataTable.TCD align="center">{el.match_detail?.team_2 || ''}</DataTable.TCD>
+
+                                                    <DataTable.TCD align="center">{el.match_detail?.sport?.name || ''}</DataTable.TCD>
+                                                    <DataTable.TCD align="center">
+                                                        {el?.predicted_outcome || "-"} </DataTable.TCD>
+                                                    <DataTable.TCD align="center">
+                                                        {el?.our_prediction || "-"}
+                                                    </DataTable.TCD>
+                                                    <DataTable.TCD align="center">
+                                                        {getStatus(el.result)}
+                                                    </DataTable.TCD>
+
+                                                </DataTable.TR>
+                                            )
+                                        }
+                                        )}
+                                    </DataTable.TB>
+                                ) : (
+                                    <DataTable.EmptyBody span={11} />
+                                )}
                             </DataTable>
+                            <Pagination
+                                loading={false}
+                                totalRecords={predictionData ? predictionData.count : 0}
+                                onPageChange={(val) =>
+                                    setSearchQuery({ ...searchQuery, page: val })
+                                }
+                                onPageLimitChange={(val) =>
+                                    setSearchQuery({ ...searchQuery, page_size: val, page: 1 })
+                                }
+                            />
                         </DataTableContainer>
                     </div>
 
-                    <div className="mt-8 text-center" data-aos="zoom-in" data-aos-duration="1000">
-                        <Button title=' Load More Picks' secondary width='fit'>
-
-                        </Button>
-                    </div>
                 </div>
 
             </div>

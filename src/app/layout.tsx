@@ -6,6 +6,7 @@ import TokenProvider from "./TokenProvider";
 import { AOSInit } from "./Aos";
 import 'font-awesome/css/font-awesome.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const metadata: Metadata = {
   title: "Milestone Picks",

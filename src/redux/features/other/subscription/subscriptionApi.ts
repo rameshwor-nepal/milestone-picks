@@ -42,6 +42,14 @@ export const subscriptionApi = rootApi.injectEndpoints({
                 method: "GET",
             }),
         }),
+
+        fetchUserSubscriptionByEmail: builder.query<UserSubscriptionI[], string>({
+            query: (email) => ({
+                url: `/subscriptions/subscriptions/by-email/${email}`,
+                method: "GET",
+            }),
+        }),
+
         fetchSingleUserSubscription: builder.query<UserSubscriptionI, string>({
             query: (id) => ({
                 url: `/subscriptions/subscriptions/${id}/`,
@@ -67,5 +75,6 @@ export const {
     useDeleteSubscriptionPlanMutation,
     useFetchUserSubscriptionQuery,
     useLazyFetchSingleUserSubscriptionQuery,
+    useLazyFetchUserSubscriptionByEmailQuery,
     useDeleteUserSubscriptionMutation
 } = subscriptionApi

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
-import { MdMenu } from "react-icons/md";
+import { MdMenu, MdPerson } from "react-icons/md";
 import { usePathname, useRouter } from 'next/navigation'
 import { useAppSelector } from "@/redux/features/store";
 import { AuthButton } from "../AuthHeader";
@@ -53,12 +53,17 @@ const Navbar = () => {
                         {
                             authenticated ?
                                 <AuthButton /> :
-                                <button
-                                    className="bg-navy-dark text-base px-3 py-1 text-white rounded-[4px] transition-all duration-200 shadow-md outline-none border-none hover:bg-navy/80 hover:shadow-lg"
-                                    onClick={() => router.push('/login')}
-                                >
-                                    Sign in
-                                </button>
+                                <>
+                                    <button
+                                        className="bg-navy-dark hidden md:block text-base px-3 py-1 text-white rounded-[4px] transition-all duration-200 shadow-md outline-none border-none hover:bg-navy/80 hover:shadow-lg"
+                                        onClick={() => router.push('/login')}
+                                    >
+                                        Sign in
+                                    </button>
+                                    <div className="rounded-full bg-navy p-2 md:hidden flex items-center justify-center text-gold text-xl font-semibold">
+                                        <MdPerson />
+                                    </div>
+                                </>
                         }
                     </div>
                     {/* Mobile Navigation Toggle */}

@@ -19,6 +19,7 @@ const UserDashboard = () => {
     const [selectedDate, setSelectedDate] = useState(() =>
         new Date().toISOString().split("T")[0]
     );
+
     const { data: predictionData, isLoading, isFetching } = useFetchPredictionsQuery({
         search: '',
         page: 1,

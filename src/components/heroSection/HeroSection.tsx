@@ -1,10 +1,19 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import Button from '@/ui/button/Button'
 import Link from 'next/link'
 import { MdArrowForward } from 'react-icons/md'
+import { useFetchPredictionsQuery } from '@/redux/features/other/predictionAndMatch/predictionApi'
+import Skeleton from 'react-loading-skeleton'
+import { formatDate } from '@/utils/dateFormat/dateFormat'
 
 const HeroSection = () => {
+    const { data: predictionData, isLoading, isFetching } = useFetchPredictionsQuery({
+        search: '',
+        page: 1,
+        page_size: 10
+    })
     return (
         <>
             <section className="w-full relative text-left">
@@ -62,16 +71,32 @@ const HeroSection = () => {
                                                 <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Premium</span>
                                             </div>
                                             <div className="bg-gray-50 p-4 rounded-md mb-4 text-navy">
-                                                <div className="flex justify-between items-center">
-                                                    <div>
-                                                        <p className="text-sm text-gray-500">NBA - 7:30 PM EST</p>
-                                                        <p className="font-bold">Lakers vs. Celtics</p>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <p className="font-bold ">Lakers +3.5</p>
-                                                        {/* <p className="text-green-600 text-sm font-medium">Confidence: 85%</p> */}
-                                                    </div>
-                                                </div>
+                                                {
+                                                    isLoading || isFetching ?
+                                                        <Skeleton
+                                                            height={30}
+                                                            baseColor='#d4d4d4'
+                                                        /> :
+                                                        <div className="flex justify-between items-center">
+                                                            {
+                                                                predictionData && predictionData.results.length > 0 ?
+                                                                    <>
+                                                                        <div>
+                                                                            <p className="text-sm text-gray-500">
+                                                                                {predictionData.results[0].match_detail?.sport.name || '-'} - {formatDate(predictionData.results[0].placed_at)}
+                                                                            </p>
+                                                                            <p className="font-bold">{predictionData.results[0].match_detail?.team_1 || '-'} vs. {predictionData.results[0].match_detail?.team_2 || '-'}</p>
+                                                                        </div>
+                                                                        <div className="text-right">
+                                                                            <p className="font-bold ">{predictionData.results[0].our_prediction}</p>
+                                                                            {/* <p className="text-green-600 text-sm font-medium">Confidence: 85%</p> */}
+                                                                        </div>
+                                                                    </> : null
+                                                            }
+
+                                                        </div>
+                                                }
+
                                             </div>
                                             <Link
                                                 href="/plan"

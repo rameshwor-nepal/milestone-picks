@@ -60,12 +60,12 @@ const Footer = () => {
                         <ul className="space-y-2">
                             {["NBA", "NFL", "MLB", "NHL", "College Basketball"].map((sport) => (
                                 <li key={sport}>
-                                    <a
-                                        // href="#"
+                                    <Link
+                                        href="/plan"
                                         className="text-gray-300 hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
                                     >
                                         {sport} Picks
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
