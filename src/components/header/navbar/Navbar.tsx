@@ -78,7 +78,9 @@ const Navbar = () => {
                                     >
                                         Sign in
                                     </button>
-                                    <div className="rounded-full bg-navy p-1 md:hidden flex items-center justify-center text-gold text-2xl">
+                                    <div className="rounded-full bg-navy p-1 md:hidden flex items-center cursor-pointer justify-center text-gold text-2xl"
+                                        onClick={() => router.push('/login')}
+                                    >
                                         <MdPerson />
                                     </div>
                                 </>
