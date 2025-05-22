@@ -49,7 +49,7 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    <div>
+                    <div className="hidden md:block">
                         {
                             authenticated ?
                                 <AuthButton /> :
@@ -67,7 +67,22 @@ const Navbar = () => {
                         }
                     </div>
                     {/* Mobile Navigation Toggle */}
-                    <div className="md:hidden">
+                    <div className="md:hidden flex gap-2 sm:gap-4">
+                        {
+                            authenticated ?
+                                <AuthButton /> :
+                                <>
+                                    <button
+                                        className="bg-navy-dark hidden md:block text-base px-3 py-1 text-white rounded-[4px] transition-all duration-200 shadow-md outline-none border-none hover:bg-navy/80 hover:shadow-lg"
+                                        onClick={() => router.push('/login')}
+                                    >
+                                        Sign in
+                                    </button>
+                                    <div className="rounded-full bg-navy p-1 md:hidden flex items-center justify-center text-gold text-2xl">
+                                        <MdPerson />
+                                    </div>
+                                </>
+                        }
                         <button
                             onClick={() => setIsMobileNavBar(!isMobileNavBar)}
                             className="text-navy focus:outline-none"
