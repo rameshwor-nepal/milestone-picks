@@ -46,7 +46,7 @@ const Sidenav = (props: Props) => {
     return (
         <section
             className={`fixed top-0 left-0 h-screen bg-navy border-r border-green-1 transition-all duration-300 shadow-md
-                ${expandedSidebar ? 'w-[14rem]' : 'w-[6rem]'} block`}
+                ${expandedSidebar ? 'w-[14rem]' : 'w-[5rem]'} block`}
         >
             <div className='flex flex-col justify-between h-full items-center'>
 
@@ -54,7 +54,7 @@ const Sidenav = (props: Props) => {
                 <div className="relative w-full flex flex-col items-center gap-4 pt-6 pb-4 md:pb-8">
                     <div className={`transition-all  relative`}>
                         <Link href="/" className="">
-                            <span className={`${expandedSidebar ? "text-xl lg:text-2xl" : "text-[12px]"} font-display font-bold  text-white`}>
+                            <span className={`${expandedSidebar ? "text-xl lg:text-2xl" : "text-[11px]"} font-display font-bold  text-white`}>
                                 Milestone
                                 <span className="text-gold">Picks</span>
                             </span>
